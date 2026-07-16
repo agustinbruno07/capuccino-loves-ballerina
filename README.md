@@ -11,3 +11,5 @@ Proyecto de videojuego desarrollado con Java y LibGDX.
 ## Estado
 
 Configuración inicial del proyecto.
+## Wiki del proyecto
+https://github.com/agustinbruno07/capuccino-loves-ballerina/wiki
