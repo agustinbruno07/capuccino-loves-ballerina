@@ -2,7 +2,7 @@
 
 Todos los cambios importantes del proyecto serán registrados en este archivo.
 
-## [Unreleased]
+## [Unreleased] 2026-07-16
 
 ### Added
 
