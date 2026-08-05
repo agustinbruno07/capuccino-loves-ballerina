@@ -14,6 +14,7 @@ public class PantallaMenu implements Screen {
     public void show() {
         fondo = new Texture("interfaz/fondo_menu.png");
         batch = new SpriteBatch();
+
     }
 
     @Override
@@ -48,5 +49,6 @@ public class PantallaMenu implements Screen {
     public void dispose() {
         fondo.dispose();
         batch.dispose();
+
     }
 }
