@@ -5,6 +5,9 @@ Todos los cambios importantes del proyecto serán registrados en este archivo.
 
 ### Added
 -Creacion del Menu principal 
+    . Fondo del menu Principal
+    . Botones Salir, Opciones y Jugar 
+    . Funcionalidades de botones
 
 ## [0.0.0] 2026-07-16
 
