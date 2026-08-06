@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.capuccinolovesballerina.game.CapuccinoLovesBallerinaGame;
 
 public class PantallaMenu implements Screen {
     private Texture fondo;
@@ -18,9 +19,14 @@ public class PantallaMenu implements Screen {
     private Stage stage;
     private Skin skin;
     private TextButton botonJugar;
+    private TextButton botonOpciones;
     private TextButton botonSalir;
     private Table tabla;
+    private final CapuccinoLovesBallerinaGame juego;
 
+    public PantallaMenu(CapuccinoLovesBallerinaGame juego) {
+        this.juego = juego;
+    }
 
     @Override
     public void show() {
@@ -28,40 +34,65 @@ public class PantallaMenu implements Screen {
         batch = new SpriteBatch();
         stage = new Stage();
         skin = new Skin(Gdx.files.internal("skin/uiskin.json"));
+        crearBotones();
+        agregarBotones();
+        escucharBotones();
+
+    }
+    private void crearBotones(){
         botonJugar = new TextButton("JUGAR", skin);
+        botonOpciones = new TextButton("OPCIONES", skin);
         botonSalir = new TextButton("SALIR", skin);
+    }
+    private void agregarBotones(){
         tabla = new Table();
         tabla.setFillParent(true);
-        tabla.padTop(200);
-        tabla.add(botonJugar).width(200).height(60);
-        tabla.row();
-        tabla.add(botonSalir).width(200).height(60).padTop(20);
+        tabla.bottom();
+
+        tabla.add(botonJugar).size(200, 60).pad(10).row();
+        tabla.add(botonOpciones).size(200, 60).pad(10).row();
+        tabla.add(botonSalir).size(200, 60).pad(10);
+
         stage.addActor(tabla);
         Gdx.input.setInputProcessor(stage);
 
-        botonSalir.addListener(new ClickListener() {
+    }
+    private void escucharBotones() {
+        botonJugar.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                juego.setScreen(new PantallaJuego());
+            }
+        });
+        botonSalir.addListener (new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 Gdx.app.exit();
             }
         });
-
+        botonOpciones.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                juego.setScreen(new PantallaOpciones());
+            }
+        });
     }
-
     @Override
     public void render(float delta) {
         ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1f);
+
         batch.begin();
         batch.draw(fondo, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-
         batch.end();
+
         stage.act(delta);
         stage.draw();
+
     }
 
     @Override
     public void resize(int width, int height) {
-        stage.getViewport().update(width, height, true);
+
     }
 
     @Override
@@ -85,6 +116,5 @@ public class PantallaMenu implements Screen {
         batch.dispose();
         stage.dispose();
         skin.dispose();
-
     }
 }
