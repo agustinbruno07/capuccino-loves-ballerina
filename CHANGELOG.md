@@ -1,7 +1,7 @@
 # Changelog
 
 Todos los cambios importantes del proyecto serán registrados en este archivo.
-## [0.0.1] 2026-07-16
+## [0.0.1] 2026-08-04
 
 ### Added
 -Creacion del Menu principal 
