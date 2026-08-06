@@ -7,7 +7,7 @@ public class CapuccinoLovesBallerinaGame extends Game {
 
     @Override
     public void create() {
-        setScreen(new PantallaMenu());
+        setScreen(new PantallaMenu(this));
     }
 
     @Override
