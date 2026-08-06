@@ -1,6 +1,7 @@
 package com.capuccinolovesballerina.game.pantallas;
 
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.utils.ScreenUtils;
 
 public class PantallaJuego implements Screen {
 
@@ -11,7 +12,7 @@ public class PantallaJuego implements Screen {
 
     @Override
     public void render(float delta) {
-
+        ScreenUtils.clear(0.1f, 0.5f, 0.2f, 1f);
     }
 
     @Override
