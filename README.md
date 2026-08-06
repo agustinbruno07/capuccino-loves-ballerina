@@ -1,4 +1,3 @@
-
 # Capuccino Loves Ballerina
 
 ## Integrantes del grupo
@@ -15,25 +14,28 @@ Cada jugador controlará desde una computadora diferente a Cappuccino Assassino 
 
 ## Tecnologías principales
 
-- Java
+- Java JDK 17
 - LibGDX 1.14.1
 - Gradle
 - IntelliJ IDEA
 - Git y GitHub
-- Plataforma objetivo: Escritorio mediante LWJGL3
+- Plataforma objetivo: escritorio mediante LWJGL3
 
 ## Wiki del proyecto
 
 La propuesta formal y detallada del videojuego se encuentra en la Wiki:
-[WIKI](https://github.com/agustinbruno07/capuccino-loves-ballerina/wiki)
+
+[Ver la propuesta del proyecto](https://ino-loves-ballerina/wiki
 
 ## Compilación y ejecución
 
 ### Requisitos
 
-- Java JDK instalado.
-- Git instalado.
-- IntelliJ IDEA o un entorno compatible con proyectos Gradle.
+Para compilar y ejecutar el proyecto es necesario contar con:
+
+- Java JDK 17.
+- Git.
+- IntelliJ IDEA o cualquier entorno compatible con proyectos Gradle.
 
 ### Clonar el repositorio
 
@@ -41,3 +43,48 @@ Abrir una terminal y ejecutar:
 
 ```bash
 git clone https://github.com/agustinbruno07/capuccino-loves-ballerina.git
+```
+
+### Ingresar a la carpeta del proyecto
+
+Una vez clonado el repositorio, ejecutar:
+
+```bash
+cd capuccino-loves-ballerina
+```
+
+### Ejecutar en Windows
+
+Desde la carpeta raíz del proyecto, ejecutar:
+
+```bash
+gradlew.bat lwjgl3:run
+```
+
+Si se utiliza Git Bash, también se puede ejecutar:
+
+```bash
+./gradlew.bat lwjgl3:run
+```
+
+### Ejecutar en Linux o macOS
+
+Desde la carpeta raíz del proyecto, ejecutar:
+
+```bash
+./gradlew lwjgl3:run
+```
+
+### Ejecutar desde IntelliJ IDEA
+
+1. Abrir IntelliJ IDEA.
+2. Seleccionar `Open`.
+3. Buscar y abrir la carpeta `capuccino-loves-ballerina`.
+4. Esperar a que Gradle termine de importar el proyecto y descargar las dependencias.
+5. Abrir el módulo `lwjgl3`.
+6. Buscar la clase `Lwjgl3Launcher.java`.
+7. Ejecutar el método `main` de `Lwjgl3Launcher`.
+
+## Estado actual del proyecto
+
+El proyecto cuenta con la configuración inicial de LibGDX y estructura inicial.
