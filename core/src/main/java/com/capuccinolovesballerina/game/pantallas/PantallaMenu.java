@@ -21,7 +21,6 @@ public class PantallaMenu implements Screen {
     private TextButton botonJugar;
     private TextButton botonOpciones;
     private TextButton botonSalir;
-    private Table tabla;
     private final CapuccinoLovesBallerinaGame juego;
 
     public PantallaMenu(CapuccinoLovesBallerinaGame juego) {
@@ -45,7 +44,7 @@ public class PantallaMenu implements Screen {
         botonSalir = new TextButton("SALIR", skin);
     }
     private void agregarBotones(){
-        tabla = new Table();
+        Table tabla = new Table();
         tabla.setFillParent(true);
         tabla.bottom();
 
