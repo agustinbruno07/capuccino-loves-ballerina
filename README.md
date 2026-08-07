@@ -16,7 +16,7 @@ Cada jugador controlará desde una computadora diferente a Cappuccino Assassino 
 
 - Java JDK 17
 - LibGDX 1.14.1
-- Gradle
+- Gradle 9.5.1
 - IntelliJ IDEA
 - Git y GitHub
 - Plataforma objetivo: escritorio mediante LWJGL3
@@ -25,7 +25,7 @@ Cada jugador controlará desde una computadora diferente a Cappuccino Assassino 
 
 La propuesta formal y detallada del videojuego se encuentra en la Wiki:
 
-[Ver la propuesta del proyecto](https://ino-loves-ballerina/wiki
+[Ver la propuesta del proyecto](https://github.com/agustinbruno07/capuccino-loves-ballerina/wiki)
 
 ## Compilación y ejecución
 
@@ -87,4 +87,4 @@ Desde la carpeta raíz del proyecto, ejecutar:
 
 ## Estado actual del proyecto
 
-El proyecto cuenta con la configuración inicial de LibGDX y estructura inicial.
+El proyecto cuenta con la configuración inicial de LibGDX, el menú principal, las pantallas y la funcionalidad de sus botones.
