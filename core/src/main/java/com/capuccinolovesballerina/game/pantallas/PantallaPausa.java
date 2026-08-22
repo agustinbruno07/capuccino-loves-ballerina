@@ -2,7 +2,7 @@ package com.capuccinolovesballerina.game.pantallas;
 
 import com.badlogic.gdx.Screen;
 
-public class pantallaPausa implements Screen {
+public class PantallaPausa implements Screen {
     @Override
     public void show() {
 
