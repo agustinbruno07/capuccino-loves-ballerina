@@ -38,12 +38,15 @@ public class PantallaMenu implements Screen {
         escucharBotones();
 
     }
+
     private void crearBotones(){
         botonJugar = new TextButton("JUGAR", skin);
         botonOpciones = new TextButton("OPCIONES", skin);
         botonSalir = new TextButton("SALIR", skin);
     }
+
     private void agregarBotones(){
+
         Table tabla = new Table();
         tabla.setFillParent(true);
         tabla.bottom();
@@ -56,11 +59,13 @@ public class PantallaMenu implements Screen {
         Gdx.input.setInputProcessor(stage);
 
     }
+
     private void escucharBotones() {
+
         botonJugar.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                juego.setScreen(new PantallaJuego());
+                juego.setScreen(new PantallaJuego(juego));
             }
         });
         botonSalir.addListener (new ClickListener() {
@@ -76,6 +81,7 @@ public class PantallaMenu implements Screen {
             }
         });
     }
+
     @Override
     public void render(float delta) {
         ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1f);
