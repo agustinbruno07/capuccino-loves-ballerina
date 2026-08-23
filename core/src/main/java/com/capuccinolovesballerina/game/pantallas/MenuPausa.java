@@ -12,6 +12,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.capuccinolovesballerina.game.CapuccinoLovesBallerinaGame;
+import com.capuccinolovesballerina.game.Utilidades.FabricaViewport;
+import com.capuccinolovesballerina.game.Utilidades.Recursos;
 
 public class MenuPausa {
 
@@ -23,12 +25,12 @@ public class MenuPausa {
     private ShapeRenderer shapeRenderer;
     private boolean visible;
 
-    public MenuPausa(CapuccinoLovesBallerinaGame juego, float anchoMundo, float altoMundo) {
+    public MenuPausa(CapuccinoLovesBallerinaGame juego) {
         this.juego = juego;
 
-        viewport = new FitViewport(anchoMundo, altoMundo);
+        viewport = FabricaViewport.crear();
         stage = new Stage(viewport);
-        skin = new Skin(Gdx.files.internal("skin/uiskin.json"));
+        skin = Recursos.getSkin();
         shapeRenderer = new ShapeRenderer();
 
         TextButton botonReanudar = new TextButton("REANUDAR", skin);
@@ -105,7 +107,7 @@ public class MenuPausa {
 
     public void dispose() {
         stage.dispose();
-        skin.dispose();
+        Recursos.dispose();
         shapeRenderer.dispose();
     }
 }
