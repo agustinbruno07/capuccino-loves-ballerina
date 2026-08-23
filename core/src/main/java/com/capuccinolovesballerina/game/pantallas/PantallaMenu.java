@@ -6,15 +6,18 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.capuccinolovesballerina.game.CapuccinoLovesBallerinaGame;
+import com.capuccinolovesballerina.game.Utilidades.FabricaViewport;
+import com.capuccinolovesballerina.game.Utilidades.Recursos;
 
 public class PantallaMenu implements Screen {
-    private Texture fondo;
+    private Image fondo;
     private SpriteBatch batch;
     private Stage stage;
     private Skin skin;
@@ -29,10 +32,11 @@ public class PantallaMenu implements Screen {
 
     @Override
     public void show() {
-        fondo = new Texture("interfaz/fondo_menu.png");
-        batch = new SpriteBatch();
-        stage = new Stage();
-        skin = new Skin(Gdx.files.internal("skin/uiskin.json"));
+        stage = new Stage(FabricaViewport.crear());
+        skin = Recursos.getSkin();
+        fondo = new Image(Recursos.getImagen("interfaz/fondo_menu.png"));
+        fondo.setFillParent(true);
+        stage.addActor(fondo);
         crearBotones();
         agregarBotones();
         escucharBotones();
@@ -85,19 +89,13 @@ public class PantallaMenu implements Screen {
     @Override
     public void render(float delta) {
         ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1f);
-
-        batch.begin();
-        batch.draw(fondo, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        batch.end();
-
         stage.act(delta);
         stage.draw();
-
     }
 
     @Override
     public void resize(int width, int height) {
-
+        stage.getViewport().update(width, height, true);
     }
 
     @Override
@@ -117,9 +115,6 @@ public class PantallaMenu implements Screen {
 
     @Override
     public void dispose() {
-        fondo.dispose();
-        batch.dispose();
         stage.dispose();
-        skin.dispose();
     }
 }
