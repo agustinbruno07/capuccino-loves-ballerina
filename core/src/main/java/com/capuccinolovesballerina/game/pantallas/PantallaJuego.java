@@ -11,11 +11,15 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.capuccinolovesballerina.game.CapuccinoLovesBallerinaGame;
+import com.capuccinolovesballerina.game.Utilidades.Constantes;
+import com.capuccinolovesballerina.game.Utilidades.FabricaViewport;
+
+import static com.capuccinolovesballerina.game.Utilidades.Constantes.ALTO_MUNDO;
+import static com.capuccinolovesballerina.game.Utilidades.Constantes.ANCHO_MUNDO;
 
 public class PantallaJuego implements Screen {
 
-    private static final float ANCHO_MUNDO = 1280;
-    private static final float ALTO_MUNDO = 720;
+
 
     private final CapuccinoLovesBallerinaGame juego;
 
@@ -31,14 +35,16 @@ public class PantallaJuego implements Screen {
 
     @Override
     public void show() {
+
         camera = new OrthographicCamera();
-        viewport = new FitViewport(ANCHO_MUNDO, ALTO_MUNDO, camera);
+        viewport = FabricaViewport.crear(camera);
         batch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();
-        menuPausa = new MenuPausa(juego, ANCHO_MUNDO, ALTO_MUNDO);
+        menuPausa = new MenuPausa(juego);
 
-        camera.position.set(ANCHO_MUNDO / 2, ALTO_MUNDO / 2, 0);
+        camera.position.set( Constantes.ANCHO_MUNDO / 2,  Constantes.ALTO_MUNDO / 2, 0);
         camera.update();
+
     }
 
     @Override
@@ -71,7 +77,7 @@ public class PantallaJuego implements Screen {
         shapeRenderer.setProjectionMatrix(camera.combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setColor(Color.BROWN);
-        shapeRenderer.rect(0, 0, ANCHO_MUNDO, 50);
+        shapeRenderer.rect(0, 0,  Constantes.ANCHO_MUNDO, 50);
         shapeRenderer.rect(300, 200, 200, 20);
         shapeRenderer.end();
 
