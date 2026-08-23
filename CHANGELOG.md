@@ -1,6 +1,18 @@
 # Changelog
 
 Todos los cambios importantes del proyecto serán registrados en este archivo.
+## [1.1.0] 2026-08-23
+
+### Agregado
+- Menú de pausa como overlay (clase MenuPausa) con botones Reanudar, Volver al menú y Salir.
+- Alternancia de la pausa con la tecla ESC en la pantalla de juego.
+- Cámara fija con FitViewport en la pantalla de juego: el contenido se adapta a distintos tamaños de ventana sin deformarse.
+- Entorno de prueba con plataformas en la pantalla de juego .
+
+### Cambiado
+- PantallaJuego ahora recibe la instancia del juego en el constructor para permitir la navegación entre pantallas.
+- Ventana de escritorio configurada en 1280x720.
+
 
 ## [1.0.1] 2026-08-04
 
