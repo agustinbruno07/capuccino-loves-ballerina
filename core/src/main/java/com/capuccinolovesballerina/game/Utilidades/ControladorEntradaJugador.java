@@ -106,4 +106,12 @@ public class ControladorEntradaJugador extends InputAdapter {
         interactuarPresionado = false;
         habilidadPresionada = false;
     }
+
+    public void soltarTodo() {
+        izquierda = false;
+        derecha = false;
+        saltoPresionado = false;
+        interactuarPresionado = false;
+        habilidadPresionada = false;
+    }
 }
