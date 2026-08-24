@@ -1,5 +1,10 @@
 package com.capuccinolovesballerina.game.entidades;
 
-public class BallerinaCapuccina {
+import com.capuccinolovesballerina.game.Utilidades.Constantes;
 
+public class BallerinaCapuccina extends Player {
+
+    public BallerinaCapuccina(float x, float y) {
+        super(x, y, Constantes.ANCHO_PERSONAJE, Constantes.ALTO_PERSONAJE);
+    }
 }
