@@ -4,6 +4,9 @@ Todos los cambios importantes del proyecto serán registrados en este archivo.
 
 ## [1.2.0] - 2026-08-25 (en curso)
 ### Agregado
+- Mecánica cooperativa de palanca y puerta : nuevo paquete `objetos` con `Palanca` y `Puerta`; la palanca se alterna con E estando cerca y abre/cierra la puerta; la puerta cerrada bloquea el paso como sólido adicional y no puede cerrarse con el jugador en el hueco.
+- Condición de victoria: con la puerta abierta, al presionar E sobre su hueco aparece `MenuVictoria` ("NIVEL COMPLETADO" con JUGAR DE NUEVO y VOLVER AL MENU).
+- Placeholders de salida , puerta  y palanca dibujados con ShapeRenderer.
 - Movimiento de Cappuccino Assassino: desplazamiento horizontal (A/D), salto (W o espacio), gravedad y colisiones contra los sólidos del mapa (`Player` + `ControladorEntradaJugador`).
 - Spawn del personaje leído desde la capa `objetos` de Tiled (`spawn_cappuccino`).
 - Muerte por caída al vacío con pantalla de GAME OVER (`interfaz/game_over.png`) y botones REINTENTAR y VOLVER AL MENU.
@@ -11,9 +14,11 @@ Todos los cambios importantes del proyecto serán registrados en este archivo.
 - Nuevo paquete `mapa` con las clases `Nivel` (modelo de datos del nivel) y `GestorColisiones` (sólidos construidos desde los tiles, lógica pura reutilizable por el futuro servidor).
 - `PantallaJuego` ahora carga y dibuja el mapa de Tiled (TmxMapLoader + OrthogonalTiledMapRenderer).
 ### Cambiado
+- `reintentar()` ahora también devuelve la puerta y la palanca a su estado inicial, además de reposicionar al personaje.
 - `ANCHO_MUNDO` a 1408 para que el mundo calce exacto con el mapa (22 tiles x 64 px).
 - `PantallaJuego` queda como cliente flaco: delega el mapa en `mapa/Nivel`; el renderizador lo crea el cliente.
-
+### Corregido
+- Teclas quedaban "pegadas" al abrir un menú o reintentar: se agregó `soltarTodo()` a `ControladorEntradaJugador`, que resetea las teclas sostenidas cada vez que el control pasa a un menú.
 
 ## [1.1.0] 2026-08-23
 
