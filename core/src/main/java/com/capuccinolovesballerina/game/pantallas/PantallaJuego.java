@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -16,6 +17,8 @@ import com.capuccinolovesballerina.game.Utilidades.ControladorEntradaJugador;
 import com.capuccinolovesballerina.game.Utilidades.FabricaViewport;
 import com.capuccinolovesballerina.game.entidades.CapuccinoAssassino;
 import com.capuccinolovesballerina.game.mapa.Nivel;
+import com.capuccinolovesballerina.game.objetos.Palanca;
+import com.capuccinolovesballerina.game.objetos.Puerta;
 
 public class PantallaJuego implements Screen {
 
@@ -27,11 +30,14 @@ public class PantallaJuego implements Screen {
     private OrthogonalTiledMapRenderer renderizador;
     private MenuPausa menuPausa;
     private MenuGameOver menuGameOver;
+    private MenuVictoria menuVictoria;
 
     private ControladorEntradaJugador controladorEntrada;
     private CapuccinoAssassino cappuccino;
     private ShapeRenderer shapeRenderer;
 
+    private Palanca palanca;
+    private Puerta puerta;
     private float spawnX;
     private float spawnY;
 
@@ -48,8 +54,18 @@ public class PantallaJuego implements Screen {
         nivel = new Nivel("mapas/nivel0.tmx", 64);
         renderizador = new OrthogonalTiledMapRenderer(nivel.getMapa(), 1f);
 
+        Rectangle zonaPuerta = nivel.buscarObjeto("puerta");
+        if (zonaPuerta != null) {
+            puerta = new Puerta(zonaPuerta);
+        }
+        Rectangle zonaPalanca = nivel.buscarObjeto("palanca");
+        if (zonaPalanca != null) {
+            palanca = new Palanca(zonaPalanca);
+        }
+
         menuPausa = new MenuPausa(juego);
         menuGameOver = new MenuGameOver(juego, () -> reintentar());
+        menuVictoria = new MenuVictoria(juego, () -> reintentar());
 
         shapeRenderer = new ShapeRenderer();
 
@@ -83,7 +99,13 @@ public class PantallaJuego implements Screen {
 
     private void reintentar() {
         cappuccino.reaparecer(spawnX, spawnY);
-        controladorEntrada.limpiarEventos();
+        if (puerta != null) {
+            puerta.setAbierta(false);
+        }
+        if (palanca != null && palanca.estaActivada()) {
+            palanca.alternar();
+        }
+        controladorEntrada.soltarTodo();
     }
 
     @Override
@@ -97,9 +119,9 @@ public class PantallaJuego implements Screen {
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
             if (menuPausa.estaVisible()) {
                 menuPausa.ocultar();
-            } else if (!menuGameOver.estaVisible()) {
+            } else if (!menuGameOver.estaVisible() && !menuVictoria.estaVisible()) {
                 menuPausa.mostrar();
-                controladorEntrada.limpiarEventos();
+                controladorEntrada.soltarTodo();
             }
         }
 
@@ -113,8 +135,18 @@ public class PantallaJuego implements Screen {
             return;
         }
 
+        if (menuVictoria.estaVisible()) {
+            menuVictoria.actualizar(delta);
+            return;
+        }
+
         if (Gdx.input.getInputProcessor() != controladorEntrada) {
             Gdx.input.setInputProcessor(controladorEntrada);
+        }
+
+        Array<Rectangle> solidos = new Array<>(nivel.getColisiones().getSolidos());
+        if (puerta != null && puerta.bloquea()) {
+            solidos.add(puerta.getZona());
         }
 
         cappuccino.actualizar(
@@ -122,10 +154,35 @@ public class PantallaJuego implements Screen {
             controladorEntrada.isIzquierda(),
             controladorEntrada.isDerecha(),
             controladorEntrada.isSaltoPresionado(),
-            nivel.getColisiones().getSolidos()
+            solidos
         );
 
+        if (palanca != null && controladorEntrada.isInteractuarPresionado()) {
+            Rectangle caja = cappuccino.getCaja();
+            Rectangle alcance = new Rectangle(caja.x - 12, caja.y - 12, caja.width + 24, caja.height + 24);
+            if (alcance.overlaps(palanca.getZona())) {
+                boolean vaACerrar = palanca.estaActivada();
+                boolean jugadorEnLaPuerta = puerta != null && caja.overlaps(puerta.getZona());
+                if (!vaACerrar || !jugadorEnLaPuerta) {
+                    palanca.alternar();
+                    if (puerta != null) {
+                        puerta.setAbierta(palanca.estaActivada());
+                    }
+                }
+            }
+        }
+
+
+        if (puerta != null && puerta.estaAbierta()
+            && controladorEntrada.isInteractuarPresionado()
+            && cappuccino.getCaja().overlaps(puerta.getZona())) {
+            controladorEntrada.soltarTodo();
+            menuVictoria.mostrar();
+            return;
+        }
+
         if (cappuccino.getY() < -cappuccino.getAlto()) {
+            controladorEntrada.soltarTodo();
             menuGameOver.mostrar();
             return;
         }
@@ -144,6 +201,33 @@ public class PantallaJuego implements Screen {
 
         shapeRenderer.setProjectionMatrix(camera.combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+
+
+        if (puerta != null) {
+            shapeRenderer.setColor(0.2f, 0.9f, 0.3f, 1f);
+            Rectangle z = puerta.getZona();
+            shapeRenderer.rect(z.x, z.y, z.width, z.height);
+        }
+
+
+        if (puerta != null && puerta.bloquea()) {
+            shapeRenderer.setColor(0.45f, 0.28f, 0.15f, 1f);
+            Rectangle z = puerta.getZona();
+            shapeRenderer.rect(z.x, z.y, z.width, z.height);
+        }
+
+
+        if (palanca != null) {
+            if (palanca.estaActivada()) {
+                shapeRenderer.setColor(1f, 0.75f, 0f, 1f);
+            } else {
+                shapeRenderer.setColor(0.6f, 0.6f, 0.6f, 1f);
+            }
+            Rectangle z = palanca.getZona();
+            shapeRenderer.rect(z.x, z.y, z.width, z.height);
+        }
+
+
         shapeRenderer.setColor(0.85f, 0.35f, 0.25f, 1f);
         shapeRenderer.rect(
             cappuccino.getX(),
@@ -155,6 +239,7 @@ public class PantallaJuego implements Screen {
 
         menuPausa.dibujar();
         menuGameOver.dibujar();
+        menuVictoria.dibujar();
     }
 
     @Override
@@ -162,6 +247,7 @@ public class PantallaJuego implements Screen {
         viewport.update(width, height, true);
         menuPausa.resize(width, height);
         menuGameOver.resize(width, height);
+        menuVictoria.resize(width, height);
     }
 
     @Override
@@ -170,6 +256,7 @@ public class PantallaJuego implements Screen {
         nivel.dispose();
         menuPausa.dispose();
         menuGameOver.dispose();
+        menuVictoria.dispose();
         shapeRenderer.dispose();
     }
 
