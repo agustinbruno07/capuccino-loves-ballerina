@@ -4,6 +4,9 @@ Todos los cambios importantes del proyecto serán registrados en este archivo.
 
 ## [1.2.0] - 2026-08-25 (en curso)
 ### Agregado
+- Movimiento de Cappuccino Assassino: desplazamiento horizontal (A/D), salto (W o espacio), gravedad y colisiones contra los sólidos del mapa (`Player` + `ControladorEntradaJugador`).
+- Spawn del personaje leído desde la capa `objetos` de Tiled (`spawn_cappuccino`).
+- Muerte por caída al vacío con pantalla de GAME OVER (`interfaz/game_over.png`) y botones REINTENTAR y VOLVER AL MENU.
 - Nivel 0 diseñado en Tiled Map Editor: tileset de ladrillos, fondo de mazmorra, capa de objetos (spawns, palanca, puerta, salida) y colisiones por tile con bounding boxes.
 - Nuevo paquete `mapa` con las clases `Nivel` (modelo de datos del nivel) y `GestorColisiones` (sólidos construidos desde los tiles, lógica pura reutilizable por el futuro servidor).
 - `PantallaJuego` ahora carga y dibuja el mapa de Tiled (TmxMapLoader + OrthogonalTiledMapRenderer).
