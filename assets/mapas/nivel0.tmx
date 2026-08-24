@@ -51,7 +51,7 @@
  </layer>
  <objectgroup id="7" name="objetos">
   <object id="53" x="64" y="384" width="64" height="128"/>
-  <object id="55" type="spawnCapuccino" x="64" y="384" width="64" height="128"/>
+  <object id="55" name="spawn_capuccino" type=" spawnCapuccino" x="64" y="384" width="64" height="128"/>
   <object id="56" type="spawnBallerina" x="128" y="384" width="64" height="128"/>
   <object id="63" type="palanca" x="512" y="512" width="64" height="64"/>
   <object id="65" type="puerta" x="1152" y="384" width="64" height="128"/>
