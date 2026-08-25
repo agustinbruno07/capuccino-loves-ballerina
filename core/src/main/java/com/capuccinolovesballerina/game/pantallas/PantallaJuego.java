@@ -45,6 +45,7 @@ public class PantallaJuego implements Screen {
     private Palanca palanca;
     private Puerta puerta;
     private final Array<ObjetoCortable> cortables = new Array<>();
+    private final Array<Rectangle> peligros = new Array<>();
 
     private float spawnX;
     private float spawnY;
@@ -72,7 +73,9 @@ public class PantallaJuego implements Screen {
             palanca = new Palanca(zonaPalanca);
         }
 
+
         cargarCortables();
+        cargarPeligros();
 
         menuPausa = new MenuPausa(juego);
         menuGameOver = new MenuGameOver(juego, () -> reintentar());
@@ -102,6 +105,13 @@ public class PantallaJuego implements Screen {
             for (RectangleMapObject obj : nivel.buscarObjetos(tipo)) {
                 cortables.add(new ObjetoCortable(tipo, new Rectangle(obj.getRectangle())));
             }
+        }
+    }
+
+    private void cargarPeligros() {
+        peligros.clear();
+        for (RectangleMapObject obj : nivel.buscarObjetos("peligro")) {
+            peligros.add(new Rectangle(obj.getRectangle()));
         }
     }
 
@@ -177,10 +187,6 @@ public class PantallaJuego implements Screen {
 
         Array<Rectangle> solidos = new Array<>(nivel.getColisiones().getSolidos());
 
-        if (puerta != null && puerta.bloquea()) {
-            solidos.add(puerta.getZona());
-        }
-
         for (ObjetoCortable cortable : cortables) {
             if (cortable.bloquea()) {
                 solidos.add(cortable.getZona());
@@ -237,6 +243,14 @@ public class PantallaJuego implements Screen {
             return;
         }
 
+        for (Rectangle peligro : peligros) {
+            if (cappuccino.getCaja().overlaps(peligro)) {
+                controladorEntrada.soltarTodo();
+                menuGameOver.mostrar();
+                return;
+            }
+        }
+
         controladorEntrada.limpiarEventos();
     }
 
@@ -270,10 +284,18 @@ public class PantallaJuego implements Screen {
         shapeRenderer.setProjectionMatrix(camera.combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 
-        if (puerta != null && puerta.bloquea()) {
-            shapeRenderer.setColor(0.45f, 0.28f, 0.15f, 1f);
+        if (puerta != null) {
             Rectangle z = puerta.getZona();
-            shapeRenderer.rect(z.x, z.y, z.width, z.height);
+            shapeRenderer.setColor(0.45f, 0.28f, 0.15f, 1f);
+
+            if (puerta.bloquea()) {
+                shapeRenderer.rect(z.x, z.y, z.width, z.height);
+            } else {
+                float marco = 8f;
+                shapeRenderer.rect(z.x, z.y, marco, z.height);
+                shapeRenderer.rect(z.x + z.width - marco, z.y, marco, z.height);
+                shapeRenderer.rect(z.x, z.y + z.height - marco, z.width, marco);
+            }
         }
 
         if (palanca != null) {
@@ -299,6 +321,11 @@ public class PantallaJuego implements Screen {
 
             Rectangle z = cortable.getZona();
             shapeRenderer.rect(z.x, z.y, z.width, z.height);
+        }
+
+        shapeRenderer.setColor(0.8f, 0.1f, 0.1f, 1f);
+        for (Rectangle peligro : peligros) {
+            shapeRenderer.rect(peligro.x, peligro.y, peligro.width, peligro.height);
         }
 
         shapeRenderer.end();
