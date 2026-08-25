@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
@@ -20,6 +21,9 @@ import com.capuccinolovesballerina.game.mapa.Nivel;
 import com.capuccinolovesballerina.game.objetos.Palanca;
 import com.capuccinolovesballerina.game.objetos.Puerta;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.capuccinolovesballerina.game.graficos.AnimacionesCappuccino;
+
 public class PantallaJuego implements Screen {
 
     private final CapuccinoLovesBallerinaGame juego;
@@ -35,6 +39,10 @@ public class PantallaJuego implements Screen {
     private ControladorEntradaJugador controladorEntrada;
     private CapuccinoAssassino cappuccino;
     private ShapeRenderer shapeRenderer;
+    private SpriteBatch batch;
+    private AnimacionesCappuccino animaciones;
+
+
 
     private Palanca palanca;
     private Puerta puerta;
@@ -68,6 +76,10 @@ public class PantallaJuego implements Screen {
         menuVictoria = new MenuVictoria(juego, () -> reintentar());
 
         shapeRenderer = new ShapeRenderer();
+
+        batch = new SpriteBatch();
+        animaciones = new AnimacionesCappuccino();
+
 
         controladorEntrada = new ControladorEntradaJugador();
         Gdx.input.setInputProcessor(controladorEntrada);
@@ -106,6 +118,7 @@ public class PantallaJuego implements Screen {
             palanca.alternar();
         }
         controladorEntrada.soltarTodo();
+        animaciones.reiniciar();
     }
 
     @Override
@@ -156,6 +169,18 @@ public class PantallaJuego implements Screen {
             controladorEntrada.isSaltoPresionado(),
             solidos
         );
+
+        if (controladorEntrada.isHabilidadPresionada()) {
+            animaciones.setEstado(AnimacionesCappuccino.Estado.ATTACK);
+        } else if (!cappuccino.isEnSuelo()) {
+            animaciones.setEstado(AnimacionesCappuccino.Estado.JUMP);
+        } else if (controladorEntrada.isIzquierda() || controladorEntrada.isDerecha()) {
+            animaciones.setEstado(AnimacionesCappuccino.Estado.WALK);
+        } else {
+            animaciones.setEstado(AnimacionesCappuccino.Estado.IDLE);
+        }
+        animaciones.actualizar(delta);
+
 
         if (palanca != null && controladorEntrada.isInteractuarPresionado()) {
             Rectangle caja = cappuccino.getCaja();
@@ -227,15 +252,20 @@ public class PantallaJuego implements Screen {
             shapeRenderer.rect(z.x, z.y, z.width, z.height);
         }
 
-
-        shapeRenderer.setColor(0.85f, 0.35f, 0.25f, 1f);
-        shapeRenderer.rect(
-            cappuccino.getX(),
-            cappuccino.getY(),
-            cappuccino.getAncho(),
-            cappuccino.getAlto()
-        );
         shapeRenderer.end();
+
+        batch.setProjectionMatrix(camera.combined);
+        batch.begin();
+        TextureRegion frame = animaciones.getFrameActual();
+        float tam = 96f;
+        float x = cappuccino.getX() - (tam - cappuccino.getAncho()) / 2f;
+        float y = cappuccino.getY();
+        if (cappuccino.isMirandoDerecha()) {
+            batch.draw(frame, x, y, tam, tam);
+        } else {
+            batch.draw(frame, x + tam, y, -tam, tam);
+        }
+        batch.end();
 
         menuPausa.dibujar();
         menuGameOver.dibujar();
@@ -258,6 +288,8 @@ public class PantallaJuego implements Screen {
         menuGameOver.dispose();
         menuVictoria.dispose();
         shapeRenderer.dispose();
+        batch.dispose();
+        animaciones.dispose();
     }
 
     @Override
