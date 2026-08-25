@@ -4,25 +4,25 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.Viewport;
-
 import com.capuccinolovesballerina.game.CapuccinoLovesBallerinaGame;
 import com.capuccinolovesballerina.game.Utilidades.Constantes;
 import com.capuccinolovesballerina.game.Utilidades.ControladorEntradaJugador;
 import com.capuccinolovesballerina.game.Utilidades.FabricaViewport;
 import com.capuccinolovesballerina.game.entidades.CapuccinoAssassino;
+import com.capuccinolovesballerina.game.graficos.AnimacionesCappuccino;
 import com.capuccinolovesballerina.game.mapa.Nivel;
+import com.capuccinolovesballerina.game.objetos.ObjetoCortable;
 import com.capuccinolovesballerina.game.objetos.Palanca;
 import com.capuccinolovesballerina.game.objetos.Puerta;
-
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.capuccinolovesballerina.game.graficos.AnimacionesCappuccino;
 
 public class PantallaJuego implements Screen {
 
@@ -42,10 +42,10 @@ public class PantallaJuego implements Screen {
     private SpriteBatch batch;
     private AnimacionesCappuccino animaciones;
 
-
-
     private Palanca palanca;
     private Puerta puerta;
+    private final Array<ObjetoCortable> cortables = new Array<>();
+
     private float spawnX;
     private float spawnY;
 
@@ -66,20 +66,21 @@ public class PantallaJuego implements Screen {
         if (zonaPuerta != null) {
             puerta = new Puerta(zonaPuerta);
         }
+
         Rectangle zonaPalanca = nivel.buscarObjeto("palanca");
         if (zonaPalanca != null) {
             palanca = new Palanca(zonaPalanca);
         }
+
+        cargarCortables();
 
         menuPausa = new MenuPausa(juego);
         menuGameOver = new MenuGameOver(juego, () -> reintentar());
         menuVictoria = new MenuVictoria(juego, () -> reintentar());
 
         shapeRenderer = new ShapeRenderer();
-
         batch = new SpriteBatch();
         animaciones = new AnimacionesCappuccino();
-
 
         controladorEntrada = new ControladorEntradaJugador();
         Gdx.input.setInputProcessor(controladorEntrada);
@@ -92,6 +93,16 @@ public class PantallaJuego implements Screen {
             0
         );
         camera.update();
+    }
+
+    private void cargarCortables() {
+        cortables.clear();
+        String[] tipos = {"cuerda", "enredadera", "barril"};
+        for (String tipo : tipos) {
+            for (RectangleMapObject obj : nivel.buscarObjetos(tipo)) {
+                cortables.add(new ObjetoCortable(tipo, new Rectangle(obj.getRectangle())));
+            }
+        }
     }
 
     private void crearCappuccino() {
@@ -111,12 +122,19 @@ public class PantallaJuego implements Screen {
 
     private void reintentar() {
         cappuccino.reaparecer(spawnX, spawnY);
+
         if (puerta != null) {
             puerta.setAbierta(false);
         }
+
         if (palanca != null && palanca.estaActivada()) {
             palanca.alternar();
         }
+
+        for (ObjetoCortable cortable : cortables) {
+            cortable.setCortado(false);
+        }
+
         controladorEntrada.soltarTodo();
         animaciones.reiniciar();
     }
@@ -158,8 +176,15 @@ public class PantallaJuego implements Screen {
         }
 
         Array<Rectangle> solidos = new Array<>(nivel.getColisiones().getSolidos());
+
         if (puerta != null && puerta.bloquea()) {
             solidos.add(puerta.getZona());
+        }
+
+        for (ObjetoCortable cortable : cortables) {
+            if (cortable.bloquea()) {
+                solidos.add(cortable.getZona());
+            }
         }
 
         cappuccino.actualizar(
@@ -172,6 +197,7 @@ public class PantallaJuego implements Screen {
 
         if (controladorEntrada.isHabilidadPresionada()) {
             animaciones.setEstado(AnimacionesCappuccino.Estado.ATTACK);
+            cortar();
         } else if (!cappuccino.isEnSuelo()) {
             animaciones.setEstado(AnimacionesCappuccino.Estado.JUMP);
         } else if (controladorEntrada.isIzquierda() || controladorEntrada.isDerecha()) {
@@ -179,8 +205,8 @@ public class PantallaJuego implements Screen {
         } else {
             animaciones.setEstado(AnimacionesCappuccino.Estado.IDLE);
         }
-        animaciones.actualizar(delta);
 
+        animaciones.actualizar(delta);
 
         if (palanca != null && controladorEntrada.isInteractuarPresionado()) {
             Rectangle caja = cappuccino.getCaja();
@@ -196,7 +222,6 @@ public class PantallaJuego implements Screen {
                 }
             }
         }
-
 
         if (puerta != null && puerta.estaAbierta()
             && controladorEntrada.isInteractuarPresionado()
@@ -215,6 +240,24 @@ public class PantallaJuego implements Screen {
         controladorEntrada.limpiarEventos();
     }
 
+    private void cortar() {
+        Rectangle caja = cappuccino.getCaja();
+        float alcance = 40f;
+        Rectangle zonaCorte;
+
+        if (cappuccino.isMirandoDerecha()) {
+            zonaCorte = new Rectangle(caja.x + caja.width, caja.y, alcance, caja.height);
+        } else {
+            zonaCorte = new Rectangle(caja.x - alcance, caja.y, alcance, caja.height);
+        }
+
+        for (ObjetoCortable cortable : cortables) {
+            if (!cortable.estaCortado() && zonaCorte.overlaps(cortable.getZona())) {
+                cortable.setCortado(true);
+            }
+        }
+    }
+
     private void dibujar() {
 
         ScreenUtils.clear(0.1f, 0.1f, 0.15f, 1f);
@@ -227,20 +270,11 @@ public class PantallaJuego implements Screen {
         shapeRenderer.setProjectionMatrix(camera.combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 
-
-        if (puerta != null) {
-            shapeRenderer.setColor(0.2f, 0.9f, 0.3f, 1f);
-            Rectangle z = puerta.getZona();
-            shapeRenderer.rect(z.x, z.y, z.width, z.height);
-        }
-
-
         if (puerta != null && puerta.bloquea()) {
             shapeRenderer.setColor(0.45f, 0.28f, 0.15f, 1f);
             Rectangle z = puerta.getZona();
             shapeRenderer.rect(z.x, z.y, z.width, z.height);
         }
-
 
         if (palanca != null) {
             if (palanca.estaActivada()) {
@@ -249,6 +283,21 @@ public class PantallaJuego implements Screen {
                 shapeRenderer.setColor(0.6f, 0.6f, 0.6f, 1f);
             }
             Rectangle z = palanca.getZona();
+            shapeRenderer.rect(z.x, z.y, z.width, z.height);
+        }
+
+        for (ObjetoCortable cortable : cortables) {
+            if (cortable.estaCortado()) continue;
+
+            if ("cuerda".equals(cortable.getTipo())) {
+                shapeRenderer.setColor(0.8f, 0.7f, 0.4f, 1f);
+            } else if ("enredadera".equals(cortable.getTipo())) {
+                shapeRenderer.setColor(0.2f, 0.7f, 0.3f, 1f);
+            } else {
+                shapeRenderer.setColor(0.55f, 0.35f, 0.15f, 1f);
+            }
+
+            Rectangle z = cortable.getZona();
             shapeRenderer.rect(z.x, z.y, z.width, z.height);
         }
 
