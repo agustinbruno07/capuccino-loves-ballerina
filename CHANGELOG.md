@@ -4,6 +4,7 @@ Todos los cambios importantes del proyecto serán registrados en este archivo.
 
 ## [1.2.0] - 2026-08-24 (en curso)
 ### Agregado    
+- Zonas de peligro: rectángulos `peligro` en la capa `objetos` que muestran GAME OVER al tocarlos, además de la muerte por caída al vacío.
 - Corte de Katana de Cappuccino Assassino: con F corta objetos `cuerda` y `barril` de la capa `objetos` (`ObjetoCortable` + `Nivel.buscarObjetos`); mientras no están cortados bloquean el paso como sólidos y al reintentar vuelven a su estado inicial.
 - Mecánica cooperativa de palanca y puerta : nuevo paquete `objetos` con `Palanca` y `Puerta`; la palanca se alterna con E estando cerca y abre/cierra la puerta; la puerta cerrada bloquea el paso como sólido adicional y no puede cerrarse con el jugador en el hueco.
 - Condición de victoria: con la puerta abierta, al presionar E sobre su hueco aparece `MenuVictoria` ("NIVEL COMPLETADO" con JUGAR DE NUEVO y VOLVER AL MENU).
@@ -18,6 +19,7 @@ Todos los cambios importantes del proyecto serán registrados en este archivo.
 - Nuevo paquete `graficos` con la clase `animacionesCappuccino`: recorte del spritesheet con `TextureRegion.split` y animaciones con `Animation<TextureRegion>` en modo LOOP (idle/caminar) y NORMAL (saltar/atacar), con ataque que no se interrumpe hasta terminar.
 - Animaciones integradas en `PantallaJuego`: maquina de estados segun input y fisica (F → atacar, en el aire → saltar, moverse → caminar, quieto → idle), dibujo con `SpriteBatch` y espejado del sprite segun la direccion de movimiento.
 ### Cambiado
+- Rediseño de la puerta: cerrada ya no bloquea el paso y al abrirse se dibuja como marco en la misma posición en vez de desaparecer.
 - `reintentar()` ahora también devuelve la puerta y la palanca a su estado inicial, además de reposicionar al personaje.
 - `ANCHO_MUNDO` a 1408 para que el mundo calce exacto con el mapa (22 tiles x 64 px).
 - `PantallaJuego` queda como cliente flaco: delega el mapa en `mapa/Nivel`; el renderizador lo crea el cliente.
