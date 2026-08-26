@@ -10,7 +10,7 @@ public class Constantes {
     public static final float ALTO_PERSONAJE = 64f;
 
     public static final float VELOCIDAD_MOVIMIENTO = 260f;
-    public static final float VELOCIDAD_SALTO = 600f;
+    public static final float VELOCIDAD_SALTO = 700;
     public static final float GRAVEDAD = 2200f;
     public static final float VELOCIDAD_MAX_CAIDA = 1300f;
 }
