@@ -86,5 +86,5 @@ Desde la carpeta raíz del proyecto, ejecutar:
 7. Ejecutar el método `main` de `Lwjgl3Launcher`.
 
 ## Estado actual del proyecto
-
-El proyecto cuenta con la configuración inicial de LibGDX y estructura inicial.
+El proyecto cuenta con un prototipo jugable del nivel 0 corriendo en escritorio.
+El Prototipo contiene: movimiento, salto, colisiones, nivel de Tiled, palanca/puerta, Capuccino assassino(personaje), muerte y victoria.
