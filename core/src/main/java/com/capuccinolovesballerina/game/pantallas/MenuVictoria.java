@@ -1,41 +1,44 @@
 package com.capuccinolovesballerina.game.pantallas;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.capuccinolovesballerina.game.CapuccinoLovesBallerinaGame;
 import com.capuccinolovesballerina.game.Utilidades.FabricaViewport;
 import com.capuccinolovesballerina.game.Utilidades.Recursos;
 
-public class MenuVictoria {
+public class MenuVictoria{
+
     private final Stage stage;
     private final Viewport viewport;
-    private final ShapeRenderer shapeRenderer;
     private boolean visible;
 
-    public MenuVictoria(CapuccinoLovesBallerinaGame juego, Runnable accionRepetir) {
+    public MenuVictoria(CapuccinoLovesBallerinaGame juego) {
         viewport = FabricaViewport.crear();
         stage = new Stage(viewport);
-        shapeRenderer = new ShapeRenderer();
         Skin skin = Recursos.getSkin();
 
-        Label titulo = new Label("NIVEL COMPLETADO", skin);
-        TextButton botonRepetir = new TextButton("JUGAR DE NUEVO", skin);
+        Image fondo = new Image(Recursos.getImagen("interfaz/victoria.jpg"));
+        fondo.setFillParent(true);
+        fondo.setScaling(Scaling.fill);
+        stage.addActor(fondo);
+
+        TextButton botonSiguienteNivel = new TextButton("SIGUIENTE NIVEL", skin);
         TextButton botonMenu = new TextButton("VOLVER AL MENU", skin);
 
-        botonRepetir.addListener(new ClickListener() {
+        botonSiguienteNivel.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 ocultar();
-                accionRepetir.run();
+                juego.setScreen(new PantallaMenu(juego));
+
             }
         });
 
@@ -48,9 +51,9 @@ public class MenuVictoria {
 
         Table tabla = new Table();
         tabla.setFillParent(true);
-        tabla.add(titulo).padBottom(30).row();
-        tabla.add(botonRepetir).size(250, 60).pad(10).row();
-        tabla.add(botonMenu).size(250, 60).pad(10);
+        tabla.bottom();
+        tabla.add(botonSiguienteNivel).size(250, 60).pad(10).row();
+        tabla.add(botonMenu).size(250, 60).padBottom(40);
         stage.addActor(tabla);
     }
 
@@ -75,15 +78,9 @@ public class MenuVictoria {
     }
 
     public void dibujar() {
-        if (!visible) return;
-        Gdx.gl.glEnable(GL20.GL_BLEND);
-        Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
-        shapeRenderer.setProjectionMatrix(stage.getCamera().combined);
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        shapeRenderer.setColor(0, 0, 0, 0.6f);
-        shapeRenderer.rect(0, 0, viewport.getWorldWidth(), viewport.getWorldHeight());
-        shapeRenderer.end();
-        stage.draw();
+        if (visible) {
+            stage.draw();
+        }
     }
 
     public void resize(int width, int height) {
@@ -92,6 +89,5 @@ public class MenuVictoria {
 
     public void dispose() {
         stage.dispose();
-        shapeRenderer.dispose();
     }
 }
