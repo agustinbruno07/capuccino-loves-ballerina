@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -41,9 +42,16 @@ public class PantallaJuego implements Screen {
     private ShapeRenderer shapeRenderer;
     private SpriteBatch batch;
     private AnimacionesCappuccino animaciones;
-
     private Palanca palanca;
     private Puerta puerta;
+
+    private Texture texturaCerrada;
+    private Texture texturaAbierta;
+    private Texture texturaPalancaOff;
+    private Texture texturaPalancaOn;
+    private Texture texturaPinchos;
+    private Texture texturaLiana;
+
     private final Array<ObjetoCortable> cortables = new Array<>();
     private final Array<Rectangle> peligros = new Array<>();
 
@@ -84,7 +92,7 @@ public class PantallaJuego implements Screen {
         shapeRenderer = new ShapeRenderer();
         batch = new SpriteBatch();
         animaciones = new AnimacionesCappuccino();
-
+        cargarTexturas();
         controladorEntrada = new ControladorEntradaJugador();
         Gdx.input.setInputProcessor(controladorEntrada);
 
@@ -100,7 +108,7 @@ public class PantallaJuego implements Screen {
 
     private void cargarCortables() {
         cortables.clear();
-        String[] tipos = {"cuerda", "enredadera", "barril"};
+        String[] tipos = {"cuerda", "liana", "barril"};
         for (String tipo : tipos) {
             for (RectangleMapObject obj : nivel.buscarObjetos(tipo)) {
                 cortables.add(new ObjetoCortable(tipo, new Rectangle(obj.getRectangle())));
@@ -113,6 +121,24 @@ public class PantallaJuego implements Screen {
         for (RectangleMapObject obj : nivel.buscarObjetos("peligro")) {
             peligros.add(new Rectangle(obj.getRectangle()));
         }
+    }
+
+    /** Carga el arte de objetos. Cada estado es un PNG separado, ya recortado en Photoshop. */
+    private void cargarTexturas() {
+
+        texturaCerrada = new Texture("objetos/puerta_cerrada.png");
+        texturaAbierta = new Texture("objetos/puerta_abierta.png");
+        texturaPalancaOff = new Texture("objetos/palanca_apagada.png");
+        texturaPalancaOn = new Texture("objetos/palanca_encendida.png");
+        texturaPinchos = new Texture("objetos/pinchos.png");
+        texturaLiana = new Texture("objetos/liana.png");
+
+        texturaCerrada.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        texturaAbierta.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        texturaPalancaOff.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        texturaPalancaOn.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        texturaPinchos.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        texturaLiana.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
     }
 
     private void crearCappuccino() {
@@ -151,7 +177,8 @@ public class PantallaJuego implements Screen {
 
     @Override
     public void render(float delta) {
-        actualizar(delta);
+        float dt = Math.min(delta, 1f / 30f); // clamp: nunca simular mas de ~33ms
+        actualizar(dt);
         dibujar();
     }
 
@@ -284,37 +311,12 @@ public class PantallaJuego implements Screen {
         shapeRenderer.setProjectionMatrix(camera.combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 
-        if (puerta != null) {
-            Rectangle z = puerta.getZona();
-            shapeRenderer.setColor(0.45f, 0.28f, 0.15f, 1f);
-
-            if (puerta.bloquea()) {
-                shapeRenderer.rect(z.x, z.y, z.width, z.height);
-            } else {
-                float marco = 8f;
-                shapeRenderer.rect(z.x, z.y, marco, z.height);
-                shapeRenderer.rect(z.x + z.width - marco, z.y, marco, z.height);
-                shapeRenderer.rect(z.x, z.y + z.height - marco, z.width, marco);
-            }
-        }
-
-        if (palanca != null) {
-            if (palanca.estaActivada()) {
-                shapeRenderer.setColor(1f, 0.75f, 0f, 1f);
-            } else {
-                shapeRenderer.setColor(0.6f, 0.6f, 0.6f, 1f);
-            }
-            Rectangle z = palanca.getZona();
-            shapeRenderer.rect(z.x, z.y, z.width, z.height);
-        }
-
         for (ObjetoCortable cortable : cortables) {
             if (cortable.estaCortado()) continue;
+            if ("liana".equals(cortable.getTipo())) continue; // ahora es sprite
 
             if ("cuerda".equals(cortable.getTipo())) {
                 shapeRenderer.setColor(0.8f, 0.7f, 0.4f, 1f);
-            } else if ("enredadera".equals(cortable.getTipo())) {
-                shapeRenderer.setColor(0.2f, 0.7f, 0.3f, 1f);
             } else {
                 shapeRenderer.setColor(0.55f, 0.35f, 0.15f, 1f);
             }
@@ -323,15 +325,46 @@ public class PantallaJuego implements Screen {
             shapeRenderer.rect(z.x, z.y, z.width, z.height);
         }
 
-        shapeRenderer.setColor(0.8f, 0.1f, 0.1f, 1f);
-        for (Rectangle peligro : peligros) {
-            shapeRenderer.rect(peligro.x, peligro.y, peligro.width, peligro.height);
-        }
-
         shapeRenderer.end();
 
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
+
+        // Puerta: tamano fijo en el mundo, centrada sobre su zona
+        if (puerta != null) {
+            Rectangle z = puerta.getZona();
+            Texture tex = puerta.estaAbierta() ? texturaAbierta : texturaCerrada;
+            float ancho = 96f;
+            float alto = 128f;
+            batch.draw(tex, z.x + (z.width - ancho) / 2f, z.y, ancho, alto);
+        }
+
+        // Palanca: tamano fijo en el mundo, centro-abajo sobre su zona
+        if (palanca != null) {
+            Rectangle z = palanca.getZona();
+            Texture tex = palanca.estaActivada() ? texturaPalancaOn : texturaPalancaOff;
+            float ancho = 48f;
+            float alto = 56f;
+            batch.draw(tex, z.x + (z.width - ancho) / 2f, z.y, ancho, alto);
+        }
+
+// Pinchos: proporcion natural 2:1, apoyados en la zona letal
+        for (Rectangle peligro : peligros) {
+            batch.draw(texturaPinchos, peligro.x, peligro.y, peligro.width, peligro.width / 2f);
+        }
+
+// Liana: se dibuja apilada en segmentos de 192px para NO estirarla
+        for (ObjetoCortable cortable : cortables) {
+            if (cortable.estaCortado()) continue;
+            if ("liana".equals(cortable.getTipo())) {
+                Rectangle z = cortable.getZona();
+                float altoSegmento = 192f;
+                for (float y = z.y; y < z.y + z.height; y += altoSegmento) {
+                    batch.draw(texturaLiana, z.x, y, z.width, altoSegmento);
+                }
+            }
+        }
+
         TextureRegion frame = animaciones.getFrameActual();
         float tam = 96f;
         float x = cappuccino.getX() - (tam - cappuccino.getAncho()) / 2f;
@@ -366,6 +399,12 @@ public class PantallaJuego implements Screen {
         shapeRenderer.dispose();
         batch.dispose();
         animaciones.dispose();
+        texturaAbierta.dispose();
+        texturaCerrada.dispose();
+        texturaPalancaOff.dispose();
+        texturaPalancaOn.dispose();
+        texturaPinchos.dispose();
+        texturaLiana.dispose();
     }
 
     @Override
