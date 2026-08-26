@@ -18,6 +18,9 @@ Todos los cambios importantes del proyecto serán registrados en este archivo.
 - Spritesheet de Cappuccino Assassino (`assets/sprites/cappuccino.png`) con animaciones de idle, caminar, saltar y atacar, armado en grilla de celdas de 128x128 con fondo transparente.
 - Nuevo paquete `graficos` con la clase `animacionesCappuccino`: recorte del spritesheet con `TextureRegion.split` y animaciones con `Animation<TextureRegion>` en modo LOOP (idle/caminar) y NORMAL (saltar/atacar), con ataque que no se interrumpe hasta terminar.
 - Animaciones integradas en `PantallaJuego`: maquina de estados segun input y fisica (F → atacar, en el aire → saltar, moverse → caminar, quieto → idle), dibujo con `SpriteBatch` y espejado del sprite segun la direccion de movimiento.
+- Arte real de objetos interactivos: sprites independientes en `assets/objetos/` (puerta cerrada/abierta, palanca apagada/encendida, pinchos y liana) dibujados con tamaño fijo en el mundo, desacoplados de la resolución del PNG.
+- Pinchos dibujados con proporción natural 2:1 apoyados sobre la zona letal; liana dibujada apilada en segmentos de 192px para evitar estiramiento.
+- Clamp de delta en `render()` (máximo 1/30s) para evitar tunneling y movimiento errático en el primer frame tras la carga.
 ### Cambiado
 - Rediseño de la puerta: cerrada ya no bloquea el paso y al abrirse se dibuja como marco en la misma posición en vez de desaparecer.
 - `reintentar()` ahora también devuelve la puerta y la palanca a su estado inicial, además de reposicionar al personaje.
@@ -25,6 +28,8 @@ Todos los cambios importantes del proyecto serán registrados en este archivo.
 - `PantallaJuego` queda como cliente flaco: delega el mapa en `mapa/Nivel`; el renderizador lo crea el cliente.
 ### Corregido
 - Teclas quedaban "pegadas" al abrir un menú o reintentar: se agregó `soltarTodo()` a `ControladorEntradaJugador`, que resetea las teclas sostenidas cada vez que el control pasa a un menú.
+
+
 
 ## [1.1.0] 2026-08-23
 
