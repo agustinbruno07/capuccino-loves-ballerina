@@ -87,7 +87,7 @@ public class PantallaJuego implements Screen {
 
         menuPausa = new MenuPausa(juego);
         menuGameOver = new MenuGameOver(juego, () -> reintentar());
-        menuVictoria = new MenuVictoria(juego, () -> reintentar());
+        menuVictoria = new MenuVictoria(juego);
 
         shapeRenderer = new ShapeRenderer();
         batch = new SpriteBatch();
@@ -123,7 +123,6 @@ public class PantallaJuego implements Screen {
         }
     }
 
-    /** Carga el arte de objetos. Cada estado es un PNG separado, ya recortado en Photoshop. */
     private void cargarTexturas() {
 
         texturaCerrada = new Texture("objetos/puerta_cerrada.png");
@@ -177,7 +176,7 @@ public class PantallaJuego implements Screen {
 
     @Override
     public void render(float delta) {
-        float dt = Math.min(delta, 1f / 30f); // clamp: nunca simular mas de ~33ms
+        float dt = Math.min(delta, 1f / 30f);
         actualizar(dt);
         dibujar();
     }
@@ -330,7 +329,6 @@ public class PantallaJuego implements Screen {
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
 
-        // Puerta: tamano fijo en el mundo, centrada sobre su zona
         if (puerta != null) {
             Rectangle z = puerta.getZona();
             Texture tex = puerta.estaAbierta() ? texturaAbierta : texturaCerrada;
@@ -339,7 +337,6 @@ public class PantallaJuego implements Screen {
             batch.draw(tex, z.x + (z.width - ancho) / 2f, z.y, ancho, alto);
         }
 
-        // Palanca: tamano fijo en el mundo, centro-abajo sobre su zona
         if (palanca != null) {
             Rectangle z = palanca.getZona();
             Texture tex = palanca.estaActivada() ? texturaPalancaOn : texturaPalancaOff;
@@ -348,12 +345,10 @@ public class PantallaJuego implements Screen {
             batch.draw(tex, z.x + (z.width - ancho) / 2f, z.y, ancho, alto);
         }
 
-// Pinchos: proporcion natural 2:1, apoyados en la zona letal
         for (Rectangle peligro : peligros) {
             batch.draw(texturaPinchos, peligro.x, peligro.y, peligro.width, peligro.width / 2f);
         }
 
-// Liana: se dibuja apilada en segmentos de 192px para NO estirarla
         for (ObjetoCortable cortable : cortables) {
             if (cortable.estaCortado()) continue;
             if ("liana".equals(cortable.getTipo())) {
