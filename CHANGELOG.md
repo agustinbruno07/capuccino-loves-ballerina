@@ -2,7 +2,15 @@
 
 Todos los cambios importantes del proyecto serán registrados en este archivo.
 
-## [1.2.0] - 2026-08-24 (en curso)
+## [1.3.0] - 2026-08-27
+### Agregado
+- HUD con cronómetro de la partida en formato MM:SS sobre marco decorativo (`pantallas/HUD`).
+
+### Cambiado
+- Imagen del menu principal
+- Imagen del menu Victoria + Cambio de nombre de su respectivo boton "Reintentar Nivel" a "Siguiente Nivel".
+
+## [1.2.0] - 2026-08-24 
 ### Agregado    
 - Zonas de peligro: rectángulos `peligro` en la capa `objetos` que muestran GAME OVER al tocarlos, además de la muerte por caída al vacío.
 - Corte de Katana de Cappuccino Assassino: con F corta objetos `cuerda` y `barril` de la capa `objetos` (`ObjetoCortable` + `Nivel.buscarObjetos`); mientras no están cortados bloquean el paso como sólidos y al reintentar vuelven a su estado inicial.
