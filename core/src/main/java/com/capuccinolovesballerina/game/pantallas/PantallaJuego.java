@@ -36,6 +36,7 @@ public class PantallaJuego implements Screen {
     private MenuPausa menuPausa;
     private MenuGameOver menuGameOver;
     private MenuVictoria menuVictoria;
+    private HUD hud;
 
     private ControladorEntradaJugador controladorEntrada;
     private CapuccinoAssassino cappuccino;
@@ -88,6 +89,7 @@ public class PantallaJuego implements Screen {
         menuPausa = new MenuPausa(juego);
         menuGameOver = new MenuGameOver(juego, () -> reintentar());
         menuVictoria = new MenuVictoria(juego);
+        hud = new HUD();
 
         shapeRenderer = new ShapeRenderer();
         batch = new SpriteBatch();
@@ -172,6 +174,7 @@ public class PantallaJuego implements Screen {
 
         controladorEntrada.soltarTodo();
         animaciones.reiniciar();
+        hud.reiniciar();
     }
 
     @Override
@@ -210,6 +213,8 @@ public class PantallaJuego implements Screen {
         if (Gdx.input.getInputProcessor() != controladorEntrada) {
             Gdx.input.setInputProcessor(controladorEntrada);
         }
+
+        hud.actualizar(delta);
 
         Array<Rectangle> solidos = new Array<>(nivel.getColisiones().getSolidos());
 
@@ -371,6 +376,7 @@ public class PantallaJuego implements Screen {
         }
         batch.end();
 
+        hud.dibujar();
         menuPausa.dibujar();
         menuGameOver.dibujar();
         menuVictoria.dibujar();
@@ -382,6 +388,7 @@ public class PantallaJuego implements Screen {
         menuPausa.resize(width, height);
         menuGameOver.resize(width, height);
         menuVictoria.resize(width, height);
+        hud.resize(width, height);
     }
 
     @Override
@@ -391,6 +398,7 @@ public class PantallaJuego implements Screen {
         menuPausa.dispose();
         menuGameOver.dispose();
         menuVictoria.dispose();
+        hud.dispose();
         shapeRenderer.dispose();
         batch.dispose();
         animaciones.dispose();
@@ -400,6 +408,7 @@ public class PantallaJuego implements Screen {
         texturaPalancaOn.dispose();
         texturaPinchos.dispose();
         texturaLiana.dispose();
+
     }
 
     @Override
