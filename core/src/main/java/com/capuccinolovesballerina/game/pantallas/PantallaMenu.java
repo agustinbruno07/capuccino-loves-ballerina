@@ -83,7 +83,7 @@ public class PantallaMenu implements Screen {
         botonOpciones.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                juego.setScreen(new PantallaOpciones());
+                juego.setScreen(new PantallaOpciones(juego));
             }
         });
     }
