@@ -6,55 +6,91 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.capuccinolovesballerina.game.CapuccinoLovesBallerinaGame;
+import com.capuccinolovesballerina.game.Utilidades.Audio;
+import com.capuccinolovesballerina.game.Utilidades.FabricaViewport;
+import com.capuccinolovesballerina.game.Utilidades.Recursos;
 
 public class PantallaMenu implements Screen {
-    private Texture fondo;
+    private Image fondo;
     private SpriteBatch batch;
     private Stage stage;
     private Skin skin;
     private TextButton botonJugar;
+    private TextButton botonOpciones;
     private TextButton botonSalir;
-    private Table tabla;
+    private final CapuccinoLovesBallerinaGame juego;
 
+    public PantallaMenu(CapuccinoLovesBallerinaGame juego) {
+        this.juego = juego;
+    }
 
     @Override
     public void show() {
-        fondo = new Texture("interfaz/fondo_menu.png");
-        batch = new SpriteBatch();
-        stage = new Stage();
-        skin = new Skin(Gdx.files.internal("skin/uiskin.json"));
+        stage = new Stage(FabricaViewport.crear());
+        skin = Recursos.getSkin();
+        fondo = new Image(Recursos.getImagen("interfaz/fondo_menu.png"));
+        fondo.setFillParent(true);
+        stage.addActor(fondo);
+        crearBotones();
+        agregarBotones();
+        escucharBotones();
+        Audio.reproducirMusica("sonidos/musica_menu.mp3");
+
+    }
+
+    private void crearBotones(){
         botonJugar = new TextButton("JUGAR", skin);
+        botonOpciones = new TextButton("OPCIONES", skin);
         botonSalir = new TextButton("SALIR", skin);
-        tabla = new Table();
+    }
+
+    private void agregarBotones(){
+
+        Table tabla = new Table();
         tabla.setFillParent(true);
-        tabla.padTop(200);
-        tabla.add(botonJugar).width(200).height(60);
-        tabla.row();
-        tabla.add(botonSalir).width(200).height(60).padTop(20);
+        tabla.bottom();
+
+        tabla.add(botonJugar).size(200, 60).pad(10).row();
+        tabla.add(botonOpciones).size(200, 60).pad(10).row();
+        tabla.add(botonSalir).size(200, 60).pad(10);
+
         stage.addActor(tabla);
         Gdx.input.setInputProcessor(stage);
 
-        botonSalir.addListener(new ClickListener() {
+    }
+
+    private void escucharBotones() {
+
+        botonJugar.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                juego.setScreen(new PantallaJuego(juego));
+            }
+        });
+        botonSalir.addListener (new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 Gdx.app.exit();
             }
         });
-
+        botonOpciones.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                juego.setScreen(new PantallaOpciones(juego));
+            }
+        });
     }
 
     @Override
     public void render(float delta) {
         ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1f);
-        batch.begin();
-        batch.draw(fondo, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-
-        batch.end();
         stage.act(delta);
         stage.draw();
     }
@@ -81,10 +117,6 @@ public class PantallaMenu implements Screen {
 
     @Override
     public void dispose() {
-        fondo.dispose();
-        batch.dispose();
         stage.dispose();
-        skin.dispose();
-
     }
 }

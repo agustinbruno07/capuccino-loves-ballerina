@@ -16,7 +16,7 @@ Cada jugador controlará desde una computadora diferente a Cappuccino Assassino 
 
 - Java JDK 17
 - LibGDX 1.14.1
-- Gradle 9.5.1
+- Gradle
 - IntelliJ IDEA
 - Git y GitHub
 - Plataforma objetivo: escritorio mediante LWJGL3
@@ -85,6 +85,17 @@ Desde la carpeta raíz del proyecto, ejecutar:
 6. Buscar la clase `Lwjgl3Launcher.java`.
 7. Ejecutar el método `main` de `Lwjgl3Launcher`.
 
-## Estado actual del proyecto
+## Video de demostración (segunda pre-entrega)
+[▶ Ver video de demostración](https://drive.google.com/file/d/1RYrjh4mWFUnnSkVwSDYIL4kscPV1n7NP/view?usp=drive_link)
 
-El proyecto cuenta con la configuración inicial de LibGDX, el menú principal, las pantallas y la funcionalidad de sus botones.
+## Estado actual del proyecto (v1.4.0)
+Prototipo jugable del nivel 0 en escritorio con:
+- Movimiento, salto, gravedad y colisiones contra el mapa de Tiled.
+- Animaciones de Cappuccino Assassino (idle/caminar/saltar/atacar) desde spritesheet.
+- Mecánica cooperativa de palanca y puerta + corte de katana (F) sobre lianas.
+- Zonas de peligro (pinchos) y caída al vacío con GAME OVER y reinicio.
+- Condición de victoria al interactuar con la puerta abierta.
+- Pantallas: menú principal, opciones, juego, pausa, derrota y victoria.
+- HUD con cronómetro de partida.
+- Música de fondo por pantalla (menú y juego) con volumen configurable.
+- Arte real de objetos (puerta, palanca, pinchos, liana) y niveles diseñados en Tiled.
