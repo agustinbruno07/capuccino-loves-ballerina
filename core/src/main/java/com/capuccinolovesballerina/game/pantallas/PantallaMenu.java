@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.capuccinolovesballerina.game.CapuccinoLovesBallerinaGame;
+import com.capuccinolovesballerina.game.Utilidades.Audio;
 import com.capuccinolovesballerina.game.Utilidades.FabricaViewport;
 import com.capuccinolovesballerina.game.Utilidades.Recursos;
 
@@ -40,6 +41,7 @@ public class PantallaMenu implements Screen {
         crearBotones();
         agregarBotones();
         escucharBotones();
+        Audio.reproducirMusica("sonidos/musica_menu.mp3");
 
     }
 

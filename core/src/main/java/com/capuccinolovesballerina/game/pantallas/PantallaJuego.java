@@ -15,6 +15,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.capuccinolovesballerina.game.CapuccinoLovesBallerinaGame;
+import com.capuccinolovesballerina.game.Utilidades.Audio;
 import com.capuccinolovesballerina.game.Utilidades.Constantes;
 import com.capuccinolovesballerina.game.Utilidades.ControladorEntradaJugador;
 import com.capuccinolovesballerina.game.Utilidades.FabricaViewport;
@@ -106,6 +107,7 @@ public class PantallaJuego implements Screen {
             0
         );
         camera.update();
+        Audio.reproducirMusica("sonidos/musica_juego.mp3");
     }
 
     private void cargarCortables() {

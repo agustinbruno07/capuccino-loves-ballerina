@@ -1,6 +1,7 @@
 package com.capuccinolovesballerina.game;
 
 import com.badlogic.gdx.Game;
+import com.capuccinolovesballerina.game.Utilidades.Audio;
 import com.capuccinolovesballerina.game.pantallas.PantallaMenu;
 
 public class CapuccinoLovesBallerinaGame extends Game {
@@ -13,5 +14,11 @@ public class CapuccinoLovesBallerinaGame extends Game {
     @Override
     public void render() {
         super.render();
+    }
+
+    @Override
+    public void dispose() {
+        super.dispose();
+        Audio.dispose();
     }
 }
