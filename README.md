@@ -25,7 +25,7 @@ Cada jugador controlará desde una computadora diferente a Cappuccino Assassino 
 
 La propuesta formal y detallada del videojuego se encuentra en la Wiki:
 
-[Ver la propuesta del proyecto](https://ino-loves-ballerina/wiki
+[Ver la propuesta del proyecto](https://github.com/agustinbruno07/capuccino-loves-ballerina/wiki)
 
 ## Compilación y ejecución
 
