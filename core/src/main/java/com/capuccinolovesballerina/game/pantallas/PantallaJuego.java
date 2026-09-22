@@ -188,7 +188,7 @@ public class PantallaJuego implements Screen {
 
     private void actualizar(float delta) {
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+        if (controladorEntrada.isEscapePresionado()) {
             if (menuPausa.estaVisible()) {
                 menuPausa.ocultar();
             } else if (!menuGameOver.estaVisible() && !menuVictoria.estaVisible()) {

@@ -11,15 +11,17 @@ public class ControladorEntradaJugador extends InputAdapter {
     private boolean saltoW;
     private boolean saltoEspacio;
     private boolean saltoPresionado;
-
+    private boolean escapePresionado;
     private boolean interactuarPresionado;
     private boolean habilidadPresionada;
 
     @Override
     public boolean keyDown(int keycode) {
 
+
+
         if (keycode == Input.Keys.ESCAPE) {
-            return false;
+            escapePresionado = true;
         }
 
         if (keycode == Input.Keys.A || keycode == Input.Keys.LEFT) {
@@ -77,6 +79,9 @@ public class ControladorEntradaJugador extends InputAdapter {
         if (keycode == Input.Keys.SPACE) {
             saltoEspacio = false;
         }
+        if(keycode == Input.Keys.ESCAPE){
+            escapePresionado = false;
+        }
 
         return true;
     }
@@ -87,6 +92,10 @@ public class ControladorEntradaJugador extends InputAdapter {
 
     public boolean isDerecha() {
         return derecha;
+    }
+
+    public boolean isEscapePresionado(){
+        return escapePresionado;
     }
 
     public boolean isSaltoPresionado() {
@@ -113,5 +122,8 @@ public class ControladorEntradaJugador extends InputAdapter {
         saltoPresionado = false;
         interactuarPresionado = false;
         habilidadPresionada = false;
+        escapePresionado = false;
+        saltoW = false;
+        saltoEspacio = false;
     }
 }
