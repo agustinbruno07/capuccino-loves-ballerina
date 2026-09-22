@@ -246,6 +246,7 @@ public class PantallaJuego implements Screen {
             animaciones.setEstado(Estado.IDLE);
         }
 
+
         animaciones.actualizar(delta);
 
         if (palanca != null && controladorEntrada.isInteractuarPresionado()) {

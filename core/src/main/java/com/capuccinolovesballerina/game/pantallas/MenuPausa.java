@@ -107,7 +107,6 @@ public class MenuPausa {
 
     public void dispose() {
         stage.dispose();
-        Recursos.dispose();
         shapeRenderer.dispose();
     }
 }

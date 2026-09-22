@@ -32,6 +32,7 @@ public class Recursos {
         imagenes.clear();
         if (skin != null) {
             skin.dispose();
+            skin = null;
         }
     }
 }
