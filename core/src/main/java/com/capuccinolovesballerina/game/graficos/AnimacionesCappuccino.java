@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class AnimacionesCappuccino {
 
-    public enum Estado { IDLE, WALK, JUMP, ATTACK }
+
 
     private static final int FRAME = 128;
     private static final int FRAMES_IDLE = 4;
@@ -25,7 +25,7 @@ public class AnimacionesCappuccino {
 
     public AnimacionesCappuccino() {
         textura = new Texture("sprites/cappuccino.png");
-        // Corta la hoja en una grilla [fila][columna]
+
         TextureRegion[][] grilla = TextureRegion.split(textura, FRAME, FRAME);
 
         idle   = new Animation<>(0.2f,  primeros(grilla[0], FRAMES_IDLE));
@@ -53,12 +53,12 @@ public class AnimacionesCappuccino {
         if (estado == Estado.ATTACK && !attack.isAnimationFinished(tiempo)) return;
         if (nuevo != estado) {
             estado = nuevo;
-            tiempo = 0f; // arranca desde el frame 0
+            tiempo = 0f;
         }
     }
 
-    public void actualizar(float delta) { // delta es el tiempo que pasó desde el frame anterior
-        tiempo += delta; // sumar delta hace que la animación avance independiente de los FPS.
+    public void actualizar(float delta) {
+        tiempo += delta;
     }
 
     public void reiniciar() {
