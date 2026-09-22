@@ -2,6 +2,12 @@
 
 Todos los cambios importantes del proyecto serán registrados en este archivo.
 
+## [1.4.1] - 2026-09-22
+
+### Corregido
+- Manejo de la tecla ESC mediante `ControladorEntradaJugador` para alternar el menú de pausa.
+- `soltarTodo()` ahora restablece todos los estados de entrada, incluyendo `saltoW` y `saltoEspacio`.
+
 ## [1.4.0] - 2026-09-04
 ### Agregado
 - Sistema de audio (`Utilidades/Audio`): música de fondo loopeable por pantalla (`sonidos/musica_menu.mp3` en el menú principal y `sonidos/musica_juego.mp3` en la partida), con cambio automático al navegar entre pantallas y liberación del recurso al salir del juego .
