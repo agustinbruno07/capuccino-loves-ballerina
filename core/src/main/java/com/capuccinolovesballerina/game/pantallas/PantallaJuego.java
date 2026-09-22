@@ -25,7 +25,7 @@ import com.capuccinolovesballerina.game.mapa.Nivel;
 import com.capuccinolovesballerina.game.objetos.ObjetoCortable;
 import com.capuccinolovesballerina.game.objetos.Palanca;
 import com.capuccinolovesballerina.game.objetos.Puerta;
-
+import com.capuccinolovesballerina.game.graficos.*;
 public class PantallaJuego implements Screen {
 
     private final CapuccinoLovesBallerinaGame juego;
@@ -235,14 +235,15 @@ public class PantallaJuego implements Screen {
         );
 
         if (controladorEntrada.isHabilidadPresionada()) {
-            animaciones.setEstado(AnimacionesCappuccino.Estado.ATTACK);
+            animaciones.setEstado(Estado.ATTACK);
+            animaciones.setEstado(Estado.ATTACK);
             cortar();
         } else if (!cappuccino.isEnSuelo()) {
-            animaciones.setEstado(AnimacionesCappuccino.Estado.JUMP);
+            animaciones.setEstado(Estado.JUMP);
         } else if (controladorEntrada.isIzquierda() || controladorEntrada.isDerecha()) {
-            animaciones.setEstado(AnimacionesCappuccino.Estado.WALK);
+            animaciones.setEstado(Estado.WALK);
         } else {
-            animaciones.setEstado(AnimacionesCappuccino.Estado.IDLE);
+            animaciones.setEstado(Estado.IDLE);
         }
 
         animaciones.actualizar(delta);
