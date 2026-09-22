@@ -2,11 +2,14 @@
 
 Todos los cambios importantes del proyecto serán registrados en este archivo.
 
-## [1.4.1] - 2026-09-22
+## [1.4.5] - 2026-09-22
 
 ### Corregido
 - Manejo de la tecla ESC mediante `ControladorEntradaJugador` para alternar el menú de pausa.
 - `soltarTodo()` ahora restablece todos los estados de entrada, incluyendo `saltoW` y `saltoEspacio`.
+- - Se corrigió la liberación de recursos compartidos desde `MenuPausa`.
+- `Recursos` ahora es liberado únicamente desde `CapuccinoLovesBallerinaGame`.
+- Se evitó liberar el `Skin` compartido al cerrar el menú de pausa.
 
 ## [1.4.0] - 2026-09-04
 ### Agregado
