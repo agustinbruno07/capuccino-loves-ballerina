@@ -6,8 +6,6 @@ import com.capuccinolovesballerina.game.Utilidades.Constantes;
 
 public class Player {
 
-    private int vida;
-    private String nombre;
 
     protected float x;
     protected float y;

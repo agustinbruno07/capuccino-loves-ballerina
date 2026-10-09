@@ -19,7 +19,7 @@ import com.capuccinolovesballerina.game.Utilidades.Recursos;
 
 public class PantallaMenu implements Screen {
     private Image fondo;
-    private SpriteBatch batch;
+
     private Stage stage;
     private Skin skin;
     private TextButton botonJugar;

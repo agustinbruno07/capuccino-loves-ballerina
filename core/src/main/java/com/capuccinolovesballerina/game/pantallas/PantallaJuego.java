@@ -226,6 +226,7 @@ public class PantallaJuego implements Screen {
             }
         }
 
+
         cappuccino.actualizar(
             delta,
             controladorEntrada.isIzquierda(),
@@ -412,7 +413,6 @@ public class PantallaJuego implements Screen {
         texturaPalancaOn.dispose();
         texturaPinchos.dispose();
         texturaLiana.dispose();
-
     }
 
     @Override
