@@ -2,6 +2,18 @@
 
 Todos los cambios importantes del proyecto serán registrados en este archivo.
 
+## [1.4.6] - 2026-10-10
+
+### Agregado
+- Se incorporaron controles de volumen y silencio en `PantallaOpciones`.
+
+### Cambiado
+- Se quitó la maximización automática de la ventana en `Lwjgl3Launcher`.
+- Se limpiaron comentarios en `Lwjgl3Launcher`.
+
+### Refactorizado
+- Se separaron responsabilidades de `PantallaJuego` en las clases `ControladorPartida`, `RenderizadorJuego` y `ElementosNivel` para mejorar la organización del código.
+
 ## [1.4.5] - 2026-09-22
 
 ### Corregido
