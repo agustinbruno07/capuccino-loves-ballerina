@@ -2,6 +2,19 @@
 
 Todos los cambios importantes del proyecto serán registrados en este archivo.
 
+## [1.5] - 2026-10-27
+
+### Agregado
+- Selector de resolución de ventana en `PantallaOpciones`, con opciones de 1280x720, 1024x768 y 800x600.
+- Alternancia entre modo ventana y pantalla completa desde `PantallaOpciones`.
+- Comunicación UDP inicial entre clientes y servidor mediante `Cliente`, `HiloCliente`, `Servidor` y `HiloServidor`.
+- Lectura de mensajes por consola para realizar pruebas de comunicación entre clientes y servidor.
+
+### Cambiado
+- Resolución inicial de la ventana configurada en 1280x720 en `Lwjgl3Launcher`.
+- El selector de resolución queda deshabilitado mientras el juego está en pantalla completa.
+- Al volver al modo ventana, se recupera la última resolución seleccionada.
+
 ## [1.4.6] - 2026-10-10
 
 ### Agregado
