@@ -24,6 +24,7 @@ public class PantallaMenu implements Screen {
     private Skin skin;
     private TextButton botonJugar;
     private TextButton botonOpciones;
+    private TextButton botonControles;
     private TextButton botonSalir;
     private final CapuccinoLovesBallerinaGame juego;
 
@@ -48,6 +49,7 @@ public class PantallaMenu implements Screen {
     private void crearBotones(){
         botonJugar = new TextButton("JUGAR", skin);
         botonOpciones = new TextButton("OPCIONES", skin);
+        botonControles = new TextButton("CONTROLES", skin);
         botonSalir = new TextButton("SALIR", skin);
     }
 
@@ -59,6 +61,7 @@ public class PantallaMenu implements Screen {
 
         tabla.add(botonJugar).size(200, 60).pad(10).row();
         tabla.add(botonOpciones).size(200, 60).pad(10).row();
+        tabla.add(botonControles).size(200, 60).pad(10).row();
         tabla.add(botonSalir).size(200, 60).pad(10);
 
         stage.addActor(tabla);
@@ -78,6 +81,12 @@ public class PantallaMenu implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 Gdx.app.exit();
+            }
+        });
+        botonControles.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                juego.setScreen(new PantallaControles(juego));
             }
         });
         botonOpciones.addListener(new ClickListener() {
