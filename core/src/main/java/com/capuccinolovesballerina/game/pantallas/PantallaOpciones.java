@@ -249,9 +249,9 @@ public class PantallaOpciones implements Screen {
     private void actualizarTextoBotonModoPantalla() {
 
         if (Gdx.graphics.isFullscreen()) {
-            botonModoPantalla.setText("PANTALLA COMPLETA");
-        } else {
             botonModoPantalla.setText("VENTANA");
+        } else {
+            botonModoPantalla.setText("PANTALLA COMPLETA");
         }
     }
 
