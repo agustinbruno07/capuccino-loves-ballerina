@@ -2,6 +2,11 @@
 
 Todos los cambios importantes del proyecto serán registrados en este archivo.
 
+## [1.5.1] - 2026-10-29
+
+### Refactorizado
+- Reemplacé la dependencia directa de `CapuccinoLovesBallerinaGame` por `Game` en las pantallas y los menús, reduciendo el acoplamiento con la clase principal.
+
 ## [1.5] - 2026-10-27
 
 ### Agregado
