@@ -2,6 +2,28 @@
 
 Todos los cambios importantes del proyecto serán registrados en este archivo.
 
+## [1.5.2] - 2026-10-30
+
+### Agregado
+- **Integración completa de Ballerina Capuccina:**
+    - Nueva entidad `BallerinaCapuccina` heredando física básica de `Player`.
+    - Habilidad exclusiva: creación de `BloqueEspuma` temporal (plataforma sólida dinámica).
+    - Sistema de cooldown configurable para limitar el uso de la espuma.
+    - Spawn personalizado desde Tiled (`spawn_ballerina`).
+- **Soporte multijugador local (simulado):**
+    - Separación total de inputs en `ControladorEntradaJugador`: ahora gestiona simultáneamente teclados distintos para cada personaje (WASD+E+F vs Flechas+Enter+ShiftDer).
+    - Lógica de actualización independiente en `ControladorPartida` para ambos personajes.
+- **Mecánicas Cooperativas:**
+    - Condición de victoria revisada: requiere que AMBOS personajes colisionen con la zona de la puerta abierta simultáneamente.
+    - Condición de derrota cooperativa: muerte instantánea si CUALQUIER personaje cae al vacío o toca peligros.
+    - Interacción compartida con palancas: cualquiera de los dos puede activarla si está cerca y presiona su botón de interacción.
+- **Renderizado Placeholder:**
+    - Visualización de Ballerina como rectángulo rosa con marcador direccional mientras se esperan sprites definitivos.
+    - Dibujo dinámico de la espuma blanca con efecto de desvanecimiento (alpha fade-out).
+
+### Cambiado
+- Actualización de `Constantes.java` con parámetros específicos de la habilidad de Ballerina (dimensiones, duración, cooldown).
+
 ## [1.5.1] - 2026-10-29
 
 ### Refactorizado
