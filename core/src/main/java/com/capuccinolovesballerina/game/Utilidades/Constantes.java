@@ -13,4 +13,11 @@ public class Constantes {
     public static final float VELOCIDAD_SALTO = 700;
     public static final float GRAVEDAD = 2200f;
     public static final float VELOCIDAD_MAX_CAIDA = 1300f;
+
+    public static final float ANCHO_ESPUMA = 64f;
+    public static final float ALTO_ESPUMA = 24f;
+    public static final float VIDA_ESPUMA = 4f;
+    public static final float COOLDOWN_ESPUMA = 2.5f;
+    public static final float DISTANCIA_ESPUMA = 8f;
+
 }

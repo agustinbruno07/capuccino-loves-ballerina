@@ -50,8 +50,8 @@
 </data>
  </layer>
  <objectgroup id="7" name="objetos">
-  <object id="55" name="spawn_capuccino" type=" spawnCapuccino" x="128" y="384" width="64" height="128"/>
-  <object id="56" type="spawnBallerina" x="0" y="384" width="64" height="128"/>
+  <object id="55" name="spawn_capuccino" type=" spawnCapuccino" x="156" y="381.333" width="64" height="128"/>
+  <object id="56" name="spawn_ballerina" type="spawnBallerina" x="21.3333" y="384" width="64" height="128"/>
   <object id="63" type="palanca" x="512" y="512" width="64" height="64"/>
   <object id="65" name="puerta" type="puerta" x="1216" y="320" width="128" height="192"/>
   <object id="75" name="liana" x="701.815" y="-191.992" width="64" height="1088.23" rotation="359.783"/>

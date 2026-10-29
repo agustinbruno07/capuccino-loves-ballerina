@@ -1,4 +1,3 @@
-
 package com.capuccinolovesballerina.game.pantallas;
 
 import com.badlogic.gdx.Gdx;
@@ -7,6 +6,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.badlogic.gdx.Game;
 import com.capuccinolovesballerina.game.Utilidades.*;
+import com.capuccinolovesballerina.game.entidades.BallerinaCapuccina;
 import com.capuccinolovesballerina.game.entidades.CapuccinoAssassino;
 import com.capuccinolovesballerina.game.graficos.AnimacionesCappuccino;
 import com.capuccinolovesballerina.game.mapa.Nivel;
@@ -29,6 +29,7 @@ public class PantallaJuego implements Screen {
 
     private ControladorEntradaJugador controladorEntrada;
     private CapuccinoAssassino cappuccino;
+    private BallerinaCapuccina ballerina;
     private AnimacionesCappuccino animaciones;
 
     private ControladorPartida controladorPartida;
@@ -48,9 +49,7 @@ public class PantallaJuego implements Screen {
         elementos = new ElementosNivel(nivel);
 
         menuPausa = new MenuPausa(juego);
-
         menuGameOver = new MenuGameOver(juego, () -> controladorPartida.reiniciar());
-
         menuVictoria = new MenuVictoria(juego);
         hud = new HUD();
 
@@ -58,15 +57,22 @@ public class PantallaJuego implements Screen {
         animaciones = new AnimacionesCappuccino();
 
         cappuccino = new CapuccinoAssassino(elementos.getSpawnX(), elementos.getSpawnY());
+        ballerina = new BallerinaCapuccina(elementos.getSpawnBallerinaX(), elementos.getSpawnBallerinaY());
 
         Gdx.input.setInputProcessor(controladorEntrada);
 
         camera.position.set(Constantes.ANCHO_MUNDO / 2f, Constantes.ALTO_MUNDO / 2f, 0);
         camera.update();
 
-        controladorPartida = new ControladorPartida(nivel, elementos, menuPausa, menuGameOver, menuVictoria, hud, controladorEntrada, cappuccino, animaciones);
+        controladorPartida = new ControladorPartida(
+            nivel, elementos, menuPausa, menuGameOver, menuVictoria,
+            hud, controladorEntrada, cappuccino, ballerina, animaciones
+        );
 
-        renderizadorJuego = new RenderizadorJuego(camera, nivel, cappuccino, animaciones, elementos, hud, menuPausa, menuGameOver, menuVictoria);
+        renderizadorJuego = new RenderizadorJuego(
+            camera, nivel, cappuccino, ballerina, animaciones,
+            elementos, hud, menuPausa, menuGameOver, menuVictoria
+        );
 
         Audio.reproducirMusica("sonidos/musica_juego.mp3");
     }
@@ -99,12 +105,10 @@ public class PantallaJuego implements Screen {
     }
 
     @Override
-    public void pause() {
-    }
+    public void pause() {}
 
     @Override
-    public void resume() {
-    }
+    public void resume() {}
 
     @Override
     public void hide() {
