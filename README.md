@@ -88,7 +88,7 @@ Desde la carpeta raíz del proyecto, ejecutar:
 ## Video de demostración (segunda pre-entrega)
 [▶ Ver video de demostración](https://drive.google.com/file/d/1RYrjh4mWFUnnSkVwSDYIL4kscPV1n7NP/view?usp=drive_link)
 
-## Estado actual del proyecto (v1.5.0)
+## Estado actual del proyecto (v1.5.1)
 Prototipo jugable del nivel 0 en escritorio con:
 - Movimiento, salto, gravedad y colisiones contra el mapa de Tiled.
 - Animaciones de Cappuccino Assassino (idle/caminar/saltar/atacar) desde spritesheet.
