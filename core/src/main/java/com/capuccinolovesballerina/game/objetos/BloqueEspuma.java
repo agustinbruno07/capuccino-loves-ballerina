@@ -6,12 +6,10 @@ public class BloqueEspuma {
 
     private final Rectangle zona;
     private float vida;
-    private final float vidaMax;
 
     public BloqueEspuma(float x, float y, float ancho, float alto, float vida) {
         this.zona = new Rectangle(x, y, ancho, alto);
         this.vida = vida;
-        this.vidaMax = vida;
     }
 
     public void actualizar(float delta) {

@@ -60,10 +60,6 @@ public class BallerinaCapuccina extends Player {
         return espuma;
     }
 
-    public boolean puedeUsarEspuma() {
-        return cooldownEspuma <= 0f;
-    }
-
     public void reiniciarHabilidad() {
         espuma = null;
         cooldownEspuma = 0f;

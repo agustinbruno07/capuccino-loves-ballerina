@@ -152,7 +152,7 @@ public class ControladorPartida {
         comprobarVictoria();
 
         if (menuVictoria.estaVisible()) {
-            return; // Ganamos, frenamos todo lo demás
+            return;
         }
 
         entrada.limpiarEventos();
