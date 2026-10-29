@@ -15,15 +15,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
-
-import com.capuccinolovesballerina.game.CapuccinoLovesBallerinaGame;
+import com.badlogic.gdx.Game;
 import com.capuccinolovesballerina.game.Utilidades.Audio;
 import com.capuccinolovesballerina.game.Utilidades.FabricaViewport;
 import com.capuccinolovesballerina.game.Utilidades.Recursos;
 
 public class PantallaOpciones implements Screen {
 
-    private final CapuccinoLovesBallerinaGame juego;
+    private final Game juego;
 
     private Stage stage;
 
@@ -42,7 +41,7 @@ public class PantallaOpciones implements Screen {
 
     private static String resolucionVentana = "1280 x 720";
 
-    public PantallaOpciones(CapuccinoLovesBallerinaGame juego) {
+    public PantallaOpciones(Game juego) {
         this.juego = juego;
     }
 

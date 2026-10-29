@@ -5,7 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.capuccinolovesballerina.game.CapuccinoLovesBallerinaGame;
+import com.badlogic.gdx.Game;
 import com.capuccinolovesballerina.game.Utilidades.*;
 import com.capuccinolovesballerina.game.entidades.CapuccinoAssassino;
 import com.capuccinolovesballerina.game.graficos.AnimacionesCappuccino;
@@ -14,7 +14,7 @@ import com.capuccinolovesballerina.game.objetos.ElementosNivel;
 
 public class PantallaJuego implements Screen {
 
-    private final CapuccinoLovesBallerinaGame juego;
+    private final Game juego;
 
     private OrthographicCamera camera;
     private Viewport viewport;
@@ -34,7 +34,7 @@ public class PantallaJuego implements Screen {
     private ControladorPartida controladorPartida;
     private RenderizadorJuego renderizadorJuego;
 
-    public PantallaJuego(CapuccinoLovesBallerinaGame juego) {
+    public PantallaJuego(Game juego) {
         this.juego = juego;
     }
 

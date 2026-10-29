@@ -11,13 +11,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.capuccinolovesballerina.game.CapuccinoLovesBallerinaGame;
+import com.badlogic.gdx.Game;
 import com.capuccinolovesballerina.game.Utilidades.FabricaViewport;
 import com.capuccinolovesballerina.game.Utilidades.Recursos;
 
 public class MenuPausa {
 
-    private final CapuccinoLovesBallerinaGame juego;
+    private final Game juego;
 
     private Stage stage;
     private Viewport viewport;
@@ -25,7 +25,7 @@ public class MenuPausa {
     private ShapeRenderer shapeRenderer;
     private boolean visible;
 
-    public MenuPausa(CapuccinoLovesBallerinaGame juego) {
+    public MenuPausa(Game juego) {
         this.juego = juego;
 
         viewport = FabricaViewport.crear();

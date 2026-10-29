@@ -10,7 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.capuccinolovesballerina.game.CapuccinoLovesBallerinaGame;
+import com.badlogic.gdx.Game;
 import com.capuccinolovesballerina.game.Utilidades.FabricaViewport;
 import com.capuccinolovesballerina.game.Utilidades.Recursos;
 
@@ -20,7 +20,7 @@ public class MenuGameOver {
     private final Viewport viewport;
     private boolean visible;
 
-    public MenuGameOver(CapuccinoLovesBallerinaGame juego, Runnable accionReintentar) {
+    public MenuGameOver(Game juego, Runnable accionReintentar) {
         viewport = FabricaViewport.crear();
         stage = new Stage(viewport);
         Skin skin = Recursos.getSkin();

@@ -12,7 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.capuccinolovesballerina.game.CapuccinoLovesBallerinaGame;
+import com.badlogic.gdx.Game;
 import com.capuccinolovesballerina.game.Utilidades.Audio;
 import com.capuccinolovesballerina.game.Utilidades.FabricaViewport;
 import com.capuccinolovesballerina.game.Utilidades.Recursos;
@@ -26,9 +26,9 @@ public class PantallaMenu implements Screen {
     private TextButton botonOpciones;
     private TextButton botonControles;
     private TextButton botonSalir;
-    private final CapuccinoLovesBallerinaGame juego;
+    private final Game juego;
 
-    public PantallaMenu(CapuccinoLovesBallerinaGame juego) {
+    public PantallaMenu(Game juego) {
         this.juego = juego;
     }
 
