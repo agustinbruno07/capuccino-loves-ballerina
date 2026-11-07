@@ -2,6 +2,21 @@
 
 Todos los cambios importantes del proyecto serán registrados en este archivo.
 
+## [1.6.0] - 2026-11-07
+
+### Agregado
+- **Infraestructura de Red UDP:**
+    - Clase `Servidor` y `HiloServidor`: Escucha puerto fijo, gestiona máx. 2 jugadores, asigna roles automáticos, mantiene estado autoritativo (palanca/puerta/cortes/muertes) y envía snapshots de bienvenida.
+    - Clase `Cliente` y `HiloCliente`: Conexión asíncrona, cola de recepción segura (`synchronized`), métodos helpers para enviar inputs específicos (`enviarPosicion`, `enviarCorte`, etc.).
+    - Soporte para configuración de IP del servidor mediante argumentos CLI en modo prueba.
+
+### Corregido
+- Bug crítico en `HiloServidor.mandarSnapshot`: Los flags booleanos (`mirando`, `enSuelo`) ahora se serializan como `"true"/"false"` consistentes con el broadcast en vivo, previniendo errores de parsing (`Boolean.parseBoolean("1.0") == false`) en clientes reconectados.
+
+### Notas Técnicas
+- Validación realizada mediante smoke test de 3 instancias locales simulando conexión secuencial y saturación de cupos.
+- La integración final con `ControladorPartida` y `PantallaJuego` queda pendiente para la siguiente iteración.
+
 ## [1.5.2] - 2026-10-30
 
 ### Agregado
