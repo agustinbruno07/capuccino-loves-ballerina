@@ -1,5 +1,6 @@
 package com.capuccinolovesballerina.game.Utilidades;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -59,7 +60,7 @@ public class RenderizadorJuego {
         MenuVictoria menuVictoria
     ) {
         this.camera = camera;
-        this.renderizador = new OrthogonalTiledMapRenderer(nivel.getMapa(), 1f);
+        this.renderizador = new OrthogonalTiledMapRenderer(nivel.getMapa(), Nivel.ESCALA);
         this.cappuccino = cappuccino;
         this.ballerina = ballerina;
         this.animaciones = animaciones;
@@ -106,7 +107,8 @@ public class RenderizadorJuego {
         batch.begin();
 
         dibujarPuerta();
-        dibujarPalanca();
+        dibujarPalanca(elementos.getPalancaCappuccino(), new Color(0.6f, 0.8f, 1f, 1f));
+        dibujarPalanca(elementos.getPalancaBallerina(), new Color(1f, 0.6f, 0.8f, 1f));
         dibujarPeligros();
         dibujarLianas();
         dibujarPersonaje();
@@ -168,16 +170,17 @@ public class RenderizadorJuego {
         batch.draw(textura, z.x + (z.width - ancho) / 2f, z.y, ancho, alto);
     }
 
-    private void dibujarPalanca() {
-        Palanca palanca = elementos.getPalanca();
+    private void dibujarPalanca(Palanca palanca, Color tinte) {
         if (palanca == null) return;
 
         Rectangle z = palanca.getZona();
         Texture textura = palanca.estaActivada() ? texturaPalancaOn : texturaPalancaOff;
 
-        float ancho = 48f;
-        float alto = 56f;
+        float ancho = Constantes.ANCHO_PALANCA;   // antes: 48f
+        float alto = Constantes.ALTO_PALANCA;     // antes: 56f
+        batch.setColor(tinte);
         batch.draw(textura, z.x + (z.width - ancho) / 2f, z.y, ancho, alto);
+        batch.setColor(Color.WHITE);
     }
 
     private void dibujarPeligros() {
@@ -203,7 +206,7 @@ public class RenderizadorJuego {
     private void dibujarPersonaje() {
         TextureRegion frame = animaciones.getFrameActual();
 
-        float tam = 96f;
+        float tam = Constantes.TAM_SPRITE_PERSONAJE;
         float x = cappuccino.getX() - (tam - cappuccino.getAncho()) / 2f;
         float y = cappuccino.getY();
 
@@ -222,11 +225,12 @@ public class RenderizadorJuego {
         shapeRenderer.rect(ballerina.getX(), ballerina.getY(), ballerina.getAncho(), ballerina.getAlto());
 
         shapeRenderer.setColor(1f, 1f, 1f, 1f);
-        float markerSize = 8f;
-        float markerY = ballerina.getY() + ballerina.getAlto() - 16f;
+        float e = Constantes.ESCALA_PERSONAJE;
+        float markerSize = 8f * e;
+        float markerY = ballerina.getY() + ballerina.getAlto() - 16f * e;
         float markerX = ballerina.isMirandoDerecha()
-            ? ballerina.getX() + ballerina.getAncho() - 12f
-            : ballerina.getX() + 4f;
+            ? ballerina.getX() + ballerina.getAncho() - 12f * e
+            : ballerina.getX() + 4f * e;
         shapeRenderer.rect(markerX, markerY, markerSize, markerSize);
 
         shapeRenderer.end();

@@ -43,9 +43,9 @@ public class PantallaJuego implements Screen {
     public void show() {
 
         camera = new OrthographicCamera();
-        viewport = FabricaViewport.crear(camera);
 
-        nivel = new Nivel("mapas/nivel0.tmx", 64);
+        nivel = new Nivel("mapas/NIVEL 0.tmx");
+        viewport = FabricaViewport.crear(camera, nivel.getAnchoPx(), nivel.getAltoPx());
         elementos = new ElementosNivel(nivel);
 
         menuPausa = new MenuPausa(juego);
@@ -61,7 +61,7 @@ public class PantallaJuego implements Screen {
 
         Gdx.input.setInputProcessor(controladorEntrada);
 
-        camera.position.set(Constantes.ANCHO_MUNDO / 2f, Constantes.ALTO_MUNDO / 2f, 0);
+        camera.position.set(nivel.getAnchoPx() / 2f, nivel.getAltoPx() / 2f, 0);
         camera.update();
 
         controladorPartida = new ControladorPartida(

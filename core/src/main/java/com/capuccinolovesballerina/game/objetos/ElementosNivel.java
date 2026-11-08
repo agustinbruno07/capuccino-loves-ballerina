@@ -1,6 +1,5 @@
 package com.capuccinolovesballerina.game.objetos;
 
-import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 import com.capuccinolovesballerina.game.Utilidades.Constantes;
@@ -10,8 +9,10 @@ public class ElementosNivel {
 
     private final Array<ObjetoCortable> cortables = new Array<>();
     private final Array<Rectangle> peligros = new Array<>();
+    private final Array<Rectangle> hitboxPeligros = new Array<>();
 
-    private final Palanca palanca;
+    private final Palanca palancaCappuccino;
+    private final Palanca palancaBallerina;
     private final Puerta puerta;
 
     private final float spawnX;
@@ -22,11 +23,16 @@ public class ElementosNivel {
 
     public ElementosNivel(Nivel nivel) {
 
+        // Nivel ya devuelve los rectangulos en unidades del mundo (escalados),
+        // asi que se pueden usar directo.
         Rectangle zonaPuerta = nivel.buscarObjeto("puerta");
-        puerta = zonaPuerta == null ? null : new Puerta(new Rectangle(zonaPuerta));
+        puerta = zonaPuerta == null ? null : new Puerta(zonaPuerta);
 
-        Rectangle zonaPalanca = nivel.buscarObjeto("palanca");
-        palanca = zonaPalanca == null ? null : new Palanca(new Rectangle(zonaPalanca));
+        Rectangle zonaPalCap = nivel.buscarObjeto("palanca_cappuccino");
+        palancaCappuccino = zonaPalCap == null ? null : new Palanca(zonaPalCap);
+
+        Rectangle zonaPalBal = nivel.buscarObjeto("palanca_ballerina");
+        palancaBallerina = zonaPalBal == null ? null : new Palanca(zonaPalBal);
 
         cargarCortables(nivel);
         cargarPeligros(nivel);
@@ -53,21 +59,30 @@ public class ElementosNivel {
     private void cargarCortables(Nivel nivel) {
         String[] tipos = {"cuerda", "liana", "barril"};
         for (String tipo : tipos) {
-            for (RectangleMapObject obj : nivel.buscarObjetos(tipo)) {
-                cortables.add(new ObjetoCortable(tipo, new Rectangle(obj.getRectangle())));
+            for (Rectangle zona : nivel.buscarObjetos(tipo)) {
+                cortables.add(new ObjetoCortable(tipo, zona));
             }
         }
     }
 
     private void cargarPeligros(Nivel nivel) {
-        for (RectangleMapObject obj : nivel.buscarObjetos("peligro")) {
-            peligros.add(new Rectangle(obj.getRectangle()));
+        for (Rectangle zona : nivel.buscarObjetos("peligro")) {
+            peligros.add(zona);                       // lo que se dibuja (no cambia)
+
+            float altoSprite = zona.width / 2f;       // igual que en RenderizadorJuego
+            hitboxPeligros.add(new Rectangle(
+                zona.x + Constantes.MARGEN_LATERAL_PELIGRO,
+                zona.y,
+                zona.width - 2 * Constantes.MARGEN_LATERAL_PELIGRO,
+                altoSprite - Constantes.MARGEN_SUPERIOR_PELIGRO
+            ));
         }
     }
-
+    public Array<Rectangle> getHitboxPeligros() { return hitboxPeligros; }
     public Array<ObjetoCortable> getCortables() { return cortables; }
     public Array<Rectangle> getPeligros() { return peligros; }
-    public Palanca getPalanca() { return palanca; }
+    public Palanca getPalancaCappuccino() { return palancaCappuccino; }
+    public Palanca getPalancaBallerina() { return palancaBallerina; }
     public Puerta getPuerta() { return puerta; }
     public float getSpawnX() { return spawnX; }
     public float getSpawnY() { return spawnY; }

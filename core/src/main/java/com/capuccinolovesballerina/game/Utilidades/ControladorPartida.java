@@ -33,6 +33,7 @@ public class ControladorPartida {
     private final CapuccinoAssassino cappuccino;
     private final BallerinaCapuccina ballerina;
     private final AnimacionesCappuccino animaciones;
+    private static final float ALCANCE_PALANCA = 12f;
 
     public ControladorPartida(
         Nivel nivel,
@@ -141,8 +142,6 @@ public class ControladorPartida {
         animaciones.actualizar(delta);
 
 
-        actualizarPalanca();
-
         if (estaMuerto(cappuccino) || estaMuerto(ballerina)) {
             mostrarGameOver();
             return;
@@ -154,50 +153,62 @@ public class ControladorPartida {
         if (menuVictoria.estaVisible()) {
             return;
         }
-
+        actualizarPalancas();
         entrada.limpiarEventos();
     }
 
-    private void actualizarPalanca() {
-        Palanca palanca = elementos.getPalanca();
-        Puerta puerta = elementos.getPuerta();
+    private void actualizarPalancas() {
+        Palanca palCap = elementos.getPalancaCappuccino();
+        Palanca palBal = elementos.getPalancaBallerina();
 
-        if (palanca == null) {
-            return;
+        if (entrada.isInteractuarPresionado()
+            && estaCerca(cappuccino, palCap)) {
+            intentarAlternar(palCap);
         }
 
-        Rectangle cajaCap = cappuccino.getCaja();
-        Rectangle cajaBal = ballerina.getCaja();
-
-        Rectangle alcanceCap = new Rectangle(cajaCap.x - 12, cajaCap.y - 12, cajaCap.width + 24, cajaCap.height + 24);
-        Rectangle alcanceBal = new Rectangle(cajaBal.x - 12, cajaBal.y - 12, cajaBal.width + 24, cajaBal.height + 24);
-
-        boolean capCercaDePalanca = alcanceCap.overlaps(palanca.getZona());
-        boolean balCercaDePalanca = alcanceBal.overlaps(palanca.getZona());
-
-        if (!capCercaDePalanca && !balCercaDePalanca) {
-            return;
-        }
-
-        boolean capActivo = capCercaDePalanca && entrada.isInteractuarPresionado();      // E
-        boolean balActivo = balCercaDePalanca && entrada.isInteractuarPresionadoBallerina(); // Enter
-
-        if (!capActivo && !balActivo) {
-            return;
-        }
-
-        boolean alguienEnLaPuerta = puerta != null
-            && (cajaCap.overlaps(puerta.getZona()) || cajaBal.overlaps(puerta.getZona()));
-
-        boolean vaACerrar = palanca.estaActivada();
-
-        if (!vaACerrar || !alguienEnLaPuerta) {
-            palanca.alternar();
-            if (puerta != null) {
-                puerta.setAbierta(palanca.estaActivada());
-            }
+        if (entrada.isInteractuarPresionadoBallerina()
+            && estaCerca(ballerina, palBal)) {
+            intentarAlternar(palBal);
         }
     }
+    private boolean estaCerca(Player personaje, Palanca palanca) {
+        if (palanca == null) return false;
+        Rectangle c = personaje.getCaja();
+        Rectangle alcance = new Rectangle(
+            c.x - ALCANCE_PALANCA, c.y - ALCANCE_PALANCA,
+            c.width + 2 * ALCANCE_PALANCA, c.height + 2 * ALCANCE_PALANCA);
+        return alcance.overlaps(palanca.getZona());
+    }
+    private void intentarAlternar(Palanca palanca) {
+        Puerta puerta = elementos.getPuerta();
+
+        // No dejar cerrar la puerta con alguien parado adentro
+        boolean seCerraria = palanca.estaActivada() && puerta != null && puerta.estaAbierta();
+        if (seCerraria && alguienEnLaPuerta()) return;
+
+        palanca.alternar();
+        actualizarPuerta();
+    }
+
+
+    private void actualizarPuerta() {
+        Puerta puerta = elementos.getPuerta();
+        Palanca palCap = elementos.getPalancaCappuccino();
+        Palanca palBal = elementos.getPalancaBallerina();
+        if (puerta == null || (palCap == null && palBal == null)) return;
+
+        // si un nivel solo tiene una palanca, la que falta no bloquea
+        boolean capOk = palCap == null || palCap.estaActivada();
+        boolean balOk = palBal == null || palBal.estaActivada();
+        puerta.setAbierta(capOk && balOk);
+    }
+    private boolean alguienEnLaPuerta() {
+        Puerta puerta = elementos.getPuerta();
+        return puerta != null
+            && (cappuccino.getCaja().overlaps(puerta.getZona())
+            || ballerina.getCaja().overlaps(puerta.getZona()));
+    }
+
 
     private void comprobarVictoria() {
         Puerta puerta = elementos.getPuerta();
@@ -219,7 +230,7 @@ public class ControladorPartida {
             return true;
         }
 
-        for (Rectangle peligro : elementos.getPeligros()) {
+        for (Rectangle peligro : elementos.getHitboxPeligros()) {
             if (personaje.getCaja().overlaps(peligro)) {
                 return true;
             }
@@ -258,15 +269,15 @@ public class ControladorPartida {
         ballerina.reiniciarHabilidad();
 
         Puerta puerta = elementos.getPuerta();
-        Palanca palanca = elementos.getPalanca();
 
         if (puerta != null) {
             puerta.setAbierta(false);
         }
 
-        if (palanca != null && palanca.estaActivada()) {
-            palanca.alternar();
-        }
+        Palanca palCap = elementos.getPalancaCappuccino();
+        Palanca palBal = elementos.getPalancaBallerina();
+        if (palCap != null && palCap.estaActivada()) palCap.alternar();
+        if (palBal != null && palBal.estaActivada()) palBal.alternar();
 
         for (ObjetoCortable cortable : elementos.getCortables()) {
             cortable.setCortado(false);

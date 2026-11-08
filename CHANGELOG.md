@@ -2,6 +2,13 @@
 
 Todos los cambios importantes del proyecto serán registrados en este archivo.
 
+## [1.6.1] - 2026-11-08
+
+
+## Agregado 
+- **Conexion UDP**
+    - Clase `HiloDescubrimiento`: Otorga direcciones ip automaticamente  
+
 ## [1.6.0] - 2026-11-07
 
 ### Agregado

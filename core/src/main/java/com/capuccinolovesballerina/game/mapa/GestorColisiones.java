@@ -13,10 +13,13 @@ public class GestorColisiones {
 
     private final Array<Rectangle> solidos = new Array<>();
 
-    public GestorColisiones(TiledMap mapa, int tamanoTile) {
+    /**
+     * @param tamanoTile tamano del tile en pixeles de Tiled (por ejemplo 32)
+     * @param escala     factor para pasar de pixeles de Tiled a unidades del mundo (Nivel.ESCALA)
+     */
+    public GestorColisiones(TiledMap mapa, int tamanoTile, float escala) {
         for (TiledMapTileLayer capa : mapa.getLayers().getByType(TiledMapTileLayer.class)) {
-            if ("fondo".equalsIgnoreCase(capa.getName())) continue;
-
+            if (capa.getName().toLowerCase().startsWith("fondo")) continue;
             for (int x = 0; x < capa.getWidth(); x++) {
                 for (int y = 0; y < capa.getHeight(); y++) {
                     TiledMapTileLayer.Cell celda = capa.getCell(x, y);
@@ -28,9 +31,15 @@ public class GestorColisiones {
                         if (obj instanceof RectangleMapObject) {
                             Rectangle r = ((RectangleMapObject) obj).getRectangle();
 
+                            // Se calcula en pixeles de Tiled y despues se escala todo junto.
                             float mundoX = x * tamanoTile + r.x;
                             float mundoY = y * tamanoTile + (tamanoTile - r.y - r.height);
-                            solidos.add(new Rectangle(mundoX, mundoY, r.width, r.height));
+                            solidos.add(new Rectangle(
+                                mundoX * escala,
+                                mundoY * escala,
+                                r.width * escala,
+                                r.height * escala
+                            ));
                         }
                     }
                 }

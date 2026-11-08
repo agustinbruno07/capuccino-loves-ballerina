@@ -14,4 +14,9 @@ public class FabricaViewport {
     public static Viewport crear(OrthographicCamera camera) {
         return new FitViewport(Constantes.ANCHO_MUNDO, Constantes.ALTO_MUNDO, camera);
     }
+
+    public static Viewport crear(OrthographicCamera camera, float ancho, float alto) {
+        return new FitViewport(ancho, alto, camera);
+    }
+
 }
