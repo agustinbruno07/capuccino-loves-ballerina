@@ -156,4 +156,13 @@ public class Player {
         this.velocidadY = 0;
         this.enSuelo = false;
     }
+
+    public void setPosicionRemota(float x, float y, boolean mirandoDerecha, boolean enSuelo) {
+        this.x = x;
+        this.y = y;
+        this.velocidadX = 0f;
+        this.velocidadY = 0f;
+        this.mirandoDerecha = mirandoDerecha;
+        this.enSuelo = enSuelo;
+    }
 }

@@ -13,9 +13,9 @@ public class BallerinaCapuccina extends Player {
         super(x, y, Constantes.ANCHO_PERSONAJE, Constantes.ALTO_PERSONAJE);
     }
 
-    public void crearEspuma() {
+    public boolean crearEspuma() {
         if (cooldownEspuma > 0f) {
-            return;
+            return false;
         }
 
         espuma = null;
@@ -40,6 +40,7 @@ public class BallerinaCapuccina extends Player {
 
         espuma = new BloqueEspuma(xEspuma, yEspuma, ancho, alto, Constantes.VIDA_ESPUMA);
         cooldownEspuma = Constantes.COOLDOWN_ESPUMA;
+        return true;
     }
 
     public void actualizarHabilidad(float delta) {
@@ -62,6 +63,17 @@ public class BallerinaCapuccina extends Player {
 
     public void reiniciarHabilidad() {
         espuma = null;
+        cooldownEspuma = 0f;
+    }
+
+    public void setEspumaRemota(float x, float y) {
+        espuma = new BloqueEspuma(
+            x,
+            y,
+            Constantes.ANCHO_ESPUMA,
+            Constantes.ALTO_ESPUMA,
+            Constantes.VIDA_ESPUMA
+        );
         cooldownEspuma = 0f;
     }
 }
