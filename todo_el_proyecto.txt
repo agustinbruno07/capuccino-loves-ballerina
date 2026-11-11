@@ -1,0 +1,5282 @@
+============================================================
+                INFORME DEL PROYECTO SPEEDG2L
+============================================================
+
+Fecha: mi�. 11/11/2026
+Hora:  20:47:49,36
+Ruta:  C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina
+
+============================================================
+1. ESTRUCTURA DEL PROYECTO
+============================================================
+
+Listado de rutas de carpetas
+El n�mero de serie del volumen es CC05-334C
+C:.
+|   .editorconfig
+|   .gitattributes
+|   .gitignore
+|   build.gradle
+|   CHANGELOG.md
+|   generar_informe.bat
+|   gradle.properties
+|   gradlew
+|   gradlew.bat
+|   README.md
+|   settings.gradle
+|   todo_el_proyecto.txt
+|
++---.gradle
+|   +---9.7.1
+|   |   |   gc.properties
+|   |   |
+|   |   +---checksums
+|   |   |       checksums.lock
+|   |   |
+|   |   +---executionHistory
+|   |   |       executionHistory.bin
+|   |   |       executionHistory.lock
+|   |   |
+|   |   +---expanded
+|   |   +---fileChanges
+|   |   |       last-build.bin
+|   |   |
+|   |   +---fileHashes
+|   |   |       fileHashes.bin
+|   |   |       fileHashes.lock
+|   |   |       resourceHashesCache.bin
+|   |   |
+|   |   \---vcsMetadata
+|   +---buildOutputCleanup
+|   |       buildOutputCleanup.lock
+|   |       cache.properties
+|   |       outputFiles.bin
+|   |
+|   \---vcs-1
+|           gc.properties
+|
++---.idea
+|   |   .gitignore
+|   |   compiler.xml
+|   |   gradle.xml
+|   |   misc.xml
+|   |   vcs.xml
+|   |   workspace.xml
+|   |
+|   \---shelf
+|       |   Uncommitted_changes_before_Checkout_at_11_11_2026_19_26__Changes_.xml
+|       |
+|       \---Uncommitted_changes_before_Checkout_at_11_11_2026_19_26_[Changes]
+|               shelved.patch
+|               TILE ABAJO DEL PISO.png
+|               TILE PARED DERECHA.png
+|               TILE PARED IZQUIERDA.png
+|               TILE PISO.png
+|
++---assets
+|   |   assets.txt
+|   |
+|   +---interfaz
+|   |       controles.png
+|   |       fondo_menu.png
+|   |       game_over.png
+|   |       marco_hud.png
+|   |       victoria.jpg
+|   |
+|   +---mapas
+|   |       background1.png
+|   |       background1.tsx
+|   |       background2.png
+|   |       background2.tsx
+|   |       background3.png
+|   |       background3.tsx
+|   |       background4a.png
+|   |       background4a.tsx
+|   |       background4b.png
+|   |       NIVEL 0.tmx
+|   |       nivel0.tmx
+|   |       PISO.tsx
+|   |       PISO.tsx.png
+|   |       TILE ABAJO DEL PISO.png
+|   |       TILE PARED DERECHA.png
+|   |       TILE PARED IZQUIERDA.png
+|   |       TILE PISO.png
+|   |       TILESET PISO 32x32.png
+|   |       tileset.tsx
+|   |
+|   +---objetos
+|   |       liana.png
+|   |       palanca_apagada.png
+|   |       palanca_encendida.png
+|   |       pinchos.png
+|   |       puerta_abierta.png
+|   |       puerta_cerrada.png
+|   |
+|   +---skin
+|   |       default.fnt
+|   |       default.png
+|   |       uiskin.atlas
+|   |       uiskin.json
+|   |       uiskin.png
+|   |
+|   +---sonidos
+|   |       musica_juego.mp3
+|   |       musica_menu.mp3
+|   |
+|   \---sprites
+|           cappuccino.png
+|
++---build
+|   \---reports
+|       \---problems
+|               problems-report.html
+|
++---core
+|   |   build.gradle
+|   |
+|   +---build
+|   |   +---classes
+|   |   |   \---java
+|   |   |       \---main
+|   |   |           \---com
+|   |   |               \---capuccinolovesballerina
+|   |   |                   \---game
+|   |   |                       |   CapuccinoLovesBallerinaGame.class
+|   |   |                       |
+|   |   |                       +---entidades
+|   |   |                       |       BallerinaCapuccina.class
+|   |   |                       |       CapuccinoAssassino.class
+|   |   |                       |       Player.class
+|   |   |                       |
+|   |   |                       +---graficos
+|   |   |                       |       AnimacionesCappuccino$1.class
+|   |   |                       |       AnimacionesCappuccino.class
+|   |   |                       |       Estado.class
+|   |   |                       |
+|   |   |                       +---mapa
+|   |   |                       |       GestorColisiones.class
+|   |   |                       |       Nivel.class
+|   |   |                       |
+|   |   |                       +---objetos
+|   |   |                       |       BloqueEspuma.class
+|   |   |                       |       ElementosNivel.class
+|   |   |                       |       ObjetoCortable.class
+|   |   |                       |       Palanca.class
+|   |   |                       |       Puerta.class
+|   |   |                       |
+|   |   |                       +---pantallas
+|   |   |                       |       HUD.class
+|   |   |                       |       MenuGameOver$1.class
+|   |   |                       |       MenuGameOver$2.class
+|   |   |                       |       MenuGameOver.class
+|   |   |                       |       MenuPausa$1.class
+|   |   |                       |       MenuPausa$2.class
+|   |   |                       |       MenuPausa$3.class
+|   |   |                       |       MenuPausa.class
+|   |   |                       |       MenuVictoria$1.class
+|   |   |                       |       MenuVictoria$2.class
+|   |   |                       |       MenuVictoria.class
+|   |   |                       |       PantallaControles$1.class
+|   |   |                       |       PantallaControles.class
+|   |   |                       |       PantallaJuego.class
+|   |   |                       |       PantallaMenu$1.class
+|   |   |                       |       PantallaMenu$2.class
+|   |   |                       |       PantallaMenu$3.class
+|   |   |                       |       PantallaMenu$4.class
+|   |   |                       |       PantallaMenu$5.class
+|   |   |                       |       PantallaMenu$6$1.class
+|   |   |                       |       PantallaMenu$6.class
+|   |   |                       |       PantallaMenu.class
+|   |   |                       |       PantallaOpciones$1.class
+|   |   |                       |       PantallaOpciones$2.class
+|   |   |                       |       PantallaOpciones$3.class
+|   |   |                       |       PantallaOpciones$4.class
+|   |   |                       |       PantallaOpciones$5.class
+|   |   |                       |       PantallaOpciones.class
+|   |   |                       |
+|   |   |                       +---red
+|   |   |                       |   |   Cliente.class
+|   |   |                       |   |   Servidor.class
+|   |   |                       |   |
+|   |   |                       |   \---hilos
+|   |   |                       |           HiloCliente.class
+|   |   |                       |           HiloDescubrimiento.class
+|   |   |                       |           HiloServidor.class
+|   |   |                       |
+|   |   |                       \---Utilidades
+|   |   |                               Audio.class
+|   |   |                               Constantes.class
+|   |   |                               ControladorEntradaJugador.class
+|   |   |                               ControladorPartida.class
+|   |   |                               Entrada.class
+|   |   |                               FabricaViewport.class
+|   |   |                               Recursos.class
+|   |   |                               RenderizadorJuego.class
+|   |   |
+|   |   +---generated
+|   |   |   \---sources
+|   |   |       +---annotationProcessor
+|   |   |       |   \---java
+|   |   |       |       \---main
+|   |   |       \---headers
+|   |   |           \---java
+|   |   |               \---main
+|   |   +---libs
+|   |   |       core-1.4.5.jar
+|   |   |       core-1.5.1.jar
+|   |   |
+|   |   \---tmp
+|   |       +---compileJava
+|   |       |   |   previous-compilation-data.bin
+|   |       |   |
+|   |       |   \---compileTransaction
+|   |       |       +---backup-dir
+|   |       |       \---stash-dir
+|   |       |               ControladorPartida.class.uniqueId0
+|   |       |               PantallaJuego.class.uniqueId1
+|   |       |
+|   |       \---jar
+|   |               MANIFEST.MF
+|   |
+|   \---src
+|       \---main
+|           \---java
+|               \---com
+|                   \---capuccinolovesballerina
+|                       \---game
+|                           |   CapuccinoLovesBallerinaGame.java
+|                           |   exportar_codigo.bat
+|                           |   todo_el_codigo.txt
+|                           |
+|                           +---entidades
+|                           |       BallerinaCapuccina.java
+|                           |       CapuccinoAssassino.java
+|                           |       Player.java
+|                           |
+|                           +---graficos
+|                           |       AnimacionesCappuccino.java
+|                           |       Estado.java
+|                           |
+|                           +---mapa
+|                           |       GestorColisiones.java
+|                           |       Nivel.java
+|                           |
+|                           +---objetos
+|                           |       BloqueEspuma.java
+|                           |       ElementosNivel.java
+|                           |       ObjetoCortable.java
+|                           |       Palanca.java
+|                           |       Puerta.java
+|                           |
+|                           +---pantallas
+|                           |       HUD.java
+|                           |       MenuGameOver.java
+|                           |       MenuPausa.java
+|                           |       MenuVictoria.java
+|                           |       PantallaControles.java
+|                           |       PantallaJuego.java
+|                           |       PantallaMenu.java
+|                           |       PantallaOpciones.java
+|                           |
+|                           +---red
+|                           |   |   Cliente.java
+|                           |   |   Servidor.java
+|                           |   |
+|                           |   \---hilos
+|                           |           HiloCliente.java
+|                           |           HiloDescubrimiento.java
+|                           |           HiloServidor.java
+|                           |
+|                           \---Utilidades
+|                                   Audio.java
+|                                   Constantes.java
+|                                   ControladorEntradaJugador.java
+|                                   ControladorPartida.java
+|                                   Entrada.java
+|                                   FabricaViewport.java
+|                                   Recursos.java
+|                                   RenderizadorJuego.java
+|
++---gradle
+|   |   gradle-daemon-jvm.properties
+|   |
+|   \---wrapper
+|           gradle-wrapper.jar
+|           gradle-wrapper.properties
+|
+\---lwjgl3
+    |   build.gradle
+    |   nativeimage.gradle
+    |
+    +---build
+    |   +---classes
+    |   |   \---java
+    |   |       \---main
+    |   |           \---com
+    |   |               \---capuccinolovesballerina
+    |   |                   \---game
+    |   |                       \---lwjgl3
+    |   |                               Lwjgl3Launcher.class
+    |   |                               StartupHelper.class
+    |   |
+    |   +---generated
+    |   |   \---sources
+    |   |       +---annotationProcessor
+    |   |       |   \---java
+    |   |       |       \---main
+    |   |       \---headers
+    |   |           \---java
+    |   |               \---main
+    |   +---resources
+    |   |   \---main
+    |   |       |   assets.txt
+    |   |       |   libgdx128.png
+    |   |       |   libgdx16.png
+    |   |       |   libgdx32.png
+    |   |       |   libgdx64.png
+    |   |       |
+    |   |       +---interfaz
+    |   |       |       controles.png
+    |   |       |       fondo_menu.png
+    |   |       |       game_over.png
+    |   |       |       marco_hud.png
+    |   |       |       victoria.jpg
+    |   |       |
+    |   |       +---mapas
+    |   |       |       background1.png
+    |   |       |       background1.tsx
+    |   |       |       background2.png
+    |   |       |       background2.tsx
+    |   |       |       background3.png
+    |   |       |       background3.tsx
+    |   |       |       background4a.png
+    |   |       |       background4a.tsx
+    |   |       |       background4b.png
+    |   |       |       NIVEL 0.tmx
+    |   |       |       nivel0.tmx
+    |   |       |       PISO.tsx
+    |   |       |       PISO.tsx.png
+    |   |       |       TILE ABAJO DEL PISO.png
+    |   |       |       TILE PARED DERECHA.png
+    |   |       |       TILE PARED IZQUIERDA.png
+    |   |       |       TILE PISO.png
+    |   |       |       TILESET PISO 32x32.png
+    |   |       |       tileset.tsx
+    |   |       |
+    |   |       +---objetos
+    |   |       |       liana.png
+    |   |       |       palanca_apagada.png
+    |   |       |       palanca_encendida.png
+    |   |       |       pinchos.png
+    |   |       |       puerta_abierta.png
+    |   |       |       puerta_cerrada.png
+    |   |       |
+    |   |       +---skin
+    |   |       |       default.fnt
+    |   |       |       default.png
+    |   |       |       uiskin.atlas
+    |   |       |       uiskin.json
+    |   |       |       uiskin.png
+    |   |       |
+    |   |       +---sonidos
+    |   |       |       musica_juego.mp3
+    |   |       |       musica_menu.mp3
+    |   |       |
+    |   |       \---sprites
+    |   |               cappuccino.png
+    |   |
+    |   \---tmp
+    |       \---compileJava
+    |           |   previous-compilation-data.bin
+    |           |
+    |           \---compileTransaction
+    |               +---backup-dir
+    |               \---stash-dir
+    +---icons
+    |       logo.icns
+    |       logo.ico
+    |       logo.png
+    |
+    \---src
+        \---main
+            +---java
+            |   \---com
+            |       \---capuccinolovesballerina
+            |           \---game
+            |               \---lwjgl3
+            |                       Lwjgl3Launcher.java
+            |                       StartupHelper.java
+            |
+            \---resources
+                    libgdx128.png
+                    libgdx16.png
+                    libgdx32.png
+                    libgdx64.png
+
+
+============================================================
+2. CODIGO FUENTE JAVA
+============================================================
+
+
+============================================================
+ARCHIVO: C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\CapuccinoLovesBallerinaGame.java
+============================================================
+
+package com.capuccinolovesballerina.game;
+
+import com.badlogic.gdx.Game;
+import com.capuccinolovesballerina.game.Utilidades.Audio;
+import com.capuccinolovesballerina.game.Utilidades.Recursos;
+import com.capuccinolovesballerina.game.pantallas.PantallaMenu;
+
+public class CapuccinoLovesBallerinaGame extends Game {
+
+    @Override
+    public void create() {
+        setScreen(new PantallaMenu(this));
+    }
+
+    @Override
+    public void render() {
+        super.render();
+    }
+
+    @Override
+    public void dispose() {
+        super.dispose();
+        Recursos.dispose();
+        Audio.dispose();
+    }
+}
+
+.
+============================================================
+ARCHIVO: C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\entidades\BallerinaCapuccina.java
+============================================================
+.
+package com.capuccinolovesballerina.game.entidades;
+
+import com.capuccinolovesballerina.game.Utilidades.Constantes;
+import com.capuccinolovesballerina.game.objetos.BloqueEspuma;
+
+public class BallerinaCapuccina extends Player {
+
+    private BloqueEspuma espuma = null;
+
+    private float cooldownEspuma = 0f;
+
+    public BallerinaCapuccina(float x, float y) {
+        super(x, y, Constantes.ANCHO_PERSONAJE, Constantes.ALTO_PERSONAJE);
+    }
+
+    public boolean crearEspuma() {
+        if (cooldownEspuma > 0f) {
+            return false;
+        }
+
+        espuma = null;
+
+        float ancho = Constantes.ANCHO_ESPUMA;
+        float alto = Constantes.ALTO_ESPUMA;
+        float gap = Constantes.DISTANCIA_ESPUMA;
+
+        float xEspuma;
+        if (isMirandoDerecha()) {
+            xEspuma = getX() + getAncho() + gap;
+        } else {
+            xEspuma = getX() - gap - ancho;
+        }
+
+        float yEspuma;
+        if(enSuelo) {
+            yEspuma = getY();
+        }else{
+            yEspuma = getY() - alto;
+        }
+
+        espuma = new BloqueEspuma(xEspuma, yEspuma, ancho, alto, Constantes.VIDA_ESPUMA);
+        cooldownEspuma = Constantes.COOLDOWN_ESPUMA;
+        return true;
+    }
+
+    public void actualizarHabilidad(float delta) {
+        if (cooldownEspuma > 0f) {
+            cooldownEspuma -= delta;
+            if (cooldownEspuma < 0f) cooldownEspuma = 0f;
+        }
+
+        if (espuma != null) {
+            espuma.actualizar(delta);
+            if (!espuma.estaViva()) {
+                espuma = null;
+            }
+        }
+    }
+
+    public BloqueEspuma getEspuma() {
+        return espuma;
+    }
+
+    public void reiniciarHabilidad() {
+        espuma = null;
+        cooldownEspuma = 0f;
+    }
+
+    public void setEspumaRemota(float x, float y) {
+        espuma = new BloqueEspuma(
+            x,
+            y,
+            Constantes.ANCHO_ESPUMA,
+            Constantes.ALTO_ESPUMA,
+            Constantes.VIDA_ESPUMA
+        );
+        cooldownEspuma = 0f;
+    }
+}
+.
+.
+============================================================
+ARCHIVO: C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\entidades\CapuccinoAssassino.java
+============================================================
+.
+package com.capuccinolovesballerina.game.entidades;
+
+import com.capuccinolovesballerina.game.Utilidades.Constantes;
+
+public class CapuccinoAssassino extends Player {
+
+    public CapuccinoAssassino(float x, float y) {
+        super(x, y, Constantes.ANCHO_PERSONAJE, Constantes.ALTO_PERSONAJE);
+    }
+}
+.
+.
+============================================================
+ARCHIVO: C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\entidades\Player.java
+============================================================
+.
+package com.capuccinolovesballerina.game.entidades;
+
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.Array;
+import com.capuccinolovesballerina.game.Utilidades.Constantes;
+
+public class Player {
+
+
+    protected float x;
+    protected float y;
+    protected float ancho;
+    protected float alto;
+
+    protected float velocidadX;
+    protected float velocidadY;
+
+    protected boolean enSuelo;
+    protected boolean mirandoDerecha;
+
+    private final Rectangle caja = new Rectangle();
+
+    public Player() {
+        this(0, 0, Constantes.ANCHO_PERSONAJE, Constantes.ALTO_PERSONAJE);
+    }
+
+    public Player(float x, float y, float ancho, float alto) {
+        this.x = x;
+        this.y = y;
+        this.ancho = ancho;
+        this.alto = alto;
+        this.mirandoDerecha = true;
+    }
+
+    public void actualizar(float delta, boolean izquierda, boolean derecha, boolean saltar, Array<Rectangle> solidos) {
+
+        float direccion = 0;
+
+        if (izquierda) {
+            direccion = -1;
+        }
+
+        if (derecha) {
+            direccion = 1;
+        }
+
+        velocidadX = direccion * Constantes.VELOCIDAD_MOVIMIENTO;
+
+        if (direccion > 0) {
+            mirandoDerecha = true;
+        }
+
+        if (direccion < 0) {
+            mirandoDerecha = false;
+        }
+
+        if (saltar && enSuelo) {
+            velocidadY = Constantes.VELOCIDAD_SALTO;
+            enSuelo = false;
+        }
+
+        velocidadY -= Constantes.GRAVEDAD * delta;
+
+        if (velocidadY < -Constantes.VELOCIDAD_MAX_CAIDA) {
+            velocidadY = -Constantes.VELOCIDAD_MAX_CAIDA;
+        }
+
+        moverEnX(delta, solidos);
+        moverEnY(delta, solidos);
+    }
+
+    private void moverEnX(float delta, Array<Rectangle> solidos) {
+
+        x += velocidadX * delta;
+        caja.set(x, y, ancho, alto);
+
+        for (Rectangle solido : solidos) {
+            if (caja.overlaps(solido)) {
+
+                if (velocidadX > 0) {
+                    x = solido.x - ancho;
+                } else if (velocidadX < 0) {
+                    x = solido.x + solido.width;
+                }
+
+                caja.set(x, y, ancho, alto);
+                velocidadX = 0;
+            }
+        }
+    }
+
+    private void moverEnY(float delta, Array<Rectangle> solidos) {
+
+        y += velocidadY * delta;
+        caja.set(x, y, ancho, alto);
+
+        enSuelo = false;
+
+        for (Rectangle solido : solidos) {
+            if (caja.overlaps(solido)) {
+
+                if (velocidadY < 0) {
+                    y = solido.y + solido.height;
+                    enSuelo = true;
+                } else if (velocidadY > 0) {
+                    y = solido.y - alto;
+                }
+
+                caja.set(x, y, ancho, alto);
+                velocidadY = 0;
+            }
+        }
+    }
+
+    public Rectangle getCaja() {
+        caja.set(x, y, ancho, alto);
+        return caja;
+    }
+
+    public float getX() {
+        return x;
+    }
+
+    public float getY() {
+        return y;
+    }
+
+    public float getAncho() {
+        return ancho;
+    }
+
+    public float getAlto() {
+        return alto;
+    }
+
+    public boolean isEnSuelo() {
+        return enSuelo;
+    }
+
+    public boolean isMirandoDerecha() {
+        return mirandoDerecha;
+    }
+
+    public void setX(float x) {
+        this.x = x;
+    }
+
+    public void setY(float y) {
+        this.y = y;
+    }
+
+    public void reaparecer(float x, float y) {
+        this.x = x;
+        this.y = y;
+        this.velocidadX = 0;
+        this.velocidadY = 0;
+        this.enSuelo = false;
+    }
+
+    public void setPosicionRemota(float x, float y, boolean mirandoDerecha, boolean enSuelo) {
+        this.x = x;
+        this.y = y;
+        this.velocidadX = 0f;
+        this.velocidadY = 0f;
+        this.mirandoDerecha = mirandoDerecha;
+        this.enSuelo = enSuelo;
+    }
+}
+.
+.
+============================================================
+ARCHIVO: C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\graficos\AnimacionesCappuccino.java
+============================================================
+.
+package com.capuccinolovesballerina.game.graficos;
+
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+
+public class AnimacionesCappuccino {
+
+
+
+    private static final int FRAME = 128;
+    private static final int FRAMES_IDLE = 4;
+    private static final int FRAMES_WALK = 9;
+    private static final int FRAMES_JUMP = 3;
+    private static final int FRAMES_ATTACK = 7;
+
+    private final Texture textura;
+    private final Animation<TextureRegion> idle;
+    private final Animation<TextureRegion> walk;
+    private final Animation<TextureRegion> jump;
+    private final Animation<TextureRegion> attack;
+
+    private Estado estado = Estado.IDLE;
+    private float tiempo = 0f;
+
+    public AnimacionesCappuccino() {
+        textura = new Texture("sprites/cappuccino.png");
+
+        TextureRegion[][] grilla = TextureRegion.split(textura, FRAME, FRAME);
+
+        idle   = new Animation<>(0.2f,  primeros(grilla[0], FRAMES_IDLE));
+        idle.setPlayMode(Animation.PlayMode.LOOP);
+
+        walk   = new Animation<>(0.1f,  primeros(grilla[1], FRAMES_WALK));
+        walk.setPlayMode(Animation.PlayMode.LOOP);
+
+        jump   = new Animation<>(0.15f, primeros(grilla[2], FRAMES_JUMP));
+        jump.setPlayMode(Animation.PlayMode.NORMAL);
+
+        attack = new Animation<>(0.07f, primeros(grilla[3], FRAMES_ATTACK));
+        attack.setPlayMode(Animation.PlayMode.NORMAL);
+    }
+
+
+    private TextureRegion[] primeros(TextureRegion[] fila, int n) {
+        TextureRegion[] frames = new TextureRegion[n];
+        for (int i = 0; i < n; i++) frames[i] = fila[i];
+        return frames;
+    }
+
+
+    public void setEstado(Estado nuevo) {
+        if (estado == Estado.ATTACK && !attack.isAnimationFinished(tiempo)) return;
+        if (nuevo != estado) {
+            estado = nuevo;
+            tiempo = 0f;
+        }
+    }
+
+    public void actualizar(float delta) {
+        tiempo += delta;
+    }
+
+    public void reiniciar() {
+        estado = Estado.IDLE;
+        tiempo = 0f;
+    }
+
+
+    public TextureRegion getFrameActual() {
+        switch (estado) {
+            case WALK:   return walk.getKeyFrame(tiempo);
+            case JUMP:   return jump.getKeyFrame(tiempo);
+            case ATTACK: return attack.getKeyFrame(tiempo);
+            default:     return idle.getKeyFrame(tiempo);
+        }
+    }
+
+    public void dispose() {
+        textura.dispose();
+    }
+}
+.
+.
+============================================================
+ARCHIVO: C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\graficos\Estado.java
+============================================================
+.
+package com.capuccinolovesballerina.game.graficos;
+
+public enum Estado {
+    IDLE, WALK, JUMP, ATTACK;
+}
+.
+.
+============================================================
+ARCHIVO: C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\mapa\GestorColisiones.java
+============================================================
+.
+package com.capuccinolovesballerina.game.mapa;
+
+import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTile;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.Array;
+
+
+public class GestorColisiones {
+
+    private final Array<Rectangle> solidos = new Array<>();
+
+    /**
+     * @param tamanoTile tamano del tile en pixeles de Tiled (por ejemplo 32)
+     * @param escala     factor para pasar de pixeles de Tiled a unidades del mundo (Nivel.ESCALA)
+     */
+    public GestorColisiones(TiledMap mapa, int tamanoTile, float escala) {
+        for (TiledMapTileLayer capa : mapa.getLayers().getByType(TiledMapTileLayer.class)) {
+            if (capa.getName().toLowerCase().startsWith("fondo")) continue;
+            for (int x = 0; x < capa.getWidth(); x++) {
+                for (int y = 0; y < capa.getHeight(); y++) {
+                    TiledMapTileLayer.Cell celda = capa.getCell(x, y);
+                    if (celda == null) continue; // celda vacia
+
+                    TiledMapTile tile = celda.getTile();
+
+                    for (MapObject obj : tile.getObjects()) {
+                        if (obj instanceof RectangleMapObject) {
+                            Rectangle r = ((RectangleMapObject) obj).getRectangle();
+
+                            // Se calcula en pixeles de Tiled y despues se escala todo junto.
+                            float mundoX = x * tamanoTile + r.x;
+                            float mundoY = y * tamanoTile + (tamanoTile - r.y - r.height);
+                            solidos.add(new Rectangle(
+                                mundoX * escala,
+                                mundoY * escala,
+                                r.width * escala,
+                                r.height * escala
+                            ));
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public Array<Rectangle> getSolidos() {
+        return solidos;
+    }
+
+    public boolean colisiona(Rectangle entidad) {
+        for (Rectangle r : solidos) {
+            if (r.overlaps(entidad)) return true;
+        }
+        return false;
+    }
+}
+.
+.
+============================================================
+ARCHIVO: C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\mapa\Nivel.java
+============================================================
+.
+package com.capuccinolovesballerina.game.mapa;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.maps.MapLayer;
+import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.MapProperties;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.Array;
+
+public class Nivel {
+
+    /**
+     * Escala entre "pixeles de Tiled" y "unidades del mundo".
+     * 1f = el mundo mide lo mismo que el mapa en Tiled (30x20 tiles de 32 = 960x640).
+     * Es como esta disenado NIVEL 0 (puerta 96x128, peligro 64x32, etc.).
+     * Si algun dia queres un mundo mas grande sin retocar el mapa, cambia SOLO este numero.
+     */
+    public static final float ESCALA = 1f;
+
+    /** true = los tiles se dibujan sin suavizar (pixel art). */
+    private static final boolean PIXEL_ART = false;
+
+    /** Dejalo en true hasta que todo funcione; despues ponelo en false. */
+    private static final boolean DEBUG_OBJETOS = true;
+
+    private final TiledMap mapa;
+    private final GestorColisiones colisiones;
+    private final Array<MapObject> objetos = new Array<>();
+    private final float anchoPx;
+    private final float altoPx;
+
+    public Nivel(String ruta) {
+        TmxMapLoader.Parameters parametros = new TmxMapLoader.Parameters();
+        if (PIXEL_ART) {
+            parametros.generateMipMaps = false;
+            parametros.textureMinFilter = Texture.TextureFilter.Nearest;
+            parametros.textureMagFilter = Texture.TextureFilter.Nearest;
+        }
+        mapa = new TmxMapLoader().load(ruta, parametros);
+
+        MapProperties props = mapa.getProperties();
+        int tileAncho = props.get("tilewidth", Integer.class);
+        int tileAlto = props.get("tileheight", Integer.class);
+        int tilesX = props.get("width", Integer.class);
+        int tilesY = props.get("height", Integer.class);
+
+        anchoPx = tilesX * tileAncho * ESCALA;
+        altoPx = tilesY * tileAlto * ESCALA;
+
+        // Se leen los objetos de TODAS las capas de objetos, se llamen como se llamen
+        // (Tiled las crea como "Capa de Objetos 1" por defecto).
+        for (MapLayer capa : mapa.getLayers()) {
+            for (MapObject obj : capa.getObjects()) {
+                objetos.add(obj);
+            }
+        }
+
+        colisiones = new GestorColisiones(mapa, tileAncho, ESCALA);
+
+        if (DEBUG_OBJETOS) {
+            logObjetos();
+        }
+    }
+
+    public TiledMap getMapa() {
+        return mapa;
+    }
+
+    public GestorColisiones getColisiones() {
+        return colisiones;
+    }
+
+    /** Ancho total del mapa en unidades del mundo. */
+    public float getAnchoPx() {
+        return anchoPx;
+    }
+
+    /** Alto total del mapa en unidades del mundo. */
+    public float getAltoPx() {
+        return altoPx;
+    }
+
+    /** Primer objeto con ese nombre/type/class, en unidades del mundo (o null). */
+    public Rectangle buscarObjeto(String tipo) {
+        for (MapObject obj : objetos) {
+            if (!coincide(obj, tipo)) continue;
+            Rectangle r = rectanguloDe(obj);
+            if (r != null) return r;
+        }
+        if (DEBUG_OBJETOS) {
+            Gdx.app.log("NIVEL", "NO se encontro el objeto '" + tipo + "' (revisa name/type en Tiled)");
+        }
+        return null;
+    }
+
+    /** Todos los objetos con ese nombre/type/class, en unidades del mundo. */
+    public Array<Rectangle> buscarObjetos(String tipo) {
+        Array<Rectangle> resultado = new Array<>();
+        for (MapObject obj : objetos) {
+            if (!coincide(obj, tipo)) continue;
+            Rectangle r = rectanguloDe(obj);
+            if (r != null) resultado.add(r);
+        }
+        return resultado;
+    }
+
+    public void dispose() {
+        mapa.dispose();
+    }
+
+    // ---------------------------------------------------------------- internos
+
+    /** Compara con name, type o class (Tiled 1.9+), ignorando mayusculas y espacios. */
+    private static boolean coincide(MapObject obj, String tipo) {
+        MapProperties p = obj.getProperties();
+        return igual(tipo, obj.getName()) || igual(tipo, p.get("type")) || igual(tipo, p.get("class"));
+    }
+
+    private static boolean igual(String tipo, Object valor) {
+        return valor != null && tipo.equalsIgnoreCase(valor.toString().trim());
+    }
+
+    /** Convierte el objeto de Tiled a un rectangulo en unidades del mundo. */
+    private static Rectangle rectanguloDe(MapObject obj) {
+        if (obj instanceof RectangleMapObject) {
+            Rectangle r = ((RectangleMapObject) obj).getRectangle();
+            return new Rectangle(r.x * ESCALA, r.y * ESCALA, r.width * ESCALA, r.height * ESCALA);
+        }
+        // Objetos puestos con "Insertar tile"
+        if (obj instanceof TiledMapTileMapObject) {
+            MapProperties p = obj.getProperties();
+            return new Rectangle(
+                numero(p, "x") * ESCALA,
+                numero(p, "y") * ESCALA,
+                numero(p, "width") * ESCALA,
+                numero(p, "height") * ESCALA
+            );
+        }
+        return null;
+    }
+
+    private static float numero(MapProperties p, String clave) {
+        Object v = p.get(clave);
+        return v instanceof Number ? ((Number) v).floatValue() : 0f;
+    }
+
+    private void logObjetos() {
+        Gdx.app.log("NIVEL", "Mundo: " + anchoPx + " x " + altoPx + " (escala " + ESCALA + "), "
+            + objetos.size + " objetos");
+        for (MapObject obj : objetos) {
+            MapProperties p = obj.getProperties();
+            Gdx.app.log("NIVEL", obj.getClass().getSimpleName()
+                + " name=" + obj.getName()
+                + " type=" + p.get("type")
+                + " x=" + p.get("x") + " y=" + p.get("y")
+                + " w=" + p.get("width") + " h=" + p.get("height"));
+        }
+    }
+}
+.
+.
+============================================================
+ARCHIVO: C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\objetos\BloqueEspuma.java
+============================================================
+.
+package com.capuccinolovesballerina.game.objetos;
+
+import com.badlogic.gdx.math.Rectangle;
+
+public class BloqueEspuma {
+
+    private final Rectangle zona;
+    private float vida;
+
+    public BloqueEspuma(float x, float y, float ancho, float alto, float vida) {
+        this.zona = new Rectangle(x, y, ancho, alto);
+        this.vida = vida;
+    }
+
+    public void actualizar(float delta) {
+        vida -= delta;
+    }
+
+    public boolean estaViva() {
+        return vida > 0f;
+    }
+
+    public Rectangle getZona() {
+        return zona;
+    }
+
+    //alpha es la opacidad, cosa de que se vaya desvaneciendo poco a poco. queda prime confien
+    public float getAlpha() {
+        float fade = 0.5f;
+        if (vida >= fade) return 1f;
+        return Math.max(0f, vida / fade);
+    }
+}
+.
+.
+============================================================
+ARCHIVO: C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\objetos\ElementosNivel.java
+============================================================
+.
+package com.capuccinolovesballerina.game.objetos;
+
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.Array;
+import com.capuccinolovesballerina.game.Utilidades.Constantes;
+import com.capuccinolovesballerina.game.mapa.Nivel;
+
+public class ElementosNivel {
+
+    private final Array<ObjetoCortable> cortables = new Array<>();
+    private final Array<Rectangle> peligros = new Array<>();
+    private final Array<Rectangle> hitboxPeligros = new Array<>();
+
+    private final Palanca palancaCappuccino;
+    private final Palanca palancaBallerina;
+    private final Puerta puerta;
+
+    private final float spawnX;
+    private final float spawnY;
+
+    private final float spawnBallerinaX;
+    private final float spawnBallerinaY;
+
+    public ElementosNivel(Nivel nivel) {
+
+        // Nivel ya devuelve los rectangulos en unidades del mundo (escalados),
+        // asi que se pueden usar directo.
+        Rectangle zonaPuerta = nivel.buscarObjeto("puerta");
+        puerta = zonaPuerta == null ? null : new Puerta(zonaPuerta);
+
+        Rectangle zonaPalCap = nivel.buscarObjeto("palanca_cappuccino");
+        palancaCappuccino = zonaPalCap == null ? null : new Palanca(zonaPalCap);
+
+        Rectangle zonaPalBal = nivel.buscarObjeto("palanca_ballerina");
+        palancaBallerina = zonaPalBal == null ? null : new Palanca(zonaPalBal);
+
+        cargarCortables(nivel);
+        cargarPeligros(nivel);
+
+        Rectangle spawn = nivel.buscarObjeto("spawn_cappuccino");
+        if (spawn != null) {
+            spawnX = spawn.x + (spawn.getWidth() - Constantes.ANCHO_PERSONAJE) / 2f;
+            spawnY = spawn.y;
+        } else {
+            spawnX = 320;
+            spawnY = 192;
+        }
+
+        Rectangle spawnBallerina = nivel.buscarObjeto("spawn_ballerina");
+        if (spawnBallerina != null) {
+            spawnBallerinaX = spawnBallerina.x + (spawnBallerina.getWidth() - Constantes.ANCHO_PERSONAJE) / 2f;
+            spawnBallerinaY = spawnBallerina.y;
+        } else {
+            spawnBallerinaX = spawnX + 80f;
+            spawnBallerinaY = spawnY;
+        }
+    }
+
+    private void cargarCortables(Nivel nivel) {
+        String[] tipos = {"cuerda", "liana", "barril"};
+        for (String tipo : tipos) {
+            for (Rectangle zona : nivel.buscarObjetos(tipo)) {
+                cortables.add(new ObjetoCortable(tipo, zona));
+            }
+        }
+    }
+
+    private void cargarPeligros(Nivel nivel) {
+        for (Rectangle zona : nivel.buscarObjetos("peligro")) {
+            peligros.add(zona);                       // lo que se dibuja (no cambia)
+
+            float altoSprite = zona.width / 2f;       // igual que en RenderizadorJuego
+            hitboxPeligros.add(new Rectangle(
+                zona.x + Constantes.MARGEN_LATERAL_PELIGRO,
+                zona.y,
+                zona.width - 2 * Constantes.MARGEN_LATERAL_PELIGRO,
+                altoSprite - Constantes.MARGEN_SUPERIOR_PELIGRO
+            ));
+        }
+    }
+    public Array<Rectangle> getHitboxPeligros() { return hitboxPeligros; }
+    public Array<ObjetoCortable> getCortables() { return cortables; }
+    public Array<Rectangle> getPeligros() { return peligros; }
+    public Palanca getPalancaCappuccino() { return palancaCappuccino; }
+    public Palanca getPalancaBallerina() { return palancaBallerina; }
+    public Puerta getPuerta() { return puerta; }
+    public float getSpawnX() { return spawnX; }
+    public float getSpawnY() { return spawnY; }
+    public float getSpawnBallerinaX() { return spawnBallerinaX; }
+    public float getSpawnBallerinaY() { return spawnBallerinaY; }
+}
+.
+.
+============================================================
+ARCHIVO: C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\objetos\ObjetoCortable.java
+============================================================
+.
+package com.capuccinolovesballerina.game.objetos;
+
+import com.badlogic.gdx.math.Rectangle;
+
+public class ObjetoCortable {
+
+    private final String tipo;
+    private final Rectangle zona;
+    private boolean cortado;
+
+    public ObjetoCortable(String tipo, Rectangle zona) {
+        this.tipo = tipo;
+        this.zona = zona;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public Rectangle getZona() {
+        return zona;
+    }
+
+    public boolean estaCortado() {
+        return cortado;
+    }
+
+    public void setCortado(boolean cortado) {
+        this.cortado = cortado;
+    }
+
+    public boolean bloquea() {
+        return !cortado;
+    }
+}
+.
+.
+============================================================
+ARCHIVO: C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\objetos\Palanca.java
+============================================================
+.
+package com.capuccinolovesballerina.game.objetos;
+
+import com.badlogic.gdx.math.Rectangle;
+
+public class Palanca {
+    private final Rectangle zona;
+    private boolean activada;
+
+    public Palanca(Rectangle zona) {
+        this.zona = zona;
+    }
+
+    public void alternar() {
+        activada = !activada;
+    }
+
+    public boolean estaActivada() {
+        return activada;
+    }
+
+    public Rectangle getZona() {
+        return zona;
+    }
+}
+.
+.
+============================================================
+ARCHIVO: C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\objetos\Puerta.java
+============================================================
+.
+package com.capuccinolovesballerina.game.objetos;
+
+import com.badlogic.gdx.math.Rectangle;
+
+public class Puerta {
+    private final Rectangle zona;
+    private boolean abierta;
+
+    public Puerta(Rectangle zona) {
+        this.zona = zona;
+    }
+
+    public void setAbierta(boolean abierta) {
+        this.abierta = abierta;
+    }
+
+    public boolean estaAbierta() {
+        return abierta;
+    }
+
+    public boolean bloquea() {
+        return !abierta;
+    }
+
+    public Rectangle getZona() {
+        return zona;
+    }
+}
+.
+.
+============================================================
+ARCHIVO: C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\pantallas\HUD.java
+============================================================
+.
+package com.capuccinolovesballerina.game.pantallas;
+
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Stack;
+import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.viewport.Viewport;
+import com.capuccinolovesballerina.game.Utilidades.Constantes;
+import com.capuccinolovesballerina.game.Utilidades.FabricaViewport;
+import com.capuccinolovesballerina.game.Utilidades.Recursos;
+
+
+public class HUD {
+
+    private final Stage stage;
+    private final Viewport viewport;
+    private final Label labelTiempo;
+    private final Texture texturaMarco;
+
+    private float tiempo;
+    private int ultimoSegundo = -1;
+
+    public HUD() {
+        viewport = FabricaViewport.crear();
+        stage = new Stage(viewport);
+        Skin skin = Recursos.getSkin();
+        skin.getFont("default-font").getRegion().getTexture()
+            .setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+
+        texturaMarco = Recursos.getImagen("interfaz/marco_hud.png");
+        Image imagenMarco = new Image(texturaMarco);
+
+        LabelStyle estiloGrande = new LabelStyle(skin.get(LabelStyle.class));
+        estiloGrande.font = skin.getFont("default-font");
+        labelTiempo = new Label("00:00", estiloGrande);
+        labelTiempo.setFontScale(1.5f);
+        labelTiempo.setAlignment(Align.center);
+
+        Stack pila = new Stack();
+        float anchoMarco = 250f;
+        float altoMarco = 80f;
+        pila.setSize(anchoMarco, altoMarco);
+        pila.add(imagenMarco);
+        pila.add(labelTiempo);
+
+        pila.setPosition(
+            (Constantes.ANCHO_MUNDO - anchoMarco) / 2f,
+            Constantes.ALTO_MUNDO - altoMarco
+        );
+
+        stage.addActor(pila);
+
+    }
+
+    public void actualizar(float delta) {
+        tiempo += delta;
+        int segundo = (int) tiempo;
+        if (segundo != ultimoSegundo) {
+            ultimoSegundo = segundo;
+            labelTiempo.setText(formatear(segundo));
+        }
+    }
+
+    private String formatear(int totalSegundos) {
+        int minutos = totalSegundos / 60;
+        int segundos = totalSegundos % 60;
+        return String.format("%02d:%02d", minutos, segundos);
+    }
+
+    public void dibujar() {
+        stage.draw();
+    }
+
+    public void reiniciar() {
+        tiempo = 0f;
+        ultimoSegundo = -1;
+        labelTiempo.setText("00:00");
+    }
+
+    public void resize(int width, int height) {
+        viewport.update(width, height, true);
+    }
+
+    public void dispose() {
+        stage.dispose();
+    }
+}
+.
+.
+============================================================
+ARCHIVO: C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\pantallas\MenuGameOver.java
+============================================================
+.
+package com.capuccinolovesballerina.game.pantallas;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Scaling;
+import com.badlogic.gdx.utils.viewport.Viewport;
+import com.badlogic.gdx.Game;
+import com.capuccinolovesballerina.game.Utilidades.FabricaViewport;
+import com.capuccinolovesballerina.game.Utilidades.Recursos;
+
+public class MenuGameOver {
+
+    private final Stage stage;
+    private final Viewport viewport;
+    private boolean visible;
+
+    public MenuGameOver(Game juego, Runnable accionReintentar) {
+        viewport = FabricaViewport.crear();
+        stage = new Stage(viewport);
+        Skin skin = Recursos.getSkin();
+
+        Image fondo = new Image(Recursos.getImagen("interfaz/game_over.png"));
+        fondo.setFillParent(true);
+        fondo.setScaling(Scaling.fill);
+        stage.addActor(fondo);
+
+        TextButton botonReintentar = new TextButton("REINTENTAR", skin);
+        TextButton botonMenu = new TextButton("VOLVER AL MENU", skin);
+
+        botonReintentar.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                ocultar();
+                accionReintentar.run();
+            }
+        });
+
+        botonMenu.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                juego.setScreen(new PantallaMenu(juego));
+            }
+        });
+
+        Table tabla = new Table();
+        tabla.setFillParent(true);
+        tabla.bottom();
+        tabla.add(botonReintentar).size(250, 60).pad(10).row();
+        tabla.add(botonMenu).size(250, 60).padBottom(40);
+        stage.addActor(tabla);
+    }
+
+    public void mostrar() {
+        visible = true;
+        Gdx.input.setInputProcessor(stage);
+    }
+
+    public void ocultar() {
+        visible = false;
+        Gdx.input.setInputProcessor(null);
+    }
+
+    public boolean estaVisible() {
+        return visible;
+    }
+
+    public void actualizar(float delta) {
+        if (visible) {
+            stage.act(delta);
+        }
+    }
+
+    public void dibujar() {
+        if (visible) {
+            stage.draw();
+        }
+    }
+
+    public void resize(int width, int height) {
+        viewport.update(width, height, true);
+    }
+
+    public void dispose() {
+        stage.dispose();
+    }
+}
+.
+.
+============================================================
+ARCHIVO: C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\pantallas\MenuPausa.java
+============================================================
+.
+package com.capuccinolovesballerina.game.pantallas;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
+import com.badlogic.gdx.Game;
+import com.capuccinolovesballerina.game.Utilidades.FabricaViewport;
+import com.capuccinolovesballerina.game.Utilidades.Recursos;
+
+public class MenuPausa {
+
+    private final Game juego;
+
+    private Stage stage;
+    private Viewport viewport;
+    private Skin skin;
+    private ShapeRenderer shapeRenderer;
+    private boolean visible;
+
+    public MenuPausa(Game juego) {
+        this.juego = juego;
+
+        viewport = FabricaViewport.crear();
+        stage = new Stage(viewport);
+        skin = Recursos.getSkin();
+        shapeRenderer = new ShapeRenderer();
+
+        TextButton botonReanudar = new TextButton("REANUDAR", skin);
+        TextButton botonMenu = new TextButton("VOLVER AL MENU", skin);
+        TextButton botonSalir = new TextButton("SALIR", skin);
+
+        botonReanudar.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                ocultar();
+            }
+        });
+
+        botonMenu.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                juego.setScreen(new PantallaMenu(juego));
+            }
+        });
+
+        botonSalir.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Gdx.app.exit();
+            }
+        });
+
+        Table tabla = new Table();
+        tabla.setFillParent(true);
+        tabla.add(botonReanudar).size(250, 60).pad(10).row();
+        tabla.add(botonMenu).size(250, 60).pad(10).row();
+        tabla.add(botonSalir).size(250, 60).pad(10);
+        stage.addActor(tabla);
+    }
+
+    public void mostrar() {
+        visible = true;
+
+        Gdx.input.setInputProcessor(stage);
+    }
+
+    public void ocultar() {
+        visible = false;
+        Gdx.input.setInputProcessor(null);
+    }
+
+    public boolean estaVisible() {
+        return visible;
+    }
+
+    public void actualizar(float delta) {
+        if (visible) {
+            stage.act(delta);
+        }
+    }
+
+    public void dibujar() {
+        if (!visible) return;
+
+        Gdx.gl.glEnable(GL20.GL_BLEND);
+        Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+        shapeRenderer.setProjectionMatrix(stage.getCamera().combined);
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        shapeRenderer.setColor(0, 0, 0, 0.6f);
+        shapeRenderer.rect(0, 0, viewport.getWorldWidth(), viewport.getWorldHeight());
+        shapeRenderer.end();
+
+        stage.draw();
+    }
+
+    public void resize(int width, int height) {
+        viewport.update(width, height, true);
+    }
+
+    public void dispose() {
+        stage.dispose();
+        shapeRenderer.dispose();
+    }
+}
+.
+.
+============================================================
+ARCHIVO: C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\pantallas\MenuVictoria.java
+============================================================
+.
+package com.capuccinolovesballerina.game.pantallas;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Scaling;
+import com.badlogic.gdx.utils.viewport.Viewport;
+import com.badlogic.gdx.Game;
+import com.capuccinolovesballerina.game.Utilidades.FabricaViewport;
+import com.capuccinolovesballerina.game.Utilidades.Recursos;
+
+public class MenuVictoria{
+
+    private final Stage stage;
+    private final Viewport viewport;
+    private boolean visible;
+
+    public MenuVictoria(Game juego) {
+        viewport = FabricaViewport.crear();
+        stage = new Stage(viewport);
+        Skin skin = Recursos.getSkin();
+
+        Image fondo = new Image(Recursos.getImagen("interfaz/victoria.jpg"));
+        fondo.setFillParent(true);
+        fondo.setScaling(Scaling.fill);
+        stage.addActor(fondo);
+
+        TextButton botonSiguienteNivel = new TextButton("SIGUIENTE NIVEL", skin);
+        TextButton botonMenu = new TextButton("VOLVER AL MENU", skin);
+
+        botonSiguienteNivel.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                ocultar();
+                juego.setScreen(new PantallaMenu(juego));
+
+            }
+        });
+
+        botonMenu.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                juego.setScreen(new PantallaMenu(juego));
+            }
+        });
+
+        Table tabla = new Table();
+        tabla.setFillParent(true);
+        tabla.bottom();
+        tabla.add(botonSiguienteNivel).size(250, 60).pad(10).row();
+        tabla.add(botonMenu).size(250, 60).padBottom(40);
+        stage.addActor(tabla);
+    }
+
+    public void mostrar() {
+        visible = true;
+        Gdx.input.setInputProcessor(stage);
+    }
+
+    public void ocultar() {
+        visible = false;
+        Gdx.input.setInputProcessor(null);
+    }
+
+    public boolean estaVisible() {
+        return visible;
+    }
+
+    public void actualizar(float delta) {
+        if (visible) {
+            stage.act(delta);
+        }
+    }
+
+    public void dibujar() {
+        if (visible) {
+            stage.draw();
+        }
+    }
+
+    public void resize(int width, int height) {
+        viewport.update(width, height, true);
+    }
+
+    public void dispose() {
+        stage.dispose();
+    }
+}
+.
+.
+============================================================
+ARCHIVO: C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\pantallas\PantallaControles.java
+============================================================
+.
+package com.capuccinolovesballerina.game.pantallas;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Scaling;
+import com.badlogic.gdx.utils.ScreenUtils;
+
+import com.badlogic.gdx.Game;
+import com.capuccinolovesballerina.game.Utilidades.FabricaViewport;
+import com.capuccinolovesballerina.game.Utilidades.Recursos;
+
+public class PantallaControles implements Screen {
+
+    private final Game juego;
+    private Stage stage;
+
+    public PantallaControles(Game juego) {
+        this.juego = juego;
+    }
+
+    @Override
+    public void show() {
+
+        stage = new Stage(FabricaViewport.crear());
+
+        Skin skin = Recursos.getSkin();
+
+        Image fondo = new Image(
+            Recursos.getImagen("interfaz/controles.png")
+        );
+
+        fondo.setFillParent(true);
+        fondo.setScaling(Scaling.fit);
+
+        stage.addActor(fondo);
+
+        TextButton botonVolver = new TextButton(
+            "VOLVER AL MENU", skin
+        );
+
+        botonVolver.addListener(new ClickListener() {
+            @Override
+            public void clicked(
+                InputEvent event, float x, float y
+            ) {
+                juego.setScreen(new PantallaMenu(juego));
+            }
+        });
+
+        Table tabla = new Table();
+        tabla.setFillParent(true);
+        tabla.bottom().right();
+
+        tabla.add(botonVolver)
+            .size(210, 55)
+            .padRight(25)
+            .padBottom(20);
+
+        stage.addActor(tabla);
+
+        Gdx.input.setInputProcessor(stage);
+    }
+
+    @Override
+    public void render(float delta) {
+
+        ScreenUtils.clear(0.05f, 0.04f, 0.06f, 1f);
+
+        stage.act(delta);
+        stage.draw();
+    }
+
+    @Override
+    public void resize(int width, int height) {
+
+        if (stage != null) {
+            stage.getViewport().update(width, height, true);
+        }
+    }
+
+    @Override
+    public void pause() {
+    }
+
+    @Override
+    public void resume() {
+    }
+
+    @Override
+    public void hide() {
+        Gdx.input.setInputProcessor(null);
+    }
+
+    @Override
+    public void dispose() {
+
+        if (stage != null) {
+            stage.dispose();
+            stage = null;
+        }
+    }
+}
+.
+.
+============================================================
+ARCHIVO: C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\pantallas\PantallaJuego.java
+============================================================
+.
+package com.capuccinolovesballerina.game.pantallas;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.utils.viewport.Viewport;
+import com.badlogic.gdx.Game;
+import com.capuccinolovesballerina.game.Utilidades.*;
+import com.capuccinolovesballerina.game.entidades.BallerinaCapuccina;
+import com.capuccinolovesballerina.game.entidades.CapuccinoAssassino;
+import com.capuccinolovesballerina.game.graficos.AnimacionesCappuccino;
+import com.capuccinolovesballerina.game.mapa.Nivel;
+import com.capuccinolovesballerina.game.objetos.ElementosNivel;
+
+public class PantallaJuego implements Screen {
+
+    private final Game juego;
+
+    private OrthographicCamera camera;
+    private Viewport viewport;
+
+    private Nivel nivel;
+    private ElementosNivel elementos;
+
+    private MenuPausa menuPausa;
+    private MenuGameOver menuGameOver;
+    private MenuVictoria menuVictoria;
+    private HUD hud;
+
+    private ControladorEntradaJugador controladorEntrada;
+    private CapuccinoAssassino cappuccino;
+    private BallerinaCapuccina ballerina;
+    private AnimacionesCappuccino animaciones;
+
+    private ControladorPartida controladorPartida;
+    private RenderizadorJuego renderizadorJuego;
+
+    public PantallaJuego(Game juego) {
+        this.juego = juego;
+    }
+
+    @Override
+    public void show() {
+
+        camera = new OrthographicCamera();
+
+        nivel = new Nivel("mapas/NIVEL 0.tmx");
+        viewport = FabricaViewport.crear(camera, nivel.getAnchoPx(), nivel.getAltoPx());
+        elementos = new ElementosNivel(nivel);
+
+        menuPausa = new MenuPausa(juego);
+        menuGameOver = new MenuGameOver(juego, () -> controladorPartida.reiniciar());
+        menuVictoria = new MenuVictoria(juego);
+        hud = new HUD();
+
+        controladorEntrada = new ControladorEntradaJugador();
+        animaciones = new AnimacionesCappuccino();
+
+        cappuccino = new CapuccinoAssassino(elementos.getSpawnX(), elementos.getSpawnY());
+        ballerina = new BallerinaCapuccina(elementos.getSpawnBallerinaX(), elementos.getSpawnBallerinaY());
+
+        Gdx.input.setInputProcessor(controladorEntrada);
+
+        camera.position.set(nivel.getAnchoPx() / 2f, nivel.getAltoPx() / 2f, 0);
+        camera.update();
+
+        controladorPartida = new ControladorPartida(
+            nivel, elementos, menuPausa, menuGameOver, menuVictoria,
+            hud, controladorEntrada, cappuccino, ballerina, animaciones
+        );
+
+        renderizadorJuego = new RenderizadorJuego(
+            camera, nivel, cappuccino, ballerina, animaciones,
+            elementos, hud, menuPausa, menuGameOver, menuVictoria
+        );
+
+        Audio.reproducirMusica("sonidos/musica_juego.mp3");
+    }
+
+    @Override
+    public void render(float delta) {
+        float dt = Math.min(delta, 1f / 30f);
+        controladorPartida.actualizar(dt);
+        renderizadorJuego.dibujar();
+    }
+
+    @Override
+    public void resize(int width, int height) {
+        viewport.update(width, height, true);
+        menuPausa.resize(width, height);
+        menuGameOver.resize(width, height);
+        menuVictoria.resize(width, height);
+        hud.resize(width, height);
+    }
+
+    @Override
+    public void dispose() {
+        renderizadorJuego.dispose();
+        nivel.dispose();
+        menuPausa.dispose();
+        menuGameOver.dispose();
+        menuVictoria.dispose();
+        hud.dispose();
+        animaciones.dispose();
+    }
+
+    @Override
+    public void pause() {}
+
+    @Override
+    public void resume() {}
+
+    @Override
+    public void hide() {
+        Gdx.input.setInputProcessor(null);
+    }
+}
+.
+.
+============================================================
+ARCHIVO: C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\pantallas\PantallaMenu.java
+============================================================
+.
+package com.capuccinolovesballerina.game.pantallas;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.Game;
+import com.capuccinolovesballerina.game.Utilidades.Audio;
+import com.capuccinolovesballerina.game.Utilidades.FabricaViewport;
+import com.capuccinolovesballerina.game.Utilidades.Recursos;
+import com.capuccinolovesballerina.game.red.Cliente;
+
+public class PantallaMenu implements Screen {
+
+    private Image fondo;
+
+    private Stage stage;
+    private Skin skin;
+    private TextButton botonJugar;
+    private TextButton botonJugarRed;
+    private TextButton botonOpciones;
+    private TextButton botonControles;
+    private TextButton botonSalir;
+    private Label estadoRed;
+    private final Game juego;
+
+    private Cliente clienteRed;
+
+    public PantallaMenu(Game juego) {
+        this.juego = juego;
+    }
+
+    @Override
+    public void show() {
+        stage = new Stage(FabricaViewport.crear());
+        skin = Recursos.getSkin();
+        fondo = new Image(Recursos.getImagen("interfaz/fondo_menu.png"));
+        fondo.setFillParent(true);
+        stage.addActor(fondo);
+        crearBotones();
+        agregarBotones();
+        escucharBotones();
+        Audio.reproducirMusica("sonidos/musica_menu.mp3");
+    }
+
+    private void crearBotones() {
+        botonJugar = new TextButton("JUGAR LOCAL", skin);
+        botonJugarRed = new TextButton("JUGAR EN RED", skin);
+        botonOpciones = new TextButton("OPCIONES", skin);
+        botonControles = new TextButton("CONTROLES", skin);
+        botonSalir = new TextButton("SALIR", skin);
+        estadoRed = new Label("", skin);
+    }
+
+    private void agregarBotones() {
+
+        Table tabla = new Table();
+        tabla.setFillParent(true);
+        tabla.bottom();
+
+        tabla.add(estadoRed).size(400, 30).pad(5).row();
+        tabla.add(botonJugar).size(200, 60).pad(10).row();
+        tabla.add(botonJugarRed).size(200, 60).pad(10).row();
+        tabla.add(botonOpciones).size(200, 60).pad(10).row();
+        tabla.add(botonControles).size(200, 60).pad(10).row();
+        tabla.add(botonSalir).size(200, 60).pad(10);
+
+        stage.addActor(tabla);
+        Gdx.input.setInputProcessor(stage);
+    }
+
+    private void escucharBotones() {
+
+        botonJugar.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                juego.setScreen(new PantallaJuego(juego));
+            }
+        });
+
+        botonJugarRed.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                buscarServidor();
+            }
+        });
+
+        botonSalir.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Gdx.app.exit();
+            }
+        });
+
+        botonControles.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                juego.setScreen(new PantallaControles(juego));
+            }
+        });
+
+        botonOpciones.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                juego.setScreen(new PantallaOpciones(juego));
+            }
+        });
+    }
+
+    private void buscarServidor() {
+        botonJugarRed.setDisabled(true);
+        estadoRed.setText("Buscando servidor en la red...");
+        final PantallaMenu self = this;
+        Thread hilo = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Cliente c = new Cliente();
+                final boolean ok = c.conectar();
+                final int rol = c.getMiRol();
+                final String ip = c.getIpServer();
+                Gdx.app.postRunnable(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (ok) {
+                            clienteRed = c;
+                            String nombre = (rol == 0) ? "Cappuccino" : "Ballerina";
+                            estadoRed.setText("Conectado a " + ip + " como " + nombre);
+                        } else {
+                            c.cerrar();
+                            estadoRed.setText("No se encontro servidor. Levantá Servidor.main");
+                        }
+                        botonJugarRed.setDisabled(false);
+                    }
+                });
+            }
+        });
+        hilo.start();
+    }
+
+    public Cliente getClienteRed() {
+        return clienteRed;
+    }
+
+    @Override
+    public void render(float delta) {
+        ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1f);
+        stage.act(delta);
+        stage.draw();
+    }
+
+    @Override
+    public void resize(int width, int height) {
+        stage.getViewport().update(width, height, true);
+    }
+
+    @Override
+    public void pause() {
+    }
+
+    @Override
+    public void resume() {
+    }
+
+    @Override
+    public void hide() {
+    }
+
+    @Override
+    public void dispose() {
+        stage.dispose();
+    }
+}
+.
+.
+============================================================
+ARCHIVO: C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\pantallas\PantallaOpciones.java
+============================================================
+.
+package com.capuccinolovesballerina.game.pantallas;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Slider;
+import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.Game;
+import com.capuccinolovesballerina.game.Utilidades.Audio;
+import com.capuccinolovesballerina.game.Utilidades.FabricaViewport;
+import com.capuccinolovesballerina.game.Utilidades.Recursos;
+
+public class PantallaOpciones implements Screen {
+
+    private final Game juego;
+
+    private Stage stage;
+
+    private Slider volumenMusica;
+    private Label etiquetaVolumen;
+
+    private TextButton botonSilenciar;
+    private TextButton botonModoPantalla;
+
+    private Label etiquetaResolucion;
+    private SelectBox<String> selectorResolucion;
+
+    private boolean silenciado;
+
+    private static float ultimoVolumen = 0.07f;
+
+    private static String resolucionVentana = "1280 x 720";
+
+    public PantallaOpciones(Game juego) {
+        this.juego = juego;
+    }
+
+    @Override
+    public void show() {
+
+        stage = new Stage(FabricaViewport.crear());
+
+        Skin skin = Recursos.getSkin();
+
+        if (Audio.getVolumen() > 0f) {
+            ultimoVolumen = Audio.getVolumen();
+            silenciado = false;
+        } else {
+            silenciado = true;
+        }
+
+
+        Label titulo = new Label("OPCIONES", skin);
+        titulo.setFontScale(2f);
+
+        etiquetaVolumen = new Label("", skin);
+
+        volumenMusica = new Slider(0f, 1f, 0.01f, false, skin);
+        volumenMusica.setValue(ultimoVolumen);
+
+        actualizarEtiquetaVolumen();
+
+        volumenMusica.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+
+                float nuevoVolumen = volumenMusica.getValue();
+
+                if (nuevoVolumen <= 0f) {
+                    silenciado = true;
+                    Audio.setVolumen(0f);
+                } else {
+                    ultimoVolumen = nuevoVolumen;
+                    silenciado = false;
+                    Audio.setVolumen(nuevoVolumen);
+                }
+
+                actualizarEtiquetaVolumen();
+                actualizarTextoBoton();
+            }
+        });
+
+        botonSilenciar = new TextButton("", skin);
+
+        actualizarTextoBoton();
+
+        botonSilenciar.addListener(new ClickListener() {
+            @Override
+            public void clicked(
+                InputEvent event, float x, float y
+            ) {
+                alternarSilencio();
+            }
+        });
+
+        etiquetaResolucion = new Label(
+            "Resolucion de ventana", skin
+        );
+
+        selectorResolucion = new SelectBox<>(skin);
+
+        selectorResolucion.setItems("1280 x 720", "1024 x 768", "800 x 600");
+
+        selectorResolucion.setSelected(resolucionVentana);
+
+        selectorResolucion.setDisabled(Gdx.graphics.isFullscreen());
+
+        selectorResolucion.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+
+                if (!Gdx.graphics.isFullscreen()) {
+                    resolucionVentana = selectorResolucion.getSelected();
+                    aplicarResolucionVentana(resolucionVentana);
+                }
+            }
+        });
+
+        botonModoPantalla = new TextButton("", skin);
+
+        actualizarTextoBotonModoPantalla();
+
+        botonModoPantalla.addListener(new ClickListener() {
+            @Override
+            public void clicked(
+                InputEvent event, float x, float y
+            ) {
+                alternarModoPantalla();
+            }
+        });
+
+        TextButton botonVolver = new TextButton("VOLVER", skin);
+
+        botonVolver.addListener(new ClickListener() {
+            @Override
+            public void clicked(
+                InputEvent event, float x, float y
+            ) {
+                juego.setScreen(new PantallaMenu(juego));
+            }
+        });
+
+        Table tabla = new Table();
+
+        tabla.setFillParent(true);
+        tabla.center();
+
+        tabla.add(titulo).padBottom(30).row();
+        tabla.add(etiquetaVolumen).padBottom(10).row();
+        tabla.add(volumenMusica).width(350).padBottom(20).row();
+        tabla.add(botonSilenciar).size(260, 55).padBottom(12).row();
+        tabla.add(etiquetaResolucion).padBottom(8).row();
+        tabla.add(selectorResolucion).width(260).height(45).padBottom(15).row();
+        tabla.add(botonModoPantalla).size(260, 55).padBottom(12).row();
+        tabla.add(botonVolver).size(200, 55);
+
+        stage.addActor(tabla);
+
+        Gdx.input.setInputProcessor(stage);
+    }
+
+    private void prepararResolucionVentana() {
+
+        if (Gdx.graphics.isFullscreen()) {
+            return;
+        }
+
+        String resolucionActual = Gdx.graphics.getWidth() + " x " + Gdx.graphics.getHeight();
+
+        if (esResolucionPermitida(resolucionActual)) {
+            resolucionVentana = resolucionActual;
+        } else {
+            resolucionVentana = "1280 x 720";
+            aplicarResolucionVentana(resolucionVentana);
+        }
+    }
+
+    private boolean esResolucionPermitida(String resolucion) {
+        String normalizada = resolucion.replace(" ", "");
+        return normalizada.equals("1280x720") || normalizada.equals("1024x768") || normalizada.equals("800x600");
+    }
+
+    private void aplicarResolucionVentana(String resolucion) {
+
+        String[] dimensiones = resolucion
+            .replace(" ", "")
+            .split("x");
+
+        int ancho = Integer.parseInt(dimensiones[0]);
+        int alto = Integer.parseInt(dimensiones[1]);
+
+        Gdx.graphics.setWindowedMode(ancho, alto);
+    }
+
+    private void alternarSilencio() {
+
+        if (silenciado) {
+            silenciado = false;
+            Audio.setVolumen(ultimoVolumen);
+            volumenMusica.setValue(ultimoVolumen);
+        } else {
+            if (Audio.getVolumen() > 0f) {
+                ultimoVolumen = Audio.getVolumen();
+            }
+
+            silenciado = true;
+            Audio.setVolumen(0f);
+        }
+
+        actualizarEtiquetaVolumen();
+        actualizarTextoBoton();
+    }
+
+    private void actualizarEtiquetaVolumen() {
+        int porcentaje = Math.round(volumenMusica.getValue() * 100);
+        etiquetaVolumen.setText("Volumen de musica: " + porcentaje + "%");
+    }
+
+    private void actualizarTextoBoton() {
+        if (silenciado) {
+            botonSilenciar.setText("ACTIVAR MUSICA");
+        } else {
+            botonSilenciar.setText("SILENCIAR MUSICA");
+        }
+    }
+
+    private void alternarModoPantalla() {
+
+        if (Gdx.graphics.isFullscreen()) {
+            aplicarResolucionVentana(resolucionVentana);
+        } else {
+            Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
+        }
+        selectorResolucion.setDisabled(Gdx.graphics.isFullscreen());
+        actualizarTextoBotonModoPantalla();
+    }
+
+    private void actualizarTextoBotonModoPantalla() {
+
+        if (Gdx.graphics.isFullscreen()) {
+            botonModoPantalla.setText("VENTANA");
+        } else {
+            botonModoPantalla.setText("PANTALLA COMPLETA");
+        }
+    }
+
+    @Override
+    public void render(float delta) {
+
+        ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1f);
+
+        stage.act(delta);
+        stage.draw();
+    }
+
+    @Override
+    public void resize(int width, int height) {
+
+        if (stage != null) {
+            stage.getViewport().update(width, height, true);
+        }
+    }
+
+    @Override
+    public void pause() {
+    }
+
+    @Override
+    public void resume() {
+    }
+
+    @Override
+    public void hide() {
+    }
+
+    @Override
+    public void dispose() {
+
+        if (stage != null) {
+            stage.dispose();
+        }
+    }
+}
+.
+.
+============================================================
+ARCHIVO: C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\red\Cliente.java
+============================================================
+.
+package com.capuccinolovesballerina.game.red;
+
+import com.capuccinolovesballerina.game.red.hilos.HiloCliente;
+
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Cliente {
+
+    private static final int PUERTO_DESCUBRIMIENTO = 9993;
+    private static final int TIMEOUT_DESCUBRIMIENTO = 2000;
+    private static final int TIMEOUT_ROL = 3000;
+
+    private HiloCliente hc;
+    private int miRol = -1;
+    private String ipServer;
+    private int puertoServer;
+
+    private final List<String> pendientes = new ArrayList<>();
+
+    public boolean conectar() {
+        if (!descubrirServidor()) {
+            return false;
+        }
+        hc = new HiloCliente(ipServer, puertoServer);
+        hc.start();
+        hc.enviarMensaje("JOIN");
+        return esperarRol();
+    }
+
+    private boolean descubrirServidor() {
+        DatagramSocket socket = null;
+        try {
+            socket = new DatagramSocket();
+            socket.setBroadcast(true);
+            socket.setSoTimeout(TIMEOUT_DESCUBRIMIENTO);
+
+            byte[] pedido = "DISCOVER".getBytes();
+            InetAddress broadcast = InetAddress.getByName("255.255.255.255");
+            DatagramPacket dpOut = new DatagramPacket(pedido, pedido.length, broadcast, PUERTO_DESCUBRIMIENTO);
+            socket.send(dpOut);
+
+            byte[] buffer = new byte[64];
+            DatagramPacket dpIn = new DatagramPacket(buffer, buffer.length);
+            socket.receive(dpIn);
+
+            String msg = new String(dpIn.getData(), 0, dpIn.getLength());
+            String[] partes = msg.split("\\|", -1);
+            if (partes.length < 2 || !"SERVER".equals(partes[0])) {
+                return false;
+            }
+            ipServer = dpIn.getAddress().getHostAddress();
+            puertoServer = Integer.parseInt(partes[1]);
+            return true;
+        } catch (Exception e) {
+            return false;
+        } finally {
+            if (socket != null && !socket.isClosed()) {
+                socket.close();
+            }
+        }
+    }
+
+    private boolean esperarRol() {
+        long inicio = System.currentTimeMillis();
+        while (miRol == -1) {
+            for (String m : hc.drenar()) {
+                String[] p = m.split("\\|", -1);
+                if (p.length >= 2 && "ROL".equals(p[0])) {
+                    miRol = Integer.parseInt(p[1]);
+                } else {
+                    pendientes.add(m);
+                }
+            }
+            if (miRol != -1) {
+                return true;
+            }
+            if (System.currentTimeMillis() - inicio > TIMEOUT_ROL) {
+                return false;
+            }
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void enviarPosicion(float x, float y, boolean mirando, boolean enSuelo) {
+        if (hc == null) return;
+        hc.enviarMensaje("POS|" + x + "|" + y + "|" + mirando + "|" + enSuelo);
+    }
+
+    public void enviarCorte(int indice) {
+        if (hc == null) return;
+        hc.enviarMensaje("CORTE|" + indice);
+    }
+
+    public void enviarEspuma(float x, float y) {
+        if (hc == null) return;
+        hc.enviarMensaje("ESPUMA|" + x + "|" + y);
+    }
+
+    public void enviarPalanca() {
+        if (hc == null) return;
+        hc.enviarMensaje("PALANCA");
+    }
+
+    public void enviarSalida(boolean dentro) {
+        if (hc == null) return;
+        hc.enviarMensaje("SALIDA|" + dentro);
+    }
+
+    public void enviarMuerte() {
+        if (hc == null) return;
+        hc.enviarMensaje("MUERTE");
+    }
+
+    public void enviarReinicio() {
+        if (hc == null) return;
+        hc.enviarMensaje("REINICIO");
+    }
+
+    public List<String> drenarMensajes() {
+        List<String> out = new ArrayList<>();
+        out.addAll(pendientes);
+        pendientes.clear();
+        if (hc != null) {
+            out.addAll(hc.drenar());
+        }
+        return out;
+    }
+
+    public int getMiRol() {
+        return miRol;
+    }
+
+    public String getIpServer() {
+        return ipServer;
+    }
+
+    public void cerrar() {
+        if (hc != null) {
+            hc.detener();
+        }
+    }
+
+    public static void main(String[] args) {
+        Cliente c = new Cliente();
+        if (c.conectar()) {
+            System.out.println("conectado como rol " + c.getMiRol() + " a " + c.getIpServer());
+            c.enviarPosicion(100f, 200f, true, true);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            for (String m : c.drenarMensajes()) {
+                System.out.println("recibi: " + m);
+            }
+        } else {
+            System.out.println("no se encontro servidor");
+        }
+        c.cerrar();
+    }
+}
+.
+.
+============================================================
+ARCHIVO: C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\red\Servidor.java
+============================================================
+.
+package com.capuccinolovesballerina.game.red;
+
+import com.capuccinolovesballerina.game.red.hilos.HiloDescubrimiento;
+import com.capuccinolovesballerina.game.red.hilos.HiloServidor;
+
+public class Servidor {
+
+    static HiloServidor hs;
+    static HiloDescubrimiento hd;
+
+    public static void main(String[] args) {
+        hs = new HiloServidor();
+        hs.start();
+        hd = new HiloDescubrimiento();
+        hd.start();
+        System.out.println("Servidor de juego escuchando en puerto 9992");
+        System.out.println("Servidor de descubrimiento escuchando en puerto 9993");
+    }
+}
+.
+.
+============================================================
+ARCHIVO: C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\red\hilos\HiloCliente.java
+============================================================
+.
+package com.capuccinolovesballerina.game.red.hilos;
+
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.SocketException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class HiloCliente extends Thread {
+
+    private DatagramSocket socket;
+    private boolean fin = false;
+    private InetAddress ipServer;
+    private int puertoServer;
+
+    private final List<String> bandeja = new ArrayList<>();
+
+    public HiloCliente(String ip, int puerto) {
+        try {
+            socket = new DatagramSocket();
+            ipServer = InetAddress.getByName(ip);
+            puertoServer = puerto;
+        } catch (SocketException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void run() {
+        while (!fin) {
+            byte[] datos = new byte[1024];
+            DatagramPacket dp = new DatagramPacket(datos, datos.length);
+            try {
+                socket.receive(dp);
+                String msg = new String(dp.getData(), 0, dp.getLength());
+                synchronized (bandeja) {
+                    bandeja.add(msg);
+                }
+            } catch (IOException e) {
+                if (!fin) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public void enviarMensaje(String msg) {
+        byte[] data = msg.getBytes();
+        DatagramPacket dp = new DatagramPacket(data, data.length, ipServer, puertoServer);
+        try {
+            socket.send(dp);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<String> drenar() {
+        synchronized (bandeja) {
+            List<String> copia = new ArrayList<>(bandeja);
+            bandeja.clear();
+            return copia;
+        }
+    }
+
+    public void detener() {
+        fin = true;
+        if (socket != null && !socket.isClosed()) {
+            socket.close();
+        }
+    }
+}
+.
+.
+============================================================
+ARCHIVO: C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\red\hilos\HiloDescubrimiento.java
+============================================================
+.
+package com.capuccinolovesballerina.game.red.hilos;
+
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.SocketAddress;
+import java.net.SocketException;
+
+public class HiloDescubrimiento extends Thread {
+
+    private static final int PUERTO_DESCUBRIMIENTO = 9993;
+    private static final int PUERTO_JUEGO = 9992;
+
+    private DatagramSocket socket;
+    private boolean fin = false;
+
+    public HiloDescubrimiento() {
+        try {
+            socket = new DatagramSocket(PUERTO_DESCUBRIMIENTO);
+        } catch (SocketException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void run() {
+        while (!fin) {
+            byte[] datos = new byte[64];
+            DatagramPacket dp = new DatagramPacket(datos, datos.length);
+            try {
+                socket.receive(dp);
+                String msg = new String(dp.getData(), 0, dp.getLength());
+                if ("DISCOVER".equals(msg)) {
+                    responder(dp.getSocketAddress());
+                }
+            } catch (IOException e) {
+                if (!fin) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private void responder(SocketAddress destino) {
+        byte[] data = ("SERVER|" + PUERTO_JUEGO).getBytes();
+        DatagramPacket dp = new DatagramPacket(data, data.length, destino);
+        try {
+            socket.send(dp);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void detener() {
+        fin = true;
+        if (socket != null && !socket.isClosed()) {
+            socket.close();
+        }
+    }
+}
+.
+.
+============================================================
+ARCHIVO: C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\red\hilos\HiloServidor.java
+============================================================
+.
+package com.capuccinolovesballerina.game.red.hilos;
+
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetSocketAddress;
+import java.net.SocketException;
+import java.util.HashSet;
+import java.util.Set;
+
+public class HiloServidor extends Thread {
+
+    private static final int PUERTO = 9992;
+    private static final int MAX_JUGADORES = 2;
+
+    private DatagramSocket socket;
+    private boolean fin = false;
+
+    private final InetSocketAddress[] destino = new InetSocketAddress[MAX_JUGADORES];
+    private final boolean[] conectado = new boolean[MAX_JUGADORES];
+    private final float[][] pos = new float[MAX_JUGADORES][4];
+    private final boolean[] enSalida = new boolean[MAX_JUGADORES];
+
+    private int siguienteRol = 0;
+
+    private final Set<Integer> cortados = new HashSet<>();
+    private boolean palanca = false;
+    private boolean puerta = false;
+    private float espumaX = 0f;
+    private float espumaY = 0f;
+    private boolean hayEspuma = false;
+    private int muerto = -1;
+    private boolean victoria = false;
+
+    public HiloServidor() {
+        try {
+            socket = new DatagramSocket(PUERTO);
+        } catch (SocketException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void run() {
+        while (!fin) {
+            byte[] datos = new byte[1024];
+            DatagramPacket dp = new DatagramPacket(datos, datos.length);
+            try {
+                socket.receive(dp);
+                procesarMensaje(dp);
+            } catch (IOException e) {
+                if (!fin) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private void procesarMensaje(DatagramPacket dp) {
+        String msg = new String(dp.getData(), 0, dp.getLength());
+        String[] p = msg.split("\\|", -1);
+        if (p.length == 0) {
+            return;
+        }
+        InetSocketAddress origen = (InetSocketAddress) dp.getSocketAddress();
+        String tipo = p[0];
+
+        try {
+            switch (tipo) {
+                case "JOIN":
+                    manejarJoin(origen);
+                    break;
+                case "POS":
+                    manejarPos(origen, p);
+                    break;
+                case "CORTE":
+                    manejarCorte(origen, p);
+                    break;
+                case "ESPUMA":
+                    manejarEspuma(origen, p);
+                    break;
+                case "PALANCA":
+                    manejarPalanca(origen);
+                    break;
+                case "SALIDA":
+                    manejarSalida(origen, p);
+                    break;
+                case "MUERTE":
+                    manejarMuerte(origen);
+                    break;
+                case "REINICIO":
+                    manejarReinicio(origen);
+                    break;
+                default:
+                    break;
+            }
+        } catch (Exception e) {
+            System.out.println("mensaje invalido: " + msg);
+        }
+    }
+
+    private int buscarRol(InetSocketAddress origen) {
+        for (int i = 0; i < MAX_JUGADORES; i++) {
+            if (conectado[i] && origen.equals(destino[i])) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    private void mandar(InetSocketAddress a, String msg) {
+        byte[] data = msg.getBytes();
+        DatagramPacket dp = new DatagramPacket(data, data.length, a);
+        try {
+            socket.send(dp);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void broadcast(String msg) {
+        for (int i = 0; i < MAX_JUGADORES; i++) {
+            if (conectado[i]) {
+                mandar(destino[i], msg);
+            }
+        }
+    }
+
+    private void manejarJoin(InetSocketAddress origen) {
+        int ya = buscarRol(origen);
+        if (ya >= 0) {
+            mandar(origen, "ROL|" + ya);
+            mandarSnapshot(origen, ya);
+            return;
+        }
+        if (siguienteRol >= MAX_JUGADORES) {
+            mandar(origen, "LLENO");
+            return;
+        }
+        int rol = siguienteRol++;
+        destino[rol] = origen;
+        conectado[rol] = true;
+        mandar(origen, "ROL|" + rol);
+        mandarSnapshot(origen, rol);
+    }
+
+    private void mandarSnapshot(InetSocketAddress a, int rol) {
+        for (Integer i : cortados) {
+            mandar(a, "CORTE|" + i);
+        }
+        mandar(a, "PALANCA|" + palanca + "|" + puerta);
+        if (hayEspuma) {
+            mandar(a, "ESPUMA|" + espumaX + "|" + espumaY);
+        }
+        if (muerto >= 0) {
+            mandar(a, "MUERTE|" + muerto);
+        }
+        if (victoria) {
+            mandar(a, "VICTORIA");
+        }
+        int otro = 1 - rol;
+        if (otro >= 0 && otro < MAX_JUGADORES && conectado[otro]) {
+            boolean mirandoOtro = pos[otro][2] > 0.5f;
+            boolean sueloOtro = pos[otro][3] > 0.5f;
+            mandar(a, "POS|" + otro + "|" + pos[otro][0] + "|" + pos[otro][1] + "|" + mirandoOtro + "|" + sueloOtro);
+        }
+    }
+
+    private void manejarPos(InetSocketAddress origen, String[] p) {
+        int rol = buscarRol(origen);
+        if (rol < 0) {
+            return;
+        }
+        pos[rol][0] = Float.parseFloat(p[1]);
+        pos[rol][1] = Float.parseFloat(p[2]);
+        pos[rol][2] = Boolean.parseBoolean(p[3]) ? 1f : 0f;
+        pos[rol][3] = Boolean.parseBoolean(p[4]) ? 1f : 0f;
+        broadcast("POS|" + rol + "|" + p[1] + "|" + p[2] + "|" + p[3] + "|" + p[4]);
+    }
+
+    private void manejarCorte(InetSocketAddress origen, String[] p) {
+        int rol = buscarRol(origen);
+        if (rol < 0) {
+            return;
+        }
+        int indice = Integer.parseInt(p[1]);
+        cortados.add(indice);
+        broadcast("CORTE|" + indice);
+    }
+
+    private void manejarEspuma(InetSocketAddress origen, String[] p) {
+        int rol = buscarRol(origen);
+        if (rol < 0) {
+            return;
+        }
+        espumaX = Float.parseFloat(p[1]);
+        espumaY = Float.parseFloat(p[2]);
+        hayEspuma = true;
+        broadcast("ESPUMA|" + espumaX + "|" + espumaY);
+    }
+
+    private void manejarPalanca(InetSocketAddress origen) {
+        int rol = buscarRol(origen);
+        if (rol < 0) {
+            return;
+        }
+        palanca = !palanca;
+        puerta = palanca;
+        broadcast("PALANCA|" + palanca + "|" + puerta);
+    }
+
+    private void manejarSalida(InetSocketAddress origen, String[] p) {
+        int rol = buscarRol(origen);
+        if (rol < 0) {
+            return;
+        }
+        enSalida[rol] = Boolean.parseBoolean(p[1]);
+        if (!victoria && enSalida[0] && enSalida[1]) {
+            victoria = true;
+            broadcast("VICTORIA");
+        }
+    }
+
+    private void manejarMuerte(InetSocketAddress origen) {
+        int rol = buscarRol(origen);
+        if (rol < 0) {
+            return;
+        }
+        muerto = rol;
+        broadcast("MUERTE|" + rol);
+    }
+
+    private void manejarReinicio(InetSocketAddress origen) {
+        int rol = buscarRol(origen);
+        if (rol < 0) {
+            return;
+        }
+        cortados.clear();
+        palanca = false;
+        puerta = false;
+        hayEspuma = false;
+        muerto = -1;
+        victoria = false;
+        enSalida[0] = false;
+        enSalida[1] = false;
+        broadcast("REINICIO");
+    }
+
+    public void detener() {
+        fin = true;
+        if (socket != null && !socket.isClosed()) {
+            socket.close();
+        }
+    }
+}
+.
+.
+============================================================
+ARCHIVO: C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\Utilidades\Audio.java
+============================================================
+.
+package com.capuccinolovesballerina.game.Utilidades;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+
+
+public class Audio {
+
+    private static Music musica;
+    private static float volumen = 0.07f;
+
+    public static void reproducirMusica(String ruta) {
+        detenerMusica();
+        musica = Gdx.audio.newMusic(Gdx.files.internal(ruta));
+        musica.setLooping(true);
+        musica.setVolume(volumen);
+        musica.play();
+    }
+
+    public static void setVolumen(float nuevoVolumen) {
+        volumen = Math.max(0f, Math.min(1f, nuevoVolumen));
+        if (musica != null) {
+            musica.setVolume(volumen);
+        }
+    }
+
+    public static float getVolumen() {
+        return volumen;
+    }
+
+    public static void detenerMusica() {
+        if (musica != null) {
+            musica.stop();
+            musica.dispose();
+            musica = null;
+        }
+    }
+
+    public static void dispose() {
+        detenerMusica();
+    }
+}
+.
+.
+============================================================
+ARCHIVO: C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\Utilidades\Constantes.java
+============================================================
+.
+
+package com.capuccinolovesballerina.game.Utilidades;
+
+public class Constantes {
+
+    public static final float ANCHO_MUNDO = 1280;
+    public static final float ALTO_MUNDO = 720;
+    public static final String RUTA_SKIN = "skin/uiskin.json";
+
+    public static final float ESCALA_PERSONAJE = 2f / 3f;
+
+    public static final float ANCHO_PERSONAJE = 48f * ESCALA_PERSONAJE;
+    public static final float ALTO_PERSONAJE = 64f * ESCALA_PERSONAJE;
+
+    public static final float ESCALA_PALANCA = 0.5f;   // 1f = tamaño original (48x56)
+    public static final float ANCHO_PALANCA = 48f * ESCALA_PALANCA;   // 24
+    public static final float ALTO_PALANCA = 56f * ESCALA_PALANCA;    // 28
+
+    public static final float TAM_SPRITE_PERSONAJE = 96f * ESCALA_PERSONAJE;
+    public static final float VELOCIDAD_MOVIMIENTO = 370 * ESCALA_PERSONAJE;
+    public static final float VELOCIDAD_SALTO =  750f * ESCALA_PERSONAJE;
+    public static final float GRAVEDAD = 2200f * ESCALA_PERSONAJE;
+    public static final float VELOCIDAD_MAX_CAIDA = 1300f * ESCALA_PERSONAJE;
+
+    public static final float ANCHO_ESPUMA = 64f * ESCALA_PERSONAJE;
+    public static final float ALTO_ESPUMA = 24f * ESCALA_PERSONAJE;
+    public static final float VIDA_ESPUMA = 4f;
+    public static final float COOLDOWN_ESPUMA = 2.5f;
+    public static final float DISTANCIA_ESPUMA = 8f * ESCALA_PERSONAJE;
+
+    public static final float MARGEN_LATERAL_PELIGRO = 8f;   // se resta a cada lado
+    public static final float MARGEN_SUPERIOR_PELIGRO = 8f;  // se resta de arriba
+
+}
+.
+.
+============================================================
+ARCHIVO: C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\Utilidades\ControladorEntradaJugador.java
+============================================================
+.
+package com.capuccinolovesballerina.game.Utilidades;
+
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputAdapter;
+
+public class ControladorEntradaJugador extends InputAdapter {
+
+    // --- Controles de Cappuccino (A/D/W/E/F) ---
+    private boolean izquierda;
+    private boolean derecha;
+    private boolean saltoW;
+    private boolean saltoEspacio;
+    private boolean saltoPresionado;
+    private boolean escapePresionado;
+    private boolean interactuarPresionado;
+    private boolean habilidadPresionada;
+
+    // --- Controles de Ballerina (Flechas / Shift Derecho) ---
+    private boolean izquierdaBallerina;
+    private boolean derechaBallerina;
+    private boolean saltoPresionadoBallerina;
+    private boolean habilidadPresionadaBallerina;
+    private boolean interactuarPresionadoBallerina;
+
+    @Override
+    public boolean keyDown(int keycode) {
+        if (keycode == Input.Keys.ESCAPE) {
+            escapePresionado = true;
+        }
+
+        if (keycode == Input.Keys.A) {
+            izquierda = true;
+        }
+        if (keycode == Input.Keys.D) {
+            derecha = true;
+        }
+
+        // Salto Cappuccino
+        if (keycode == Input.Keys.W) {
+            if (!saltoW && !saltoEspacio) saltoPresionado = true;
+            saltoW = true;
+        }
+        if (keycode == Input.Keys.SPACE) {
+            if (!saltoW && !saltoEspacio) saltoPresionado = true;
+            saltoEspacio = true;
+        }
+
+        if (keycode == Input.Keys.E) {
+            interactuarPresionado = true;
+        }
+        if (keycode == Input.Keys.F) {
+            habilidadPresionada = true;
+        }
+
+        if (keycode == Input.Keys.LEFT) {
+            izquierdaBallerina = true;
+        }
+        if (keycode == Input.Keys.RIGHT) {
+            derechaBallerina = true;
+        }
+
+        if (keycode == Input.Keys.UP) {
+            saltoPresionadoBallerina = true;
+        }
+
+        if (keycode == Input.Keys.SHIFT_RIGHT) {
+            habilidadPresionadaBallerina = true;
+        }
+
+        if (keycode == Input.Keys.ENTER) {
+            interactuarPresionadoBallerina = true;
+        }
+
+        return true;
+    }
+
+    @Override
+    public boolean keyUp(int keycode) {
+        if (keycode == Input.Keys.A) {
+            izquierda = false;
+        }
+        if (keycode == Input.Keys.D) {
+            derecha = false;
+        }
+
+        if (keycode == Input.Keys.W) {
+            saltoW = false;
+        }
+        if (keycode == Input.Keys.SPACE) {
+            saltoEspacio = false;
+        }
+
+        if (keycode == Input.Keys.LEFT) {
+            izquierdaBallerina = false;
+        }
+        if (keycode == Input.Keys.RIGHT) {
+            derechaBallerina = false;
+        }
+
+        return true;
+    }
+
+    public boolean isIzquierda() { return izquierda; }
+    public boolean isDerecha() { return derecha; }
+    public boolean isSaltoPresionado() { return saltoPresionado; }
+    public boolean isEscapePresionado() { return escapePresionado; }
+    public boolean isInteractuarPresionado() { return interactuarPresionado; }
+    public boolean isHabilidadPresionada() { return habilidadPresionada; }
+
+    public boolean isIzquierdaBallerina() { return izquierdaBallerina; }
+    public boolean isDerechaBallerina() { return derechaBallerina; }
+    public boolean isSaltoPresionadoBallerina() { return saltoPresionadoBallerina; }
+    public boolean isHabilidadPresionadaBallerina() { return habilidadPresionadaBallerina; }
+    public boolean isInteractuarPresionadoBallerina() { return interactuarPresionadoBallerina; }
+
+    public void limpiarEventos() {
+        saltoPresionado = false;
+        interactuarPresionado = false;
+        habilidadPresionada = false;
+        escapePresionado = false;
+
+        saltoPresionadoBallerina = false;
+        habilidadPresionadaBallerina = false;
+        interactuarPresionadoBallerina = false;
+    }
+
+    public void soltarTodo() {
+        izquierda = false;
+        derecha = false;
+        saltoPresionado = false;
+        interactuarPresionado = false;
+        habilidadPresionada = false;
+        escapePresionado = false;
+        saltoW = false;
+        saltoEspacio = false;
+
+        izquierdaBallerina = false;
+        derechaBallerina = false;
+        saltoPresionadoBallerina = false;
+        habilidadPresionadaBallerina = false;
+        interactuarPresionadoBallerina = false;
+    }
+}
+.
+.
+============================================================
+ARCHIVO: C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\Utilidades\ControladorPartida.java
+============================================================
+.
+package com.capuccinolovesballerina.game.Utilidades;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.Array;
+import com.capuccinolovesballerina.game.entidades.BallerinaCapuccina;
+import com.capuccinolovesballerina.game.entidades.CapuccinoAssassino;
+import com.capuccinolovesballerina.game.entidades.Player;
+import com.capuccinolovesballerina.game.graficos.AnimacionesCappuccino;
+import com.capuccinolovesballerina.game.graficos.Estado;
+import com.capuccinolovesballerina.game.mapa.Nivel;
+import com.capuccinolovesballerina.game.objetos.BloqueEspuma;
+import com.capuccinolovesballerina.game.objetos.ElementosNivel;
+import com.capuccinolovesballerina.game.objetos.ObjetoCortable;
+import com.capuccinolovesballerina.game.objetos.Palanca;
+import com.capuccinolovesballerina.game.objetos.Puerta;
+import com.capuccinolovesballerina.game.pantallas.HUD;
+import com.capuccinolovesballerina.game.pantallas.MenuGameOver;
+import com.capuccinolovesballerina.game.pantallas.MenuPausa;
+import com.capuccinolovesballerina.game.pantallas.MenuVictoria;
+
+public class ControladorPartida {
+
+    private final Nivel nivel;
+    private final ElementosNivel elementos;
+
+    private final MenuPausa menuPausa;
+    private final MenuGameOver menuGameOver;
+    private final MenuVictoria menuVictoria;
+    private final HUD hud;
+
+    private final ControladorEntradaJugador entrada;
+    private final CapuccinoAssassino cappuccino;
+    private final BallerinaCapuccina ballerina;
+    private final AnimacionesCappuccino animaciones;
+    private static final float ALCANCE_PALANCA = 12f;
+
+    public ControladorPartida(
+        Nivel nivel,
+        ElementosNivel elementos,
+        MenuPausa menuPausa,
+        MenuGameOver menuGameOver,
+        MenuVictoria menuVictoria,
+        HUD hud,
+        ControladorEntradaJugador entrada,
+        CapuccinoAssassino cappuccino,
+        BallerinaCapuccina ballerina,
+        AnimacionesCappuccino animaciones
+    ) {
+        this.nivel = nivel;
+        this.elementos = elementos;
+        this.menuPausa = menuPausa;
+        this.menuGameOver = menuGameOver;
+        this.menuVictoria = menuVictoria;
+        this.hud = hud;
+        this.entrada = entrada;
+        this.cappuccino = cappuccino;
+        this.ballerina = ballerina;
+        this.animaciones = animaciones;
+    }
+
+    public void actualizar(float delta) {
+
+        if (entrada.isEscapePresionado()) {
+            if (menuPausa.estaVisible()) {
+                menuPausa.ocultar();
+            } else if (!menuGameOver.estaVisible() && !menuVictoria.estaVisible()) {
+                menuPausa.mostrar();
+                entrada.soltarTodo();
+            }
+        }
+
+        if (menuPausa.estaVisible()) {
+            menuPausa.actualizar(delta);
+            return;
+        }
+
+        if (menuGameOver.estaVisible()) {
+            menuGameOver.actualizar(delta);
+            return;
+        }
+
+        if (menuVictoria.estaVisible()) {
+            menuVictoria.actualizar(delta);
+            return;
+        }
+
+        if (Gdx.input.getInputProcessor() != entrada) {
+            Gdx.input.setInputProcessor(entrada);
+        }
+
+        hud.actualizar(delta);
+
+        ballerina.actualizarHabilidad(delta);
+
+        if (entrada.isHabilidadPresionadaBallerina()) {
+            ballerina.crearEspuma();
+        }
+
+
+        Array<Rectangle> solidos = new Array<>(nivel.getColisiones().getSolidos());
+
+        for (ObjetoCortable cortable : elementos.getCortables()) {
+            if (cortable.bloquea()) {
+                solidos.add(cortable.getZona());
+            }
+        }
+
+        BloqueEspuma espuma = ballerina.getEspuma();
+        if (espuma != null) {
+            solidos.add(espuma.getZona());
+        }
+
+        cappuccino.actualizar(
+            delta,
+            entrada.isIzquierda(),           // A
+            entrada.isDerecha(),             // D
+            entrada.isSaltoPresionado(),     // W / Espacio
+            solidos
+        );
+
+        ballerina.actualizar(
+            delta,
+            entrada.isIzquierdaBallerina(),      // ←
+            entrada.isDerechaBallerina(),        // →
+            entrada.isSaltoPresionadoBallerina(),// ↑
+            solidos
+        );
+
+
+        if (entrada.isHabilidadPresionada()) {
+            animaciones.setEstado(Estado.ATTACK);
+            cortar();
+        } else if (!cappuccino.isEnSuelo()) {
+            animaciones.setEstado(Estado.JUMP);
+        } else if (entrada.isIzquierda() || entrada.isDerecha()) {
+            animaciones.setEstado(Estado.WALK);
+        } else {
+            animaciones.setEstado(Estado.IDLE);
+        }
+
+        animaciones.actualizar(delta);
+
+
+        if (estaMuerto(cappuccino) || estaMuerto(ballerina)) {
+            mostrarGameOver();
+            return;
+        }
+
+
+        comprobarVictoria();
+
+        if (menuVictoria.estaVisible()) {
+            return;
+        }
+
+        entrada.limpiarEventos();
+    }
+
+    private void actualizarPalancas() {
+        Palanca palCap = elementos.getPalancaCappuccino();
+        Palanca palBal = elementos.getPalancaBallerina();
+
+
+        if (entrada.isInteractuarPresionado()) {
+            Gdx.app.log("PALANCA", "E: objeto=" + (palCap != null)
+                + " cerca=" + estaCerca(cappuccino, palCap));
+        }
+        if (entrada.isInteractuarPresionadoBallerina()) {
+            Gdx.app.log("PALANCA", "ENTER: objeto=" + (palBal != null)
+                + " cerca=" + estaCerca(ballerina, palBal));
+        }
+    }
+    private boolean estaCerca(Player personaje, Palanca palanca) {
+        if (palanca == null) return false;
+        Rectangle c = personaje.getCaja();
+        Rectangle alcance = new Rectangle(
+            c.x - ALCANCE_PALANCA, c.y - ALCANCE_PALANCA,
+            c.width + 2 * ALCANCE_PALANCA, c.height + 2 * ALCANCE_PALANCA);
+        return alcance.overlaps(palanca.getZona());
+    }
+    private void intentarAlternar(Palanca palanca) {
+        Puerta puerta = elementos.getPuerta();
+
+        // No dejar cerrar la puerta con alguien parado adentro
+        boolean seCerraria = palanca.estaActivada() && puerta != null && puerta.estaAbierta();
+        if (seCerraria && alguienEnLaPuerta()) return;
+
+        palanca.alternar();
+        actualizarPuerta();
+    }
+
+
+    private void actualizarPuerta() {
+        Puerta puerta = elementos.getPuerta();
+        Palanca palCap = elementos.getPalancaCappuccino();
+        Palanca palBal = elementos.getPalancaBallerina();
+        if (puerta == null || (palCap == null && palBal == null)) return;
+
+        // si un nivel solo tiene una palanca, la que falta no bloquea
+        boolean capOk = palCap == null || palCap.estaActivada();
+        boolean balOk = palBal == null || palBal.estaActivada();
+        puerta.setAbierta(capOk && balOk);
+    }
+    private boolean alguienEnLaPuerta() {
+        Puerta puerta = elementos.getPuerta();
+        return puerta != null
+            && (cappuccino.getCaja().overlaps(puerta.getZona())
+            || ballerina.getCaja().overlaps(puerta.getZona()));
+    }
+
+
+    private void comprobarVictoria() {
+        Puerta puerta = elementos.getPuerta();
+
+        if (puerta == null || !puerta.estaAbierta()) {
+            return;
+        }
+
+        Rectangle zona = puerta.getZona();
+
+        if (cappuccino.getCaja().overlaps(zona) && ballerina.getCaja().overlaps(zona)) {
+            entrada.soltarTodo();
+            menuVictoria.mostrar();
+        }
+    }
+
+    private boolean estaMuerto(Player personaje) {
+        if (personaje.getY() < -personaje.getAlto()) {
+            return true;
+        }
+
+        for (Rectangle peligro : elementos.getHitboxPeligros()) {
+            if (personaje.getCaja().overlaps(peligro)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private void mostrarGameOver() {
+        entrada.soltarTodo();
+        menuGameOver.mostrar();
+    }
+
+    private void cortar() {
+        Rectangle caja = cappuccino.getCaja();
+        float alcance = 40f;
+        Rectangle zonaCorte;
+
+        if (cappuccino.isMirandoDerecha()) {
+            zonaCorte = new Rectangle(caja.x + caja.width, caja.y, alcance, caja.height);
+        } else {
+            zonaCorte = new Rectangle(caja.x - alcance, caja.y, alcance, caja.height);
+        }
+
+        for (ObjetoCortable cortable : elementos.getCortables()) {
+            if (!cortable.estaCortado() && zonaCorte.overlaps(cortable.getZona())) {
+                cortable.setCortado(true);
+            }
+        }
+    }
+
+    public void reiniciar() {
+        cappuccino.reaparecer(elementos.getSpawnX(), elementos.getSpawnY());
+        ballerina.reaparecer(elementos.getSpawnBallerinaX(), elementos.getSpawnBallerinaY());
+
+        ballerina.reiniciarHabilidad();
+
+        Puerta puerta = elementos.getPuerta();
+
+        if (puerta != null) {
+            puerta.setAbierta(false);
+        }
+
+        Palanca palCap = elementos.getPalancaCappuccino();
+        Palanca palBal = elementos.getPalancaBallerina();
+        if (palCap != null && palCap.estaActivada()) palCap.alternar();
+        if (palBal != null && palBal.estaActivada()) palBal.alternar();
+
+        for (ObjetoCortable cortable : elementos.getCortables()) {
+            cortable.setCortado(false);
+        }
+
+        entrada.soltarTodo();
+        animaciones.reiniciar();
+        hud.reiniciar();
+    }
+}
+.
+.
+============================================================
+ARCHIVO: C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\Utilidades\Entrada.java
+============================================================
+.
+package com.capuccinolovesballerina.game.Utilidades;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class Entrada {
+
+    private Scanner s = new Scanner(System.in);
+
+    public int ingresarEntero(int min, int max) {
+        boolean error;
+        int numero = 0;
+
+        do {
+            error = false;
+
+            try {
+                numero = s.nextInt();
+
+                if (numero > max || numero < min) {
+                    System.out.println(
+                        "Ingrese un número entre " + min + " y " + max
+                    );
+                    error = true;
+                }
+
+            } catch (InputMismatchException e) {
+                System.out.println("Ingrese un valor numérico");
+                error = true;
+
+            } finally {
+                s.nextLine();
+            }
+
+        } while (error);
+
+        return numero;
+    }
+
+    public String ingresarTexto() {
+        return s.nextLine();
+    }
+}
+.
+.
+============================================================
+ARCHIVO: C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\Utilidades\FabricaViewport.java
+============================================================
+.
+package com.capuccinolovesballerina.game.Utilidades;
+
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
+
+public class FabricaViewport {
+
+    private FabricaViewport() {}
+
+    public static Viewport crear() {
+        return new FitViewport(Constantes.ANCHO_MUNDO, Constantes.ALTO_MUNDO);
+    }
+    public static Viewport crear(OrthographicCamera camera) {
+        return new FitViewport(Constantes.ANCHO_MUNDO, Constantes.ALTO_MUNDO, camera);
+    }
+
+    public static Viewport crear(OrthographicCamera camera, float ancho, float alto) {
+        return new FitViewport(ancho, alto, camera);
+    }
+
+}
+.
+.
+============================================================
+ARCHIVO: C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\Utilidades\Recursos.java
+============================================================
+.
+package com.capuccinolovesballerina.game.Utilidades;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import java.util.HashMap;
+
+public class Recursos {
+
+
+    private static final HashMap<String, Texture> imagenes = new HashMap<String, Texture>();
+    private static Skin skin;
+
+    public static Texture getImagen(String ruta) {
+        if (!imagenes.containsKey(ruta)) {
+            imagenes.put(ruta, new Texture(Gdx.files.internal(ruta)));
+        }
+        return imagenes.get(ruta);
+    }
+
+    public static Skin getSkin() {
+        if (skin == null) {
+            skin = new Skin(Gdx.files.internal(Constantes.RUTA_SKIN));
+        }
+        return skin;
+    }
+
+    public static void dispose() {
+        for (Texture textura : imagenes.values()) {
+            textura.dispose();
+        }
+        imagenes.clear();
+        if (skin != null) {
+            skin.dispose();
+            skin = null;
+        }
+    }
+}
+.
+.
+============================================================
+ARCHIVO: C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\Utilidades\RenderizadorJuego.java
+============================================================
+.
+package com.capuccinolovesballerina.game.Utilidades;
+
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.ScreenUtils;
+import com.capuccinolovesballerina.game.entidades.BallerinaCapuccina;
+import com.capuccinolovesballerina.game.entidades.CapuccinoAssassino;
+import com.capuccinolovesballerina.game.graficos.AnimacionesCappuccino;
+import com.capuccinolovesballerina.game.mapa.Nivel;
+import com.capuccinolovesballerina.game.objetos.BloqueEspuma;
+import com.capuccinolovesballerina.game.objetos.ElementosNivel;
+import com.capuccinolovesballerina.game.objetos.ObjetoCortable;
+import com.capuccinolovesballerina.game.objetos.Palanca;
+import com.capuccinolovesballerina.game.objetos.Puerta;
+import com.capuccinolovesballerina.game.pantallas.HUD;
+import com.capuccinolovesballerina.game.pantallas.MenuGameOver;
+import com.capuccinolovesballerina.game.pantallas.MenuPausa;
+import com.capuccinolovesballerina.game.pantallas.MenuVictoria;
+
+public class RenderizadorJuego {
+
+    private final OrthographicCamera camera;
+    private final OrthogonalTiledMapRenderer renderizador;
+    private final ShapeRenderer shapeRenderer;
+    private final SpriteBatch batch;
+
+    private final CapuccinoAssassino cappuccino;
+    private final BallerinaCapuccina ballerina;
+    private final AnimacionesCappuccino animaciones;
+    private final ElementosNivel elementos;
+
+    private final HUD hud;
+    private final MenuPausa menuPausa;
+    private final MenuGameOver menuGameOver;
+    private final MenuVictoria menuVictoria;
+
+    private Texture texturaCerrada;
+    private Texture texturaAbierta;
+    private Texture texturaPalancaOff;
+    private Texture texturaPalancaOn;
+    private Texture texturaPinchos;
+    private Texture texturaLiana;
+
+    public RenderizadorJuego(
+        OrthographicCamera camera,
+        Nivel nivel,
+        CapuccinoAssassino cappuccino,
+        BallerinaCapuccina ballerina,
+        AnimacionesCappuccino animaciones,
+        ElementosNivel elementos,
+        HUD hud,
+        MenuPausa menuPausa,
+        MenuGameOver menuGameOver,
+        MenuVictoria menuVictoria
+    ) {
+        this.camera = camera;
+        this.renderizador = new OrthogonalTiledMapRenderer(nivel.getMapa(), Nivel.ESCALA);
+        this.cappuccino = cappuccino;
+        this.ballerina = ballerina;
+        this.animaciones = animaciones;
+        this.elementos = elementos;
+        this.hud = hud;
+        this.menuPausa = menuPausa;
+        this.menuGameOver = menuGameOver;
+        this.menuVictoria = menuVictoria;
+
+        shapeRenderer = new ShapeRenderer();
+        batch = new SpriteBatch();
+
+        cargarTexturas();
+    }
+
+    private void cargarTexturas() {
+        texturaCerrada = new Texture("objetos/puerta_cerrada.png");
+        texturaAbierta = new Texture("objetos/puerta_abierta.png");
+        texturaPalancaOff = new Texture("objetos/palanca_apagada.png");
+        texturaPalancaOn = new Texture("objetos/palanca_encendida.png");
+        texturaPinchos = new Texture("objetos/pinchos.png");
+        texturaLiana = new Texture("objetos/liana.png");
+
+        texturaCerrada.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        texturaAbierta.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        texturaPalancaOff.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        texturaPalancaOn.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        texturaPinchos.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        texturaLiana.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+    }
+
+    public void dibujar() {
+
+        ScreenUtils.clear(0.1f, 0.1f, 0.15f, 1f);
+
+        camera.update();
+        renderizador.setView(camera);
+        renderizador.render();
+
+        dibujarCortables();
+        dibujarEspuma();
+
+        batch.setProjectionMatrix(camera.combined);
+        batch.begin();
+
+        dibujarPuerta();
+        dibujarPalanca(elementos.getPalancaCappuccino(), new Color(0.6f, 0.8f, 1f, 1f));
+        dibujarPalanca(elementos.getPalancaBallerina(), new Color(1f, 0.6f, 0.8f, 1f));
+        dibujarPeligros();
+        dibujarLianas();
+        dibujarPersonaje();
+
+        batch.end();
+
+        dibujarBallerinaPlaceholder();
+
+        hud.dibujar();
+        menuPausa.dibujar();
+        menuGameOver.dibujar();
+        menuVictoria.dibujar();
+    }
+
+    private void dibujarCortables() {
+        shapeRenderer.setProjectionMatrix(camera.combined);
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+
+        for (ObjetoCortable cortable : elementos.getCortables()) {
+            if (cortable.estaCortado()) continue;
+            if ("liana".equals(cortable.getTipo())) continue;
+
+            if ("cuerda".equals(cortable.getTipo())) {
+                shapeRenderer.setColor(0.8f, 0.7f, 0.4f, 1f);
+            } else {
+                shapeRenderer.setColor(0.55f, 0.35f, 0.15f, 1f);
+            }
+
+            Rectangle z = cortable.getZona();
+            shapeRenderer.rect(z.x, z.y, z.width, z.height);
+        }
+
+        shapeRenderer.end();
+    }
+
+    private void dibujarEspuma() {
+        BloqueEspuma espuma = ballerina.getEspuma();
+        if (espuma == null) return;
+
+        shapeRenderer.setProjectionMatrix(camera.combined);
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        shapeRenderer.setColor(1f, 1f, 1f, espuma.getAlpha());
+
+        Rectangle z = espuma.getZona();
+        shapeRenderer.rect(z.x, z.y, z.width, z.height);
+
+        shapeRenderer.end();
+    }
+
+    private void dibujarPuerta() {
+        Puerta puerta = elementos.getPuerta();
+        if (puerta == null) return;
+
+        Rectangle z = puerta.getZona();
+        Texture textura = puerta.estaAbierta() ? texturaAbierta : texturaCerrada;
+
+        float ancho = 96f;
+        float alto = 128f;
+        batch.draw(textura, z.x + (z.width - ancho) / 2f, z.y, ancho, alto);
+    }
+
+    private void dibujarPalanca(Palanca palanca, Color tinte) {
+        if (palanca == null) return;
+
+        Rectangle z = palanca.getZona();
+        Texture textura = palanca.estaActivada() ? texturaPalancaOn : texturaPalancaOff;
+
+        float ancho = Constantes.ANCHO_PALANCA;   // antes: 48f
+        float alto = Constantes.ALTO_PALANCA;     // antes: 56f
+        batch.setColor(tinte);
+        batch.draw(textura, z.x + (z.width - ancho) / 2f, z.y, ancho, alto);
+        batch.setColor(Color.WHITE);
+    }
+
+    private void dibujarPeligros() {
+        for (Rectangle peligro : elementos.getPeligros()) {
+            batch.draw(texturaPinchos, peligro.x, peligro.y, peligro.width, peligro.width / 2f);
+        }
+    }
+
+    private void dibujarLianas() {
+        for (ObjetoCortable cortable : elementos.getCortables()) {
+            if (cortable.estaCortado()) continue;
+            if (!"liana".equals(cortable.getTipo())) continue;
+
+            Rectangle z = cortable.getZona();
+            float altoSegmento = 192f;
+
+            for (float y = z.y; y < z.y + z.height; y += altoSegmento) {
+                batch.draw(texturaLiana, z.x, y, z.width, altoSegmento);
+            }
+        }
+    }
+
+    private void dibujarPersonaje() {
+        TextureRegion frame = animaciones.getFrameActual();
+
+        float tam = Constantes.TAM_SPRITE_PERSONAJE;
+        float x = cappuccino.getX() - (tam - cappuccino.getAncho()) / 2f;
+        float y = cappuccino.getY();
+
+        if (cappuccino.isMirandoDerecha()) {
+            batch.draw(frame, x, y, tam, tam);
+        } else {
+            batch.draw(frame, x + tam, y, -tam, tam);
+        }
+    }
+
+    private void dibujarBallerinaPlaceholder() {
+        shapeRenderer.setProjectionMatrix(camera.combined);
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+
+        shapeRenderer.setColor(0.95f, 0.35f, 0.65f, 1f);
+        shapeRenderer.rect(ballerina.getX(), ballerina.getY(), ballerina.getAncho(), ballerina.getAlto());
+
+        shapeRenderer.setColor(1f, 1f, 1f, 1f);
+        float e = Constantes.ESCALA_PERSONAJE;
+        float markerSize = 8f * e;
+        float markerY = ballerina.getY() + ballerina.getAlto() - 16f * e;
+        float markerX = ballerina.isMirandoDerecha()
+            ? ballerina.getX() + ballerina.getAncho() - 12f * e
+            : ballerina.getX() + 4f * e;
+        shapeRenderer.rect(markerX, markerY, markerSize, markerSize);
+
+        shapeRenderer.end();
+    }
+
+    public void dispose() {
+        renderizador.dispose();
+        shapeRenderer.dispose();
+        batch.dispose();
+        texturaAbierta.dispose();
+        texturaCerrada.dispose();
+        texturaPalancaOff.dispose();
+        texturaPalancaOn.dispose();
+        texturaPinchos.dispose();
+        texturaLiana.dispose();
+    }
+}
+.
+
+============================================================
+ARCHIVO: C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\lwjgl3\src\main\java\com\capuccinolovesballerina\game\lwjgl3\Lwjgl3Launcher.java
+============================================================
+
+package com.capuccinolovesballerina.game.lwjgl3;
+
+import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
+import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
+import com.capuccinolovesballerina.game.CapuccinoLovesBallerinaGame;
+
+public class Lwjgl3Launcher {
+    public static void main(String[] args) {
+        if (StartupHelper.startNewJvmIfRequired()) return;
+        createApplication();
+    }
+
+    private static Lwjgl3Application createApplication() {
+        return new Lwjgl3Application(new CapuccinoLovesBallerinaGame(), getDefaultConfiguration());
+    }
+
+    private static Lwjgl3ApplicationConfiguration getDefaultConfiguration() {
+        Lwjgl3ApplicationConfiguration configuration = new Lwjgl3ApplicationConfiguration();
+        configuration.setTitle("CapuccinoLovesBallerina");
+        configuration.useVsync(true);
+
+        configuration.setForegroundFPS(Lwjgl3ApplicationConfiguration.getDisplayMode().refreshRate + 1);
+
+
+        configuration.setWindowedMode(1280, 720);
+
+        configuration.setWindowIcon("libgdx128.png", "libgdx64.png", "libgdx32.png", "libgdx16.png");
+
+
+
+        return configuration;
+    }
+}
+
+
+============================================================
+ARCHIVO: C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\lwjgl3\src\main\java\com\capuccinolovesballerina\game\lwjgl3\StartupHelper.java
+============================================================
+
+/*
+ * Copyright 2020 damios
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at:
+ * https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+// Note, the above license and copyright applies to this file only.
+package com.capuccinolovesballerina.game.lwjgl3;
+
+import com.badlogic.gdx.Version;
+import com.badlogic.gdx.backends.lwjgl3.Lwjgl3NativesLoader;
+
+import org.lwjgl.system.JNI;
+import org.lwjgl.system.linux.UNISTD;
+import org.lwjgl.system.macosx.LibC;
+import org.lwjgl.system.macosx.ObjCRuntime;
+
+import java.io.File;
+import java.lang.management.ManagementFactory;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
+/**
+ * A helper object for game startup, featuring three utilities related to LWJGL3 on various operating systems.
+ * <p>
+ * The utilities are as follows:
+ * <ul>
+ *  <li> Windows: Prevents a common crash related to LWJGL3's extraction of shared library files.</li>
+ *  <li> macOS: Spawns a child JVM process with {@code -XstartOnFirstThread} in the JVM args (if it was not already).
+ *  This is required for LWJGL3 to work on macOS.</li>
+ *  <li> Linux (NVIDIA GPUs only): Spawns a child JVM process with the {@code __GL_THREADED_OPTIMIZATIONS}
+ *  {@link System#getenv(String) Environment Variable} set to {@code 0} (if it was not already). This is required for
+ *  LWJGL3 to work on Linux with NVIDIA GPUs.</li>
+ * </ul>
+ * <a href="https://jvm-gaming.org/t/starting-jvm-on-mac-with-xstartonfirstthread-programmatically/57547">Based on this java-gaming.org post by kappa</a>
+ * @author damios
+ */
+public class StartupHelper {
+
+	private StartupHelper() {}
+
+	private static final String JVM_RESTARTED_ARG = "jvmIsRestarted";
+
+	/**
+	 * Must only be called on Linux. Check OS first (or use short-circuit evaluation)!
+	 * @return whether NVIDIA drivers are present on Linux.
+	 */
+	public static boolean isLinuxNvidia() {
+		String[] drivers = new File("/proc/driver").list(
+			(dir, path) -> path.toUpperCase(Locale.ROOT).contains("NVIDIA")
+		);
+		if (drivers == null) return false;
+		return drivers.length > 0;
+	}
+
+	/**
+	 * Applies the utilities as described by {@link StartupHelper}'s Javadoc.
+	 * <p>
+	 * All {@link System#getenv() Environment Variables} are copied to the child JVM process (if it is spawned), as
+	 * specified by {@link ProcessBuilder#environment()}; the same applies for
+	 * {@link System#getProperties() System Properties}.
+	 * <p>
+	 * <b>Usage:</b>
+	 * <pre><code>
+	 * public static void main(String[] args) {
+	 * 	 if (StartupHelper.startNewJvmIfRequired()) return;
+	 * 	 // ... The rest of main() goes here, as normal.
+	 * }
+	 * </code></pre>
+	 * @return whether a child JVM process was spawned or not.
+	 */
+	public static boolean startNewJvmIfRequired() {
+		return startNewJvmIfRequired(true);
+	}
+
+	/**
+	 * Applies the utilities as described by {@link StartupHelper}'s Javadoc.
+	 * <p>
+	 * All {@link System#getenv() Environment Variables} are copied to the child JVM process (if it is spawned), as
+	 * specified by {@link ProcessBuilder#environment()}; the same applies for
+	 * {@link System#getProperties() System Properties}.
+	 * <p>
+	 * <b>Usage:</b>
+	 * <pre><code>
+	 * public static void main(String[] args) {
+	 *   // The parameter on the next line could instead be false if you don't want to inherit IO.
+	 * 	 if (StartupHelper.startNewJvmIfRequired(true)) return;
+	 * 	 // ... The rest of main() goes here, as normal.
+	 * }
+	 * </code></pre>
+	 * @param inheritIO whether I/O should be inherited in the child JVM process. Please note that enabling this will
+	 *                  block the thread until the child JVM process stops executing.
+	 * @return whether a child JVM process was spawned or not.
+	 */
+	public static boolean startNewJvmIfRequired(boolean inheritIO) {
+		String osName = System.getProperty("os.name").toLowerCase(Locale.ROOT);
+		if (osName.contains("mac")) return startNewJvm0(/*isMac =*/ true, inheritIO);
+		if (osName.contains("windows")) {
+			// Here, we are trying to work around an issue with how LWJGL3 loads its extracted .dll files.
+			// By default, LWJGL3 extracts to the directory specified by "java.io.tmpdir": usually, the user's home.
+			// If the user's name has non-ASCII (or some non-alphanumeric) characters in it, that would fail.
+			// By extracting to the relevant "ProgramData" folder, which is usually "C:\ProgramData", we avoid this.
+			// We also temporarily change the "user.name" property to one without any chars that would be invalid.
+			// We revert our changes immediately after loading LWJGL3 natives.
+			String programData = System.getenv("ProgramData");
+			if (programData == null) programData = "C:\\Temp"; // if ProgramData isn't set, try some fallback.
+			String prevTmpDir = System.getProperty("java.io.tmpdir", programData);
+			String prevUser = System.getProperty("user.name", "libGDX_User");
+			System.setProperty("java.io.tmpdir", programData + "\\libGDX-temp");
+			System.setProperty(
+				"user.name",
+				("User_" + prevUser.hashCode() + "_GDX" + Version.VERSION).replace('.', '_')
+			);
+			Lwjgl3NativesLoader.load();
+			System.setProperty("java.io.tmpdir", prevTmpDir);
+			System.setProperty("user.name", prevUser);
+			return false;
+		}
+		return startNewJvm0(/*isMac =*/ false, inheritIO);
+	}
+
+	private static final String MAC_JRE_ERR_MSG = "A Java installation could not be found. If you are distributing this app with a bundled JRE, be sure to set the '-XstartOnFirstThread' argument manually!";
+	private static final String LINUX_JRE_ERR_MSG = "A Java installation could not be found. If you are distributing this app with a bundled JRE, be sure to set the environment variable '__GL_THREADED_OPTIMIZATIONS' to '0'!";
+	private static final String CHILD_LOOP_ERR_MSG = "The current JVM process is a spawned child JVM process, but StartupHelper has attempted to spawn another child JVM process! This is a broken state, and should not normally happen! Your game may crash or not function properly!";
+
+	/**
+	 * Spawns a child JVM process if on macOS, or on Linux with NVIDIA drivers.
+	 * <p>
+	 * All {@link System#getenv() Environment Variables} are copied to the child JVM process (if it is spawned), as
+	 * specified by {@link ProcessBuilder#environment()}; the same applies for
+	 * {@link System#getProperties() System Properties}.
+	 * @param isMac whether the current OS is macOS. If this is `false` then the current OS is assumed to be Linux (and
+	 *             an immediate check for NVIDIA drivers is performed).
+	 * @param inheritIO whether I/O should be inherited in the child JVM process. Please note that enabling this will
+	 *                 block the thread until the child JVM process stops executing.
+	 * @return whether a child JVM process was spawned or not.
+	 */
+	public static boolean startNewJvm0(boolean isMac, boolean inheritIO) {
+		long processID = getProcessID(isMac);
+		if (!isMac) {
+			// No need to restart non-NVIDIA Linux
+			if (!isLinuxNvidia()) return false;
+			// check whether __GL_THREADED_OPTIMIZATIONS is already disabled
+			if ("0".equals(System.getenv("__GL_THREADED_OPTIMIZATIONS"))) return false;
+		} else {
+			// There is no need for -XstartOnFirstThread on Graal native image
+			if (!System.getProperty("org.graalvm.nativeimage.imagecode", "").isEmpty()) return false;
+
+			// Checks if we are already on the main thread, such as from running via Construo.
+			long objcMsgSend = ObjCRuntime.getLibrary().getFunctionAddress("objc_msgSend");
+			long nsThread = ObjCRuntime.objc_getClass("NSThread");
+			long currentThread = JNI.invokePPP(nsThread, ObjCRuntime.sel_getUid("currentThread"), objcMsgSend);
+			boolean isMainThread = JNI.invokePPZ(currentThread, ObjCRuntime.sel_getUid("isMainThread"), objcMsgSend);
+			if (isMainThread) return false;
+
+			if ("1".equals(System.getenv("JAVA_STARTED_ON_FIRST_THREAD_" + processID))) return false;
+		}
+
+		// Check whether this JVM process is a child JVM process already.
+		// This state shouldn't usually be reachable, but this stops us from endlessly spawning new child JVM processes.
+		if ("true".equals(System.getProperty(JVM_RESTARTED_ARG))) {
+			System.err.println(CHILD_LOOP_ERR_MSG);
+			return false;
+		}
+
+		// Spawn the child JVM process with updated environment variables or JVM args
+		List<String> jvmArgs = new ArrayList<>();
+		// The following line is used assuming you target Java 8, the minimum for LWJGL3.
+		String javaExecPath = System.getProperty("java.home") + "/bin/java";
+		// If targeting Java 9 or higher, you could use the following instead of the above line:
+		//String javaExecPath = ProcessHandle.current().info().command().orElseThrow()
+		if (!(new File(javaExecPath).exists())) {
+			System.err.println(getJreErrMsg(isMac));
+			return false;
+		}
+
+		jvmArgs.add(javaExecPath);
+		if (isMac) jvmArgs.add("-XstartOnFirstThread");
+		jvmArgs.add("-D" + JVM_RESTARTED_ARG + "=true");
+		jvmArgs.addAll(ManagementFactory.getRuntimeMXBean().getInputArguments());
+		jvmArgs.add("-cp");
+		jvmArgs.add(System.getProperty("java.class.path"));
+		String mainClass = System.getenv("JAVA_MAIN_CLASS_" + processID);
+		if (mainClass == null) {
+			StackTraceElement[] trace = Thread.currentThread().getStackTrace();
+			if (trace.length > 0) mainClass = trace[trace.length - 1].getClassName();
+			else {
+				System.err.println("The main class could not be determined.");
+				return false;
+			}
+		}
+		jvmArgs.add(mainClass);
+
+		try {
+			ProcessBuilder processBuilder = new ProcessBuilder(jvmArgs);
+			if (!isMac) processBuilder.environment().put("__GL_THREADED_OPTIMIZATIONS", "0");
+
+			if (!inheritIO) processBuilder.start();
+			else processBuilder.inheritIO().start().waitFor();
+		} catch (Exception e) {
+			System.err.println("There was a problem restarting the JVM.");
+			// noinspection CallToPrintStackTrace
+			e.printStackTrace();
+		}
+
+		return true;
+	}
+
+	private static String getJreErrMsg(boolean isMac) {
+		if (isMac) return MAC_JRE_ERR_MSG;
+		else return LINUX_JRE_ERR_MSG;
+	}
+
+	private static long getProcessID(boolean isMac) {
+		if (isMac) return LibC.getpid();
+		else return UNISTD.getpid();
+	}
+}
+
+============================================================
+3. ARCHIVOS DE CONFIGURACION
+============================================================
+
+
+============================================================
+ARCHIVO: build.gradle
+============================================================
+
+buildscript {
+  repositories {
+    mavenCentral()
+    gradlePluginPortal()
+    mavenLocal()
+    google()
+    maven { url = 'https://central.sonatype.com/repository/maven-snapshots/' }
+  }
+  dependencies {
+
+
+  }
+}
+
+allprojects {
+  apply plugin: 'eclipse'
+  apply plugin: 'idea'
+
+  // This allows you to "Build and run using IntelliJ IDEA", an option in IDEA's Settings.
+  idea {
+    module {
+      outputDir = file('build/classes/java/main')
+      testOutputDir = file('build/classes/java/test')
+    }
+  }
+}
+
+configure(subprojects) {
+  apply plugin: 'java-library'
+  java.sourceCompatibility = 17
+
+  // From https://lyze.dev/2021/04/29/libGDX-Internal-Assets-List/
+  // The article can be helpful when using assets.txt in your project.
+  tasks.register('generateAssetList') {
+    inputs.dir("${project.rootDir}/assets/")
+    // projectFolder/assets
+    File assetsFolder = new File("${project.rootDir}/assets/")
+    // projectFolder/assets/assets.txt
+    File assetsFile = new File(assetsFolder, "assets.txt")
+    // delete that file in case we've already created it
+    assetsFile.delete()
+
+    // iterate through all files inside that folder
+    // convert it to a relative path
+    // and append it to the file assets.txt
+    fileTree(assetsFolder).collect { assetsFolder.relativePath(it) }.sort().each {
+      assetsFile.append(it + "\n")
+    }
+  }
+  processResources.dependsOn 'generateAssetList'
+
+  compileJava {
+    options.incremental = true
+  }
+}
+
+subprojects {
+  version = "$projectVersion"
+  ext.appName = 'CapuccinoLovesBallerina'
+  repositories {
+    mavenCentral()
+    // You may want to remove the following line if you have errors downloading dependencies.
+    mavenLocal()
+    maven { url = 'https://central.sonatype.com/repository/maven-snapshots/' }
+    maven { url = 'https://jitpack.io' }
+  }
+}
+
+eclipse.project.name = 'CapuccinoLovesBallerina' + '-parent'
+
+
+============================================================
+ARCHIVO: settings.gradle
+============================================================
+
+plugins {
+  // Applies the foojay-resolver plugin to allow automatic download of JDKs.
+  id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
+}
+// A list of which subprojects to load as part of the same larger project.
+// You can remove Strings from the list and reload the Gradle project
+// if you want to temporarily disable a subproject.
+include 'lwjgl3', 'core'
+
+
+============================================================
+ARCHIVO: gradle.properties
+============================================================
+
+# This doesn't need to be false, and some projects may be able to take advantage of setting daemon to true.
+# We set it to false by default in order to avoid too many daemons from being created and persisting; each needs RAM.
+org.gradle.daemon=false
+# Sets starting memory usage to 512MB, maximum memory usage to 1GB, and tries to set as much to use Unicode as we can.
+org.gradle.jvmargs=-Xms512M -Xmx1G -Dfile.encoding=UTF-8 -Dconsole.encoding=UTF-8
+# "Configure on-demand" must be false because it breaks projects that have Android modules. The default is also false.
+org.gradle.configureondemand=false
+# The logging level determines which messages get shown about how Gradle itself is working, such as if build.gradle
+# files are fully future-proof (which they never are, because Gradle constantly deprecates working APIs).
+# You can change 'quiet' below to 'lifecycle' to use Gradle's default behavior, which shows some confusing messages.
+# You could instead change 'quiet' below to 'info' to see info that's important mainly while debugging build files.
+# Note that if you want to use Gradle Build Scans, you should set the below logging level to 'lifecycle', otherwise
+# the link to the scan won't get shown at all.
+# Documented at: https://docs.gradle.org/current/userguide/command_line_interface.html#sec:command_line_logging
+org.gradle.logging.level=quiet
+lwjgl3Version=3.4.1
+graalHelperVersion=2.0.1
+enableGraalNative=false
+gdxVersion=1.14.1
+projectVersion=1.5.1
+
+
+
+============================================================
+ARCHIVO: core\build.gradle
+============================================================
+
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+eclipse.project.name = appName + '-core'
+
+dependencies {
+  api "com.badlogicgames.gdx:gdx:$gdxVersion"
+
+  if(enableGraalNative == 'true') {
+    implementation "io.github.berstanio:gdx-svmhelper-annotations:$graalHelperVersion"
+  }
+}
+
+jar {
+  duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+
+============================================================
+ARCHIVO: lwjgl3\build.gradle
+============================================================
+
+
+buildscript {
+  repositories {
+    gradlePluginPortal()
+  }
+  dependencies {
+    classpath "io.github.fourlastor:construo:2.1.0"
+    if(enableGraalNative == 'true') {
+      classpath "org.graalvm.buildtools.native:org.graalvm.buildtools.native.gradle.plugin:0.9.28"
+    }
+  }
+}
+plugins {
+  id "application"
+}
+apply plugin: 'io.github.fourlastor.construo'
+
+
+import io.github.fourlastor.construo.Target
+
+sourceSets.main.resources.srcDirs += [ rootProject.file('assets').path ]
+application.mainClass = 'com.capuccinolovesballerina.game.lwjgl3.Lwjgl3Launcher'
+application.applicationName = appName
+eclipse.project.name = appName + '-lwjgl3'
+java.sourceCompatibility = 17
+java.targetCompatibility = 17
+if (JavaVersion.current().isJava9Compatible()) {
+        compileJava.options.release.set(17)
+}
+
+dependencies {
+  implementation "com.badlogicgames.gdx:gdx-backend-lwjgl3:$gdxVersion"
+  implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+  implementation project(':core')
+
+  if(enableGraalNative == 'true') {
+    implementation "io.github.berstanio:gdx-svmhelper-backend-lwjgl3:$graalHelperVersion"
+
+  }
+  // Forces LWJGL3 to use at least $lwjgl3Version, currently 3.4.1, to avoid problems on Java 25 and up.
+  constraints{
+    implementation("org.lwjgl:lwjgl:$lwjgl3Version")
+    implementation("org.lwjgl:lwjgl-glfw:$lwjgl3Version")
+    implementation("org.lwjgl:lwjgl-jemalloc:$lwjgl3Version")
+    implementation("org.lwjgl:lwjgl-openal:$lwjgl3Version")
+    implementation("org.lwjgl:lwjgl-opengl:$lwjgl3Version")
+    implementation("org.lwjgl:lwjgl-stb:$lwjgl3Version")
+  }
+}
+
+def os = System.properties['os.name'].toLowerCase(Locale.ROOT)
+
+run {
+  workingDir = rootProject.file('assets').path
+// You can uncomment the next line if your IDE claims a build failure even when the app closed properly.
+  //setIgnoreExitValue(true)
+  jvmArgs += "--enable-native-access=ALL-UNNAMED"
+  if (os.contains('mac')) jvmArgs += "-XstartOnFirstThread"
+}
+
+jar {
+// sets the name of the .jar file this produces to the name of the game or app, with the version after.
+  archiveFileName.set("${appName}-${projectVersion}.jar")
+// the duplicatesStrategy matters starting in Gradle 7.0; this setting works.
+  duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+  dependsOn configurations.runtimeClasspath
+  from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+// these "exclude" lines remove some unnecessary duplicate files in the output JAR.
+  exclude('META-INF/INDEX.LIST', 'META-INF/*.SF', 'META-INF/*.DSA', 'META-INF/*.RSA')
+  dependencies {
+    exclude('META-INF/INDEX.LIST', 'META-INF/maven/**')
+  }
+// setting the manifest makes the JAR runnable.
+// enabling native access helps avoid a warning when Java 24 or later runs the JAR.
+// setting Multi-Release to true allows LWJGL3 to use different classes on recent Java versions.
+  manifest {
+    attributes 'Main-Class': application.mainClass, 'Enable-Native-Access': 'ALL-UNNAMED', 'Multi-Release': 'true'
+  }
+// this last step may help on some OSes that need extra instruction to make runnable JARs.
+  doLast {
+    file(archiveFile).setExecutable(true, false)
+  }
+}
+
+// Builds a JAR that only includes the files needed to run on macOS, not Windows or Linux.
+// The file size for a Mac-only JAR is about 7MB smaller than a cross-platform JAR.
+tasks.register("jarMac") {
+  dependsOn("jar")
+  group("build")
+  jar.archiveFileName.set("${appName}-${projectVersion}-mac.jar")
+  jar.exclude("windows/x86/**", "windows/x64/**", "linux/arm32/**", "linux/arm64/**", "linux/x64/**", "**/*.dll", "**/*.so",
+    'META-INF/INDEX.LIST', 'META-INF/*.SF', 'META-INF/*.DSA', 'META-INF/*.RSA')
+  dependencies {
+    jar.exclude("windows/x86/**", "windows/x64/**", "linux/arm32/**", "linux/arm64/**", "linux/x64/**",
+      'META-INF/INDEX.LIST', 'META-INF/maven/**')
+  }
+}
+
+// Builds a JAR that only includes the files needed to run on Linux, not Windows or macOS.
+// The file size for a Linux-only JAR is about 5MB smaller than a cross-platform JAR.
+tasks.register("jarLinux") {
+  dependsOn("jar")
+  group("build")
+  jar.archiveFileName.set("${appName}-${projectVersion}-linux.jar")
+  jar.exclude("windows/x86/**", "windows/x64/**", "macos/arm64/**", "macos/x64/**", "**/*.dll", "**/*.dylib",
+    'META-INF/INDEX.LIST', 'META-INF/*.SF', 'META-INF/*.DSA', 'META-INF/*.RSA')
+  dependencies {
+    jar.exclude("windows/x86/**", "windows/x64/**", "macos/arm64/**", "macos/x64/**",
+      'META-INF/INDEX.LIST', 'META-INF/maven/**')
+  }
+}
+
+// Builds a JAR that only includes the files needed to run on Windows, not Linux or macOS.
+// The file size for a Windows-only JAR is about 6MB smaller than a cross-platform JAR.
+tasks.register("jarWin") {
+  dependsOn("jar")
+  group("build")
+  jar.archiveFileName.set("${appName}-${projectVersion}-win.jar")
+  jar.exclude("macos/arm64/**", "macos/x64/**", "linux/arm32/**", "linux/arm64/**", "linux/x64/**", "**/*.dylib", "**/*.so",
+    'META-INF/INDEX.LIST', 'META-INF/*.SF', 'META-INF/*.DSA', 'META-INF/*.RSA')
+  dependencies {
+    jar.exclude("macos/arm64/**", "macos/x64/**", "linux/arm32/**", "linux/arm64/**", "linux/x64/**",
+      'META-INF/INDEX.LIST', 'META-INF/maven/**')
+  }
+}
+
+construo {
+  // name of the executable
+  name.set(appName)
+  // human-readable name, used for example in the `.app` name for macOS
+  humanName.set(appName)
+  jlink {
+    guessModulesFromJar.set(false)
+    // You may need to add more modules, as needed.
+    modules.addAll("java.base", "java.management", "java.desktop", "jdk.unsupported")
+  }
+
+  targets.configure {
+    register("linuxX64", Target.Linux) {
+      architecture.set(Target.Architecture.X86_64)
+      jdkUrl.set("https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.10%2B7/OpenJDK21U-jdk_x64_linux_hotspot_21.0.10_7.tar.gz")
+      // Linux does not currently have a way to set the icon on the executable
+    }
+    register("macM1", Target.MacOs) {
+      architecture.set(Target.Architecture.AARCH64)
+      jdkUrl.set("https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.10%2B7/OpenJDK21U-jdk_aarch64_mac_hotspot_21.0.10_7.tar.gz")
+      // macOS needs an identifier
+      identifier.set("com.capuccinolovesballerina.game." + appName)
+      // Optional: icon for macOS, as an ICNS file
+      macIcon.set(project.file("icons/logo.icns"))
+    }
+    register("macX64", Target.MacOs) {
+      architecture.set(Target.Architecture.X86_64)
+      jdkUrl.set("https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.10%2B7/OpenJDK21U-jdk_x64_mac_hotspot_21.0.10_7.tar.gz")
+      // macOS needs an identifier
+      identifier.set("com.capuccinolovesballerina.game." + appName)
+      // Optional: icon for macOS, as an ICNS file
+      macIcon.set(project.file("icons/logo.icns"))
+    }
+    register("winX64", Target.Windows) {
+      architecture.set(Target.Architecture.X86_64)
+      // Optional: icon for Windows, as a PNG
+      icon.set(project.file("icons/logo.png"))
+      jdkUrl.set("https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.10%2B7/OpenJDK21U-jdk_x64_windows_hotspot_21.0.10_7.zip")
+      // Uncomment the next line to show a console when the game runs, to print messages.
+      //useConsole.set(true)
+    }
+  }
+}
+
+// Equivalent to the jar task; here for compatibility with gdx-setup.
+tasks.register('dist') {
+  dependsOn 'jar'
+}
+
+distributions {
+  main {
+    contents {
+      into('libs') {
+        project.configurations.runtimeClasspath.files.findAll { file ->
+          file.getName() != project.tasks.jar.outputs.files.singleFile.name
+        }.each { file ->
+          exclude file.name
+        }
+      }
+    }
+  }
+}
+
+startScripts.dependsOn(':lwjgl3:jar')
+startScripts.classpath = project.tasks.jar.outputs.files
+
+// Helps if debugging on Linux with an Nvidia GPU.
+// This means StartupHelper won't try to restart the JVM, which can prevent debugging.
+// This only applies to Gradle tasks, not main methods debugged when launching a main() method directly.
+// As a more general solution, set the environment variable __GL_THREADED_OPTIMIZATIONS to 0 globally, on Linux
+// machines with Nvidia GPUs where you need to debug LWJGL3 apps and games.
+// You can also set __GL_THREADED_OPTIMIZATIONS to 0 in run configurations, which you would need per main() method.
+// StartupHelper will still restart the JVM to set this environment variable when run as a distributable JAR, which is
+// a good thing for end users. They won't need to ever set the debug-specific environment variable.
+tasks.withType(JavaExec.class).configureEach {
+  environment("__GL_THREADED_OPTIMIZATIONS", 0)
+}
+
+if(enableGraalNative == 'true') {
+  apply from: file("nativeimage.gradle")
+}
+
+============================================================
+ARCHIVO: README.md
+============================================================
+
+# Capuccino Loves Ballerina
+
+## Integrantes del grupo
+
+- Guillermo Bordoli
+- Agustín Bruno
+- Santino Fierro
+
+## Descripción del videojuego
+
+Capuccino Loves Ballerina es un videojuego cooperativo de plataformas y puzles en 2D para PC, inspirado en las mecánicas principales de Fireboy and Watergirl.
+
+Cada jugador controlará desde una computadora diferente a Cappuccino Assassino o Ballerina Capuccina. Ambos personajes deberán colaborar para superar obstáculos, activar mecanismos, resolver puzles y escapar de una estructura misteriosa mediante el uso coordinado de sus habilidades especiales.
+
+## Tecnologías principales
+
+- Java JDK 17
+- LibGDX 1.14.1
+- Gradle
+- IntelliJ IDEA
+- Git y GitHub
+- Plataforma objetivo: escritorio mediante LWJGL3
+
+## Wiki del proyecto
+
+La propuesta formal y detallada del videojuego se encuentra en la Wiki:
+
+[Ver la propuesta del proyecto](https://github.com/agustinbruno07/capuccino-loves-ballerina/wiki)
+
+## Compilación y ejecución
+
+### Requisitos
+
+Para compilar y ejecutar el proyecto es necesario contar con:
+
+- Java JDK 17.
+- Git.
+- IntelliJ IDEA o cualquier entorno compatible con proyectos Gradle.
+
+### Clonar el repositorio
+
+Abrir una terminal y ejecutar:
+
+```bash
+git clone https://github.com/agustinbruno07/capuccino-loves-ballerina.git
+```
+
+### Ingresar a la carpeta del proyecto
+
+Una vez clonado el repositorio, ejecutar:
+
+```bash
+cd capuccino-loves-ballerina
+```
+
+### Ejecutar en Windows
+
+Desde la carpeta raíz del proyecto, ejecutar:
+
+```bash
+gradlew.bat lwjgl3:run
+```
+
+Si se utiliza Git Bash, también se puede ejecutar:
+
+```bash
+./gradlew.bat lwjgl3:run
+```
+
+### Ejecutar en Linux o macOS
+
+Desde la carpeta raíz del proyecto, ejecutar:
+
+```bash
+./gradlew lwjgl3:run
+```
+
+### Ejecutar desde IntelliJ IDEA
+
+1. Abrir IntelliJ IDEA.
+2. Seleccionar `Open`.
+3. Buscar y abrir la carpeta `capuccino-loves-ballerina`.
+4. Esperar a que Gradle termine de importar el proyecto y descargar las dependencias.
+5. Abrir el módulo `lwjgl3`.
+6. Buscar la clase `Lwjgl3Launcher.java`.
+7. Ejecutar el método `main` de `Lwjgl3Launcher`.
+
+## Video de demostración (segunda pre-entrega)
+[▶ Ver video de demostración](https://drive.google.com/file/d/1RYrjh4mWFUnnSkVwSDYIL4kscPV1n7NP/view?usp=drive_link)
+
+## Estado actual del proyecto (v1.5.1)
+Prototipo jugable del nivel 0 en escritorio con:
+- Movimiento, salto, gravedad y colisiones contra el mapa de Tiled.
+- Animaciones de Cappuccino Assassino (idle/caminar/saltar/atacar) desde spritesheet.
+- Mecánica cooperativa de palanca y puerta + corte de katana (F) sobre lianas.
+- Zonas de peligro (pinchos) y caída al vacío con GAME OVER y reinicio.
+- Condición de victoria al interactuar con la puerta abierta.
+- Pantallas: menú principal, opciones, juego, pausa, derrota y victoria.
+- HUD con cronómetro de partida.
+- Música de fondo por pantalla (menú y juego) con volumen configurable.
+- Arte real de objetos (puerta, palanca, pinchos, liana) y niveles diseñados en Tiled.
+
+
+============================================================
+ARCHIVO: CHANGELOG.md
+============================================================
+
+# Changelog
+
+Todos los cambios importantes del proyecto serán registrados en este archivo.
+
+## [1.6.1] - 2026-11-08
+
+
+## Agregado
+- **Conexion UDP**
+    - Clase `HiloDescubrimiento`: Otorga direcciones ip automaticamente
+
+## [1.6.0] - 2026-11-07
+
+### Agregado
+- **Infraestructura de Red UDP:**
+    - Clase `Servidor` y `HiloServidor`: Escucha puerto fijo, gestiona máx. 2 jugadores, asigna roles automáticos, mantiene estado autoritativo (palanca/puerta/cortes/muertes) y envía snapshots de bienvenida.
+    - Clase `Cliente` y `HiloCliente`: Conexión asíncrona, cola de recepción segura (`synchronized`), métodos helpers para enviar inputs específicos (`enviarPosicion`, `enviarCorte`, etc.).
+    - Soporte para configuración de IP del servidor mediante argumentos CLI en modo prueba.
+
+### Corregido
+- Bug crítico en `HiloServidor.mandarSnapshot`: Los flags booleanos (`mirando`, `enSuelo`) ahora se serializan como `"true"/"false"` consistentes con el broadcast en vivo, previniendo errores de parsing (`Boolean.parseBoolean("1.0") == false`) en clientes reconectados.
+
+### Notas Técnicas
+- Validación realizada mediante smoke test de 3 instancias locales simulando conexión secuencial y saturación de cupos.
+- La integración final con `ControladorPartida` y `PantallaJuego` queda pendiente para la siguiente iteración.
+
+## [1.5.2] - 2026-10-30
+
+### Agregado
+- **Integración completa de Ballerina Capuccina:**
+    - Nueva entidad `BallerinaCapuccina` heredando física básica de `Player`.
+    - Habilidad exclusiva: creación de `BloqueEspuma` temporal (plataforma sólida dinámica).
+    - Sistema de cooldown configurable para limitar el uso de la espuma.
+    - Spawn personalizado desde Tiled (`spawn_ballerina`).
+- **Soporte multijugador local (simulado):**
+    - Separación total de inputs en `ControladorEntradaJugador`: ahora gestiona simultáneamente teclados distintos para cada personaje (WASD+E+F vs Flechas+Enter+ShiftDer).
+    - Lógica de actualización independiente en `ControladorPartida` para ambos personajes.
+- **Mecánicas Cooperativas:**
+    - Condición de victoria revisada: requiere que AMBOS personajes colisionen con la zona de la puerta abierta simultáneamente.
+    - Condición de derrota cooperativa: muerte instantánea si CUALQUIER personaje cae al vacío o toca peligros.
+    - Interacción compartida con palancas: cualquiera de los dos puede activarla si está cerca y presiona su botón de interacción.
+- **Renderizado Placeholder:**
+    - Visualización de Ballerina como rectángulo rosa con marcador direccional mientras se esperan sprites definitivos.
+    - Dibujo dinámico de la espuma blanca con efecto de desvanecimiento (alpha fade-out).
+
+### Cambiado
+- Actualización de `Constantes.java` con parámetros específicos de la habilidad de Ballerina (dimensiones, duración, cooldown).
+
+## [1.5.1] - 2026-10-29
+
+### Refactorizado
+- Reemplacé la dependencia directa de `CapuccinoLovesBallerinaGame` por `Game` en las pantallas y los menús, reduciendo el acoplamiento con la clase principal.
+
+## [1.5] - 2026-10-27
+
+### Agregado
+- Selector de resolución de ventana en `PantallaOpciones`, con opciones de 1280x720, 1024x768 y 800x600.
+- Alternancia entre modo ventana y pantalla completa desde `PantallaOpciones`.
+- Comunicación UDP inicial entre clientes y servidor mediante `Cliente`, `HiloCliente`, `Servidor` y `HiloServidor`.
+- Lectura de mensajes por consola para realizar pruebas de comunicación entre clientes y servidor.
+
+### Cambiado
+- Resolución inicial de la ventana configurada en 1280x720 en `Lwjgl3Launcher`.
+- El selector de resolución queda deshabilitado mientras el juego está en pantalla completa.
+- Al volver al modo ventana, se recupera la última resolución seleccionada.
+
+## [1.4.6] - 2026-10-10
+
+### Agregado
+- Se incorporaron controles de volumen y silencio en `PantallaOpciones`.
+
+### Cambiado
+- Se quitó la maximización automática de la ventana en `Lwjgl3Launcher`.
+- Se limpiaron comentarios en `Lwjgl3Launcher`.
+
+### Refactorizado
+- Se separaron responsabilidades de `PantallaJuego` en las clases `ControladorPartida`, `RenderizadorJuego` y `ElementosNivel` para mejorar la organización del código.
+
+## [1.4.5] - 2026-09-22
+
+### Corregido
+- Manejo de la tecla ESC mediante `ControladorEntradaJugador` para alternar el menú de pausa.
+- `soltarTodo()` ahora restablece todos los estados de entrada, incluyendo `saltoW` y `saltoEspacio`.
+- - Se corrigió la liberación de recursos compartidos desde `MenuPausa`.
+- `Recursos` ahora es liberado únicamente desde `CapuccinoLovesBallerinaGame`.
+- Se evitó liberar el `Skin` compartido al cerrar el menú de pausa.
+
+## [1.4.0] - 2026-09-04
+### Agregado
+- Sistema de audio (`Utilidades/Audio`): música de fondo loopeable por pantalla (`sonidos/musica_menu.mp3` en el menú principal y `sonidos/musica_juego.mp3` en la partida), con cambio automático al navegar entre pantallas y liberación del recurso al salir del juego .
+- Volumen general configurable en `Audio` (`setVolumen`, acotado entre 0 y 1) con valor bajo por defecto.
+### Cambiado
+- `PantallaOpciones` deja de ser una pantalla verde sin salida: ahora muestra un cartel PROXIMAMENTE (avisa que el control de volumen llegará en la próxima pre-entrega) con botón VOLVER al menú.
+
+## [1.3.0] - 2026-08-27
+### Agregado
+- HUD con cronómetro de la partida en formato MM:SS sobre marco decorativo (`pantallas/HUD`).
+
+### Cambiado
+- Imagen del menu principal
+- Imagen del menu Victoria + Cambio de nombre de su respectivo boton "Reintentar Nivel" a "Siguiente Nivel".
+
+## [1.2.0] - 2026-08-24
+### Agregado
+- Zonas de peligro: rectángulos `peligro` en la capa `objetos` que muestran GAME OVER al tocarlos, además de la muerte por caída al vacío.
+- Corte de Katana de Cappuccino Assassino: con F corta objetos `cuerda` y `barril` de la capa `objetos` (`ObjetoCortable` + `Nivel.buscarObjetos`); mientras no están cortados bloquean el paso como sólidos y al reintentar vuelven a su estado inicial.
+- Mecánica cooperativa de palanca y puerta : nuevo paquete `objetos` con `Palanca` y `Puerta`; la palanca se alterna con E estando cerca y abre/cierra la puerta; la puerta cerrada bloquea el paso como sólido adicional y no puede cerrarse con el jugador en el hueco.
+- Condición de victoria: con la puerta abierta, al presionar E sobre su hueco aparece `MenuVictoria` ("NIVEL COMPLETADO" con JUGAR DE NUEVO y VOLVER AL MENU).
+- Placeholders de salida , puerta  y palanca dibujados con ShapeRenderer.
+- Movimiento de Cappuccino Assassino: desplazamiento horizontal (A/D), salto (W o espacio), gravedad y colisiones contra los sólidos del mapa (`Player` + `ControladorEntradaJugador`).
+- Spawn del personaje leído desde la capa `objetos` de Tiled (`spawn_cappuccino`).
+- Muerte por caída al vacío con pantalla de GAME OVER (`interfaz/game_over.png`) y botones REINTENTAR y VOLVER AL MENU.
+- Nivel 0 diseñado en Tiled Map Editor: tileset de ladrillos, fondo de mazmorra, capa de objetos (spawns, palanca, puerta, salida) y colisiones por tile con bounding boxes.
+- Nuevo paquete `mapa` con las clases `Nivel` (modelo de datos del nivel) y `GestorColisiones` (sólidos construidos desde los tiles, lógica pura reutilizable por el futuro servidor).
+- `PantallaJuego` ahora carga y dibuja el mapa de Tiled (TmxMapLoader + OrthogonalTiledMapRenderer).
+- Spritesheet de Cappuccino Assassino (`assets/sprites/cappuccino.png`) con animaciones de idle, caminar, saltar y atacar, armado en grilla de celdas de 128x128 con fondo transparente.
+- Nuevo paquete `graficos` con la clase `animacionesCappuccino`: recorte del spritesheet con `TextureRegion.split` y animaciones con `Animation<TextureRegion>` en modo LOOP (idle/caminar) y NORMAL (saltar/atacar), con ataque que no se interrumpe hasta terminar.
+- Animaciones integradas en `PantallaJuego`: maquina de estados segun input y fisica (F → atacar, en el aire → saltar, moverse → caminar, quieto → idle), dibujo con `SpriteBatch` y espejado del sprite segun la direccion de movimiento.
+- Arte real de objetos interactivos: sprites independientes en `assets/objetos/` (puerta cerrada/abierta, palanca apagada/encendida, pinchos y liana) dibujados con tamaño fijo en el mundo, desacoplados de la resolución del PNG.
+- Pinchos dibujados con proporción natural 2:1 apoyados sobre la zona letal; liana dibujada apilada en segmentos de 192px para evitar estiramiento.
+- Clamp de delta en `render()` (máximo 1/30s) para evitar tunneling y movimiento errático en el primer frame tras la carga.
+### Cambiado
+- Rediseño de la puerta: cerrada ya no bloquea el paso y al abrirse se dibuja como marco en la misma posición en vez de desaparecer.
+- `reintentar()` ahora también devuelve la puerta y la palanca a su estado inicial, además de reposicionar al personaje.
+- `ANCHO_MUNDO` a 1408 para que el mundo calce exacto con el mapa (22 tiles x 64 px).
+- `PantallaJuego` queda como cliente flaco: delega el mapa en `mapa/Nivel`; el renderizador lo crea el cliente.
+### Corregido
+- Teclas quedaban "pegadas" al abrir un menú o reintentar: se agregó `soltarTodo()` a `ControladorEntradaJugador`, que resetea las teclas sostenidas cada vez que el control pasa a un menú.
+
+
+
+## [1.1.0] 2026-08-23
+
+### Agregado
+- Menú de pausa como overlay (clase MenuPausa) con botones Reanudar, Volver al menú y Salir.
+- Alternancia de la pausa con la tecla ESC en la pantalla de juego.
+- Cámara fija con FitViewport en la pantalla de juego: el contenido se adapta a distintos tamaños de ventana sin deformarse.
+- Entorno de prueba con plataformas en la pantalla de juego.
+- Menú principal con viewport propio (FitViewport) y fondo como actor del Stage, que se adapta al redimensionar sin deformarse.
+- Paquete Utilidades con tres clases nuevas:
+    - Constantes: centraliza la resolución virtual y las rutas de assets.
+    - FabricaViewport: estandariza la creación de viewports en todas las pantallas.
+    - Recursos: gestor centralizado de skin y texturas con caché (HashMap) para evitar cargas duplicadas.
+- Clase BallerinaCapuccina (esqueleto del segundo personaje jugable).
+
+### Cambiado
+- PantallaJuego ahora recibe la instancia del juego en el constructor para permitir la navegación entre pantallas.
+- PantallaJuego y MenuPausa usan FabricaViewport y Constantes en lugar de valores propios.
+- Resolución virtual y ventana de escritorio configuradas en 1366x768 (antes 1280x720).
+- projectVersion en gradle.properties actualizado a 1.1.0 para alinearlo con este registro.
+
+### Corregido
+- Menú principal: los botones no respondían al maximizar la ventana porque resize() no actualizaba el viewport del Stage.
+
+
+## [1.0.1] 2026-08-04
+
+### Agregado
+- Actualización sobre el README en el apartado de Ejecución y Compilación.
+- Se cambio el nombre de la clase Principal a "CapuccinoLovesBallerinaGame".
+- Creacion del Menu principal
+- Fondo del menu Principal
+- Botones Salir, Opciones y Jugar
+- Funcionalidades de botones
+
+## [1.0.0] 2026-07-16
+
+### Agregado
+
+- Creación inicial del proyecto con LibGDX.
+- Configuración del módulo Core.
+- Configuración de la plataforma de escritorio LWJGL3
+- Incorporación del archivo .gitignore.
+- Creación del repositorio en GitHub.
+- Creación del README inicial.
+- Creación de la Wiki con la propuesta del proyecto.
+
+
+============================================================
+4. ASSETS
+============================================================
+
+Lista de archivos dentro de assets:
+
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\assets\assets.txt
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\assets\interfaz\controles.png
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\assets\interfaz\fondo_menu.png
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\assets\interfaz\game_over.png
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\assets\interfaz\marco_hud.png
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\assets\interfaz\victoria.jpg
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\assets\mapas\background1.png
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\assets\mapas\background1.tsx
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\assets\mapas\background2.png
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\assets\mapas\background2.tsx
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\assets\mapas\background3.png
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\assets\mapas\background3.tsx
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\assets\mapas\background4a.png
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\assets\mapas\background4a.tsx
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\assets\mapas\background4b.png
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\assets\mapas\NIVEL 0.tmx
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\assets\mapas\nivel0.tmx
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\assets\mapas\PISO.tsx
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\assets\mapas\PISO.tsx.png
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\assets\mapas\TILE ABAJO DEL PISO.png
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\assets\mapas\TILE PARED DERECHA.png
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\assets\mapas\TILE PARED IZQUIERDA.png
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\assets\mapas\TILE PISO.png
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\assets\mapas\TILESET PISO 32x32.png
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\assets\mapas\tileset.tsx
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\assets\objetos\liana.png
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\assets\objetos\palanca_apagada.png
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\assets\objetos\palanca_encendida.png
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\assets\objetos\pinchos.png
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\assets\objetos\puerta_abierta.png
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\assets\objetos\puerta_cerrada.png
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\assets\skin\default.fnt
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\assets\skin\default.png
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\assets\skin\uiskin.atlas
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\assets\skin\uiskin.json
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\assets\skin\uiskin.png
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\assets\sonidos\musica_juego.mp3
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\assets\sonidos\musica_menu.mp3
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\assets\sprites\cappuccino.png
+
+============================================================
+5. CLASES JAVA ENCONTRADAS
+============================================================
+
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\CapuccinoLovesBallerinaGame.java
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\entidades\BallerinaCapuccina.java
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\entidades\CapuccinoAssassino.java
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\entidades\Player.java
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\graficos\AnimacionesCappuccino.java
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\graficos\Estado.java
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\mapa\GestorColisiones.java
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\mapa\Nivel.java
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\objetos\BloqueEspuma.java
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\objetos\ElementosNivel.java
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\objetos\ObjetoCortable.java
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\objetos\Palanca.java
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\objetos\Puerta.java
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\pantallas\HUD.java
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\pantallas\MenuGameOver.java
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\pantallas\MenuPausa.java
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\pantallas\MenuVictoria.java
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\pantallas\PantallaControles.java
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\pantallas\PantallaJuego.java
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\pantallas\PantallaMenu.java
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\pantallas\PantallaOpciones.java
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\red\Cliente.java
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\red\Servidor.java
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\red\hilos\HiloCliente.java
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\red\hilos\HiloDescubrimiento.java
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\red\hilos\HiloServidor.java
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\Utilidades\Audio.java
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\Utilidades\Constantes.java
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\Utilidades\ControladorEntradaJugador.java
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\Utilidades\ControladorPartida.java
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\Utilidades\Entrada.java
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\Utilidades\FabricaViewport.java
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\Utilidades\Recursos.java
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\Utilidades\RenderizadorJuego.java
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\lwjgl3\src\main\java\com\capuccinolovesballerina\game\lwjgl3\Lwjgl3Launcher.java
+C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\lwjgl3\src\main\java\com\capuccinolovesballerina\game\lwjgl3\StartupHelper.java
+
+============================================================
+6. IMPORTS UTILIZADOS
+============================================================
+
+
+[C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\CapuccinoLovesBallerinaGame.java]
+import com.badlogic.gdx.Game;
+import com.capuccinolovesballerina.game.Utilidades.Audio;
+import com.capuccinolovesballerina.game.Utilidades.Recursos;
+import com.capuccinolovesballerina.game.pantallas.PantallaMenu;
+.
+[C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\entidades\BallerinaCapuccina.java]
+import com.capuccinolovesballerina.game.Utilidades.Constantes;
+import com.capuccinolovesballerina.game.objetos.BloqueEspuma;
+.
+[C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\entidades\CapuccinoAssassino.java]
+import com.capuccinolovesballerina.game.Utilidades.Constantes;
+.
+[C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\entidades\Player.java]
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.Array;
+import com.capuccinolovesballerina.game.Utilidades.Constantes;
+.
+[C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\graficos\AnimacionesCappuccino.java]
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+.
+[C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\graficos\Estado.java]
+.
+[C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\mapa\GestorColisiones.java]
+import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTile;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.Array;
+.
+[C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\mapa\Nivel.java]
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.maps.MapLayer;
+import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.MapProperties;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.Array;
+.
+[C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\objetos\BloqueEspuma.java]
+import com.badlogic.gdx.math.Rectangle;
+.
+[C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\objetos\ElementosNivel.java]
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.Array;
+import com.capuccinolovesballerina.game.Utilidades.Constantes;
+import com.capuccinolovesballerina.game.mapa.Nivel;
+.
+[C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\objetos\ObjetoCortable.java]
+import com.badlogic.gdx.math.Rectangle;
+.
+[C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\objetos\Palanca.java]
+import com.badlogic.gdx.math.Rectangle;
+.
+[C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\objetos\Puerta.java]
+import com.badlogic.gdx.math.Rectangle;
+.
+[C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\pantallas\HUD.java]
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Stack;
+import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.viewport.Viewport;
+import com.capuccinolovesballerina.game.Utilidades.Constantes;
+import com.capuccinolovesballerina.game.Utilidades.FabricaViewport;
+import com.capuccinolovesballerina.game.Utilidades.Recursos;
+.
+[C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\pantallas\MenuGameOver.java]
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Scaling;
+import com.badlogic.gdx.utils.viewport.Viewport;
+import com.badlogic.gdx.Game;
+import com.capuccinolovesballerina.game.Utilidades.FabricaViewport;
+import com.capuccinolovesballerina.game.Utilidades.Recursos;
+.
+[C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\pantallas\MenuPausa.java]
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
+import com.badlogic.gdx.Game;
+import com.capuccinolovesballerina.game.Utilidades.FabricaViewport;
+import com.capuccinolovesballerina.game.Utilidades.Recursos;
+.
+[C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\pantallas\MenuVictoria.java]
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Scaling;
+import com.badlogic.gdx.utils.viewport.Viewport;
+import com.badlogic.gdx.Game;
+import com.capuccinolovesballerina.game.Utilidades.FabricaViewport;
+import com.capuccinolovesballerina.game.Utilidades.Recursos;
+.
+[C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\pantallas\PantallaControles.java]
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Scaling;
+import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.Game;
+import com.capuccinolovesballerina.game.Utilidades.FabricaViewport;
+import com.capuccinolovesballerina.game.Utilidades.Recursos;
+.
+[C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\pantallas\PantallaJuego.java]
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.utils.viewport.Viewport;
+import com.badlogic.gdx.Game;
+import com.capuccinolovesballerina.game.Utilidades.*;
+import com.capuccinolovesballerina.game.entidades.BallerinaCapuccina;
+import com.capuccinolovesballerina.game.entidades.CapuccinoAssassino;
+import com.capuccinolovesballerina.game.graficos.AnimacionesCappuccino;
+import com.capuccinolovesballerina.game.mapa.Nivel;
+import com.capuccinolovesballerina.game.objetos.ElementosNivel;
+.
+[C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\pantallas\PantallaMenu.java]
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.Game;
+import com.capuccinolovesballerina.game.Utilidades.Audio;
+import com.capuccinolovesballerina.game.Utilidades.FabricaViewport;
+import com.capuccinolovesballerina.game.Utilidades.Recursos;
+import com.capuccinolovesballerina.game.red.Cliente;
+.
+[C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\pantallas\PantallaOpciones.java]
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Slider;
+import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.Game;
+import com.capuccinolovesballerina.game.Utilidades.Audio;
+import com.capuccinolovesballerina.game.Utilidades.FabricaViewport;
+import com.capuccinolovesballerina.game.Utilidades.Recursos;
+.
+[C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\red\Cliente.java]
+import com.capuccinolovesballerina.game.red.hilos.HiloCliente;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.util.ArrayList;
+import java.util.List;
+.
+[C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\red\Servidor.java]
+import com.capuccinolovesballerina.game.red.hilos.HiloDescubrimiento;
+import com.capuccinolovesballerina.game.red.hilos.HiloServidor;
+.
+[C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\red\hilos\HiloCliente.java]
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.SocketException;
+import java.util.ArrayList;
+import java.util.List;
+.
+[C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\red\hilos\HiloDescubrimiento.java]
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.SocketAddress;
+import java.net.SocketException;
+.
+[C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\red\hilos\HiloServidor.java]
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetSocketAddress;
+import java.net.SocketException;
+import java.util.HashSet;
+import java.util.Set;
+.
+[C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\Utilidades\Audio.java]
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+.
+[C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\Utilidades\Constantes.java]
+.
+[C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\Utilidades\ControladorEntradaJugador.java]
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputAdapter;
+.
+[C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\Utilidades\ControladorPartida.java]
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.Array;
+import com.capuccinolovesballerina.game.entidades.BallerinaCapuccina;
+import com.capuccinolovesballerina.game.entidades.CapuccinoAssassino;
+import com.capuccinolovesballerina.game.entidades.Player;
+import com.capuccinolovesballerina.game.graficos.AnimacionesCappuccino;
+import com.capuccinolovesballerina.game.graficos.Estado;
+import com.capuccinolovesballerina.game.mapa.Nivel;
+import com.capuccinolovesballerina.game.objetos.BloqueEspuma;
+import com.capuccinolovesballerina.game.objetos.ElementosNivel;
+import com.capuccinolovesballerina.game.objetos.ObjetoCortable;
+import com.capuccinolovesballerina.game.objetos.Palanca;
+import com.capuccinolovesballerina.game.objetos.Puerta;
+import com.capuccinolovesballerina.game.pantallas.HUD;
+import com.capuccinolovesballerina.game.pantallas.MenuGameOver;
+import com.capuccinolovesballerina.game.pantallas.MenuPausa;
+import com.capuccinolovesballerina.game.pantallas.MenuVictoria;
+.
+[C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\Utilidades\Entrada.java]
+import java.util.InputMismatchException;
+import java.util.Scanner;
+.
+[C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\Utilidades\FabricaViewport.java]
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
+.
+[C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\Utilidades\Recursos.java]
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import java.util.HashMap;
+.
+[C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\core\src\main\java\com\capuccinolovesballerina\game\Utilidades\RenderizadorJuego.java]
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.ScreenUtils;
+import com.capuccinolovesballerina.game.entidades.BallerinaCapuccina;
+import com.capuccinolovesballerina.game.entidades.CapuccinoAssassino;
+import com.capuccinolovesballerina.game.graficos.AnimacionesCappuccino;
+import com.capuccinolovesballerina.game.mapa.Nivel;
+import com.capuccinolovesballerina.game.objetos.BloqueEspuma;
+import com.capuccinolovesballerina.game.objetos.ElementosNivel;
+import com.capuccinolovesballerina.game.objetos.ObjetoCortable;
+import com.capuccinolovesballerina.game.objetos.Palanca;
+import com.capuccinolovesballerina.game.objetos.Puerta;
+import com.capuccinolovesballerina.game.pantallas.HUD;
+import com.capuccinolovesballerina.game.pantallas.MenuGameOver;
+import com.capuccinolovesballerina.game.pantallas.MenuPausa;
+import com.capuccinolovesballerina.game.pantallas.MenuVictoria;
+
+[C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\lwjgl3\src\main\java\com\capuccinolovesballerina\game\lwjgl3\Lwjgl3Launcher.java]
+import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
+import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
+import com.capuccinolovesballerina.game.CapuccinoLovesBallerinaGame;
+
+[C:\Users\Usuario\IdeaProjects\capuccino-loves-ballerina\lwjgl3\src\main\java\com\capuccinolovesballerina\game\lwjgl3\StartupHelper.java]
+import com.badlogic.gdx.Version;
+import com.badlogic.gdx.backends.lwjgl3.Lwjgl3NativesLoader;
+import org.lwjgl.system.JNI;
+import org.lwjgl.system.linux.UNISTD;
+import org.lwjgl.system.macosx.LibC;
+import org.lwjgl.system.macosx.ObjCRuntime;
+import java.io.File;
+import java.lang.management.ManagementFactory;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
+============================================================
+                   FIN DEL INFORME
+============================================================
